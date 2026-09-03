@@ -70,14 +70,14 @@ You will need the following components to build the reader. Purchasing your comp
 *The connector in which this device connects is in in boot of your ather ! there's tiny black cover just remove it and you'll be able to see the connector*
 
 
-
-<img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" />
+<p align="center">
+<img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" /> </p>
 
 
 Follow the wiring diagram below:
 
-
-<img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" />
+<p align="center">
+<img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" /> </p>
 
 
 **1. ESP32-C3 to SN65HVD230 Connections:**
