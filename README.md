@@ -125,7 +125,7 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 
 Building open-source hardware, reverse-engineering CAN bus data, testing safely on actual vehicles, and maintaining the code takes a massive amount of time, effort, and late nights! 
 
-If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32-WROOM support and new diagnostic features), **please consider buying me a coffee!** Your support is what keeps projects like this alive and free for the community. 
+If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32-WROOM support and new diagnostic features), **please consider supporting this project as well !** Your support is what keeps projects like this alive and free for the community. 
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
 
