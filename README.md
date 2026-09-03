@@ -13,9 +13,15 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 ---
 
+
+> **🛑 IMPORTANT NOTE (CURRENT RELEASE):** 
+> The current `.bin` file, source code, and wiring diagram provided in this repository are **ONLY for the ESP32-C3**. 
+> *The code and diagrams for the ESP32-WROOM are currently in development and will be added very soon!*
+> 
+
 ## 🛠️ Hardware Requirements
 
-*   1 × **ESP32 Module** (WROOM or C3)
+*   1 × **ESP32-C3 Module** *(WROOM support coming soon!)*
 *   1 × **SN65HVD230 CAN Bus Transceiver Module**
 *   4 × Female-to-Female Jumper Wires
 *   2 × Male-to-Male Jumper Wires
@@ -109,6 +115,21 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 👉 **[Click here to order your ready-to-use Ather OBD Reader]**(Insert Link Here)
 
 ---
+
+
+---
+
+## 💖 Support This Project
+
+Building open-source hardware, reverse-engineering CAN bus data, testing safely on actual vehicles, and maintaining the code takes a massive amount of time, effort, and late nights! 
+
+If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32-WROOM support and new diagnostic features), **please consider buying me a coffee!** Your support is what keeps projects like this alive and free for the community. 
+
+<a href="https://www.buymeacoffee.com/sam0_0"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=sam0_0&button_colour=40DCA5&font_colour=ffffff&font_family=Bree&outline_colour=000000&coffee_colour=FFDD00" /></a>
+
+---
+
+
 
 ## 📜 Policies & Privacy
 
