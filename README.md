@@ -4,7 +4,7 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
 
 ---
 
-<img src="images/demo.jpg" alt="Ather OBD Demo" width="350" height="500" />
+<img src="images/demo.jpg" alt="Ather OBD Demo" width="150" height="350" />
 
 
 ## ⚠️ Hardware Recommendations
