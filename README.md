@@ -51,7 +51,7 @@ You will need the following components to build the reader. Purchasing your comp
     *   [Download for Windows (.zip)](https://github.com/Jason2866/ESP_Flasher/releases/download/v4.5.1/ESP-Flasher-Windows.zip)
     *   [Download for macOS / Linux](https://github.com/Jason2866/ESP_Flasher/releases)
 *   The `.bin` firmware file (located in this repository).
-   *   [Download it here ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/code2_full.bin)
+    *   [Download it here ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/code2_full.bin)
   
 
 ---
