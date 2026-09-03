@@ -58,7 +58,7 @@ You will need the following components to build the reader. Purchasing your comp
 *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
 Follow the wiring diagram below:
-<img width="1294" height="765" alt="diagram-c3" src="https://github.com/user-attachments/assets/15dce686-14bf-4172-84a6-bfb1fb928efe" />
+<img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" />
 
 
 **1. ESP32-C3 to SN65HVD230 Connections:**
