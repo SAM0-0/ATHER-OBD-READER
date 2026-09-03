@@ -1,5 +1,7 @@
 # Ather OBD & Diagnostic Reader
 
+[![Star on GitHub](https://img.shields.io/badge/⭐_Star_This_Project_on_GitHub-gray?style=for-the-badge&logo=github)](https://github.com/SAM0-0/ATHER-OBD-READER)
+
 A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more. 
 
 ---
