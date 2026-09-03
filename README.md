@@ -37,9 +37,10 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 You will need the following components to build the reader. Purchasing your components through the links below helps support this open-source project at **zero extra cost to you**:
 
 * 1 × [ESP32-C3 SuperMini Development Board](https://www.flyrobo.in/esp32-c3-supermini-development-board-wifi-bluetooth-usb-c-soldered/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2) *(ESP32-WROOM support coming soon)*
-* 1 × [SN65HVD230 CAN Bus Transceiver Module Or You can get soldered version of it online as well ](https://www.flyrobo.in/wcmcu-230-can-bus-module-based-on-sn65hvd230/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
+* 1 × [SN65HVD230 CAN Bus Transceiver Module ](https://www.flyrobo.in/wcmcu-230-can-bus-module-based-on-sn65hvd230/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 4 × [Female-to-Female Jumper Wires](https://www.flyrobo.in/40pcs_10cm_female_to_female_jumper_cable_wire_for_arduino/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 2 × [Female-to-Male Jumper Wires](https://www.flyrobo.in/10cm_male_to_female_jumper_cable_wire_for_arduino/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
+
 
 > 💡 **Support the Project:** The hardware links above are affiliate links. If you buy your parts using these links, a small referral commission goes directly into funding further research, hardware testing, and future firmware updates—without costing you a single extra rupee. Thank you for supporting open-source development!
 
@@ -66,7 +67,7 @@ You will need the following components to build the reader. Purchasing your comp
 5. Wait a minute for the process to complete, then disconnect and reconnect the ESP32 to restart it.
 6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`ather-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
 
-[Video for flashing](images/flashing-setup.mp4)
+[Video for flashing](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/images/flashing-setup.mp4)
 
 
 ### Step 2: Hardware Connections
