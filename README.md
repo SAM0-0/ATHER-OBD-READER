@@ -10,6 +10,10 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
 <img src="images/demo.jpg" alt="Ather OBD Demo" width="150" height="350" />
    <img src="images/demo2.png" alt="Ather OBD Demo" width="150" height="350" />
 </p>
+
+<p align="center"> DEMO OF HOW IT LOOKS </p>
+
+
 ## ⚠️ Hardware Recommendations
 
 You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
