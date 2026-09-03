@@ -64,6 +64,10 @@ You will need the following components to build the reader. Purchasing your comp
 5. Wait a minute for the process to complete, then disconnect and reconnect the ESP32 to restart it.
 6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`ather-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
 
+<video src="videos/flashing-setup.mp4" controls width="50%">
+  Your browser does not support the video tag.
+</video>
+
 ### Step 2: Hardware Connections
 *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
