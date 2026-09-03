@@ -3,10 +3,9 @@
 A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more. 
 
 ---
-
+<p align="center">
 <img src="images/demo.jpg" alt="Ather OBD Demo" width="150" height="350" />
-
-
+</p>
 ## ⚠️ Hardware Recommendations
 
 You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
