@@ -110,7 +110,12 @@ Follow the wiring diagram below:
 ## 💡 Use Cases
 
 *   **Technicians & Proactive Owners:** Monitor genuine battery health to take timely action and fix/claim battery issues before it's too late.
-*   **Broken Display Workaround:** Create a tiny secondary device for riders whose main displays are dead. They can view essential info (like battery SoC%) without paying for an expensive screen replacement.
+*   **Broken Display Workaround:** Create a tiny secondary device for riders whose main displays are dead. They can view essential info (like battery SoC%) without paying for an expensive screen replacement. Ive made this device for personal use you can see the images !
+<p align="center">
+<img src="images/dead-display-2.jpg" alt="Ather dead Demo" width="150" height="350" />
+<img src="images/dead-display.jpg" alt="Ather dead Demo" width="150" height="350" />
+</p>
+   
 *   **Base Variant Upgrades:** A lightweight external display for base variants (like the Ather Rizta without the Pro Pack) to view hidden metrics effortlessly. *(Note: Needs testing! Contact me if you own a Rizta and want to help test).*
 
 ---
