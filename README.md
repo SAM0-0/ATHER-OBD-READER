@@ -11,7 +11,7 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
    <img src="images/demo2.png" alt="Ather OBD Demo" width="150" height="350" />
 </p>
 
-<p align="center"> DEMO OF HOW IT LOOKS </p>
+<p align="center"> <b> DEMO OF HOW IT LOOKS </b></p>
 
 
 ## ⚠️ Hardware Recommendations
@@ -122,7 +122,7 @@ Follow the wiring diagram below:
 
 If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
 
-👉 **[Click here to order your ready-to-use Ather OBD Reader]**(Insert Link Here)
+Contact Me if you want to buy plug and play devices which works out of the box straight !
 
 ---
 
