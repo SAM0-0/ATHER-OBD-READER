@@ -104,7 +104,7 @@ Follow the wiring diagram below:
 
 ---
 
-## 📊 Usage Instructions
+### Step 3: Usage Instructions
 
 1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank (no PC required for regular use).
 2. Connect your phone or laptop to the Wi-Fi network named: **ATHER-OBD`** and password for the wifi is **12345678**
