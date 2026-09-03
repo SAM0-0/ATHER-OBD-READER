@@ -5,7 +5,8 @@
 
 A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more. 
 
-**Order a Plug-and-Play Device:** If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! Contact Me if you want to buy plug and play devices which works out of the box straight !
+# **Order a Plug-and-Play Device:** 
+If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! Contact Me if you want to buy plug and play devices which works out of the box straight !
 
 ---
 ---
