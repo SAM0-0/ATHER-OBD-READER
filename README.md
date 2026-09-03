@@ -95,16 +95,6 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 ---
 
-## 🛡️ FAQ & Safety Considerations
-
-**Does it harm the vehicle or void my warranty?**  
-**Absolutely not.** This device acts purely as a *passive reader*. It only listens to the incoming CAN data and does not transmit commands or make any changes to the scooter. Because you aren't splicing or cutting any wires, it is functionally identical to standard OBD-II scanners used in cars. It will not void your warranty.
-
-**Is it safe to use?**  
-**Yes.** Even if you accidentally plug the wires into the wrong pins on the Ather connector, it will not harm the scooter since the device only reads passive data. 
-
-**Is there hidden code?**  
-The project is entirely open-source. You are free to read the source code and compile/verify it yourself for total peace of mind.
 
 ---
 
@@ -116,7 +106,6 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 
 ---
 
-
 ---
 
 ## 💖 Support This Project
@@ -125,9 +114,20 @@ Building open-source hardware, reverse-engineering CAN bus data, testing safely 
 
 If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32-WROOM support and new diagnostic features), **please consider buying me a coffee!** Your support is what keeps projects like this alive and free for the community. 
 
-<a href="https://www.buymeacoffee.com/sam0_0"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=sam0_0&button_colour=40DCA5&font_colour=ffffff&font_family=Bree&outline_colour=000000&coffee_colour=FFDD00" /></a>
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
 
 ---
+
+## 🛡️ FAQ & Safety Considerations
+
+**Does it harm the vehicle or void my warranty?**  
+**Absolutely not.** This device acts purely as a *passive reader*. It only listens to the incoming CAN data and does not transmit commands or make any changes to the scooter. Because you aren't splicing or cutting any wires, it is functionally identical to standard OBD-II scanners used in cars. It will not void your warranty.
+
+**Is it safe to use?**  
+**Yes.** Even if you accidentally plug the wires into the wrong pins on the Ather connector, it will not harm the scooter since the device only reads passive data. 
+
+**Is there hidden code?**  
+The project is entirely open-source. You are free to read the source code and compile/verify it yourself for total peace of mind.
 
 
 
