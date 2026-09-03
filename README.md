@@ -44,10 +44,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 > **🛑 IMPORTANT NOTE (CURRENT RELEASE):** 
 > The current `.bin` file, source code, and wiring diagram provided in this repository are **ONLY for the ESP32-C3**. 
 > *The code and diagrams for the ESP32-WROOM are currently in development and will be added very soon!*
-> 
 
-
-> 💡 **Support the Project:** The hardware links above are affiliate links. If you buy your parts using these links, a small referral commission goes directly into funding further research, hardware testing, and future firmware updates—without costing you a single extra rupee. Thank you for supporting open-source development!
 
 ---
 
