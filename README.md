@@ -1,2 +1,116 @@
-# ATHER-OBD-READER
-A open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more.
+# Ather OBD & Diagnostic Reader
+
+A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more. 
+
+---
+
+## ⚠️ Hardware Recommendations
+
+You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
+
+*   **ESP32-WROOM (Highly Recommended):** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for months without any issues.
+*   **ESP32-C3:** Only recommended for quick, limited usage (5-8 minutes at a time). Due to lower compute power, it tends to heat up quickly under this workload.
+
+---
+
+## 🛠️ Hardware Requirements
+
+*   1 × **ESP32 Module** (WROOM or C3)
+*   1 × **SN65HVD230 CAN Bus Transceiver Module**
+*   4 × Female-to-Female Jumper Wires
+*   2 × Male-to-Male Jumper Wires
+
+---
+
+## 💻 Software Requirements
+
+*   **ESP Flasher Tool:**
+    *   [Download for Windows (.zip)](https://github.com/Jason2866/ESP_Flasher/releases/download/v4.5.1/ESP-Flasher-Windows.zip)
+    *   [Download for macOS / Linux](https://github.com/Jason2866/ESP_Flasher/releases)
+*   The `.bin` firmware file (located in this repository).
+
+---
+
+## 🚀 Installation Guide
+
+### Step 1: Flashing the ESP32
+1. Connect your ESP32 module to your PC/Laptop via USB.
+2. Open the **ESP Flasher** application.
+3. Select the correct COM/Serial port your ESP32 is connected to.
+4. Select the `.bin` file provided in this folder and click **Flash**.
+5. Wait a minute for the process to complete, then disconnect and reconnect the ESP32 to restart it.
+6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`ather-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
+
+### Step 2: Hardware Connections
+*Make sure the ESP32 is disconnected from power before wiring.*
+
+**1. ESP32 to SN65HVD230 Connections:**
+
+| ESP32 Pin | SN65HVD230 Pin |
+| :--- | :--- |
+| `GND` | `GND` |
+| `3.3V` | `3.3V` |
+| `GPIO 10` | `CRX` |
+| `GPIO 20` | `CTX` |
+
+**2. SN65HVD230 to Ather Boot Connector:**
+
+| SN65HVD230 Pin | Ather Connector Wire |
+| :--- | :--- |
+| `CANH` | **Yellow** Wire |
+| `CANL` | **Green** Wire |
+
+---
+
+## 📊 Usage Instructions
+
+1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank (no PC required for regular use).
+2. Connect your phone or laptop to the Wi-Fi network named: **`ather-obd`**
+3. Open your web browser and go to: [http://192.168.4.1](http://192.168.4.1)
+4. You will now see your live dashboard displaying your scooter's real-time data!
+
+---
+
+## ✨ Features
+
+*   **Actual State of Health (SOH):** See the true original SOH values straight from the Ather BMS, rather than relying on service center reports or app scorecards.
+*   **Battery Imbalance Metrics:** Crucial for tracking individual cell health. If your imbalance is above `0.3`, it indicates excessive imbalance, and you may need to visit the service center for a warranty claim.
+*   **Live Switch Diagnostics:** Check the real-time status of all buttons and switches on the scooter to isolate faulty hardware individually.
+*   **Real-time Accuracy:** All data is pulled live directly from the BMS, ensuring 100% accuracy.
+*   *More features in active development!*
+
+---
+
+## 💡 Use Cases
+
+*   **Technicians & Proactive Owners:** Monitor genuine battery health to take timely action and fix/claim battery issues before it's too late.
+*   **Broken Display Workaround:** Create a tiny secondary device for riders whose main displays are dead. They can view essential info (like battery SoC%) without paying for an expensive screen replacement.
+*   **Base Variant Upgrades:** A lightweight external display for base variants (like the Ather Rizta without the Pro Pack) to view hidden metrics effortlessly. *(Note: Needs testing! Contact me if you own a Rizta and want to help test).*
+
+---
+
+## 🛡️ FAQ & Safety Considerations
+
+**Does it harm the vehicle or void my warranty?**  
+**Absolutely not.** This device acts purely as a *passive reader*. It only listens to the incoming CAN data and does not transmit commands or make any changes to the scooter. Because you aren't splicing or cutting any wires, it is functionally identical to standard OBD-II scanners used in cars. It will not void your warranty.
+
+**Is it safe to use?**  
+**Yes.** Even if you accidentally plug the wires into the wrong pins on the Ather connector, it will not harm the scooter since the device only reads passive data. 
+
+**Is there hidden code?**  
+The project is entirely open-source. You are free to read the source code and compile/verify it yourself for total peace of mind.
+
+---
+
+## 🛒 Order a Plug-and-Play Device
+
+If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
+
+👉 **[Click here to order your ready-to-use Ather OBD Reader]**(Insert Link Here)
+
+---
+
+## 📜 Policies & Privacy
+
+1. **No Telemetry/Tracking:** This device and its code do not contain any telemetry, tracking software, or phone-home capabilities. Your scooter's data stays securely between your scooter and your phone.
+2. **Disclaimer:** This is a community-driven, open-source project and is not affiliated with, endorsed by, or sponsored by Ather Energy. Use at your own discretion.
