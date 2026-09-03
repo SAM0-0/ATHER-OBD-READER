@@ -114,3 +114,27 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 
 1. **No Telemetry/Tracking:** This device and its code do not contain any telemetry, tracking software, or phone-home capabilities. Your scooter's data stays securely between your scooter and your phone.
 2. **Disclaimer:** This is a community-driven, open-source project and is not affiliated with, endorsed by, or sponsored by Ather Energy. Use at your own discretion.
+
+   ---
+
+## ⚖️ License & Attribution
+
+This project is licensed under the **Apache License 2.0**.
+
+### 📢 Mandatory Attribution Notice
+You are free to use, modify, study, or fork this project, provided you give appropriate credit to the original author:
+* If you use this code, reverse-engineered CAN IDs, or diagrams in your own project, website, video, or research, you **must prominently link back to this repository**:
+  > **Original Project:** [Ather OBD Diagnostic Reader by SAM0-0](https://github.com/SAM0-0/ATHER-OBD-READER)
+* You may not claim the reverse-engineering work or firmware as your own original work.
+
+---
+
+## ⚠️ Disclaimers & User Responsibility
+
+### 1. "Use at Your Own Risk"
+* **User Responsibility:** This tool is an independent, community-driven diagnostic utility. You are solely responsible for how you handle your vehicle, your wiring, and any connections you make.
+* **No Liability:** Under no circumstances shall the author, contributors, or maintainers be held liable for any direct, indirect, incidental, or consequential damages arising from the use or misuse of this project or its instructions.
+
+### 2. Trademark Disclaimer
+* *Ather*, *Ather 450X*, *Ather Rizta*, and associated brand names or logos are registered trademarks of **Ather Energy Limited**.
+* This project is completely independent, non-official, and has **no affiliation, sponsorship, or endorsement** from Ather Energy Limited.
