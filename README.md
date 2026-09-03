@@ -64,6 +64,8 @@ You will need the following components to build the reader. Purchasing your comp
 ### Step 2: Hardware Connections
 *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
+*The connector in which this device connects is in in boot of your ather ! there's tiny black cover just removed it and you'll be able to see the connector*
+
 Follow the wiring diagram below:
 
 
