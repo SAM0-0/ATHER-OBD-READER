@@ -43,7 +43,7 @@ You will need the following components to build the reader. Purchasing your comp
 
 ## 🚀 Installation Guide
 
-### Step 1: Flashing the ESP32
+### Step 1: Flashing the ESP32-C3
 1. Connect your ESP32 module to your PC/Laptop via USB.
 2. Open the **ESP Flasher** application.
 3. Select the correct COM/Serial port your ESP32 is connected to.
@@ -52,11 +52,11 @@ You will need the following components to build the reader. Purchasing your comp
 6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`ather-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
 
 ### Step 2: Hardware Connections
-*Make sure the ESP32 is disconnected from power before wiring.*
+*Make sure the ESP32-C3 is disconnected from power before wiring.*
 
-**1. ESP32 to SN65HVD230 Connections:**
+**1. ESP32-C3 to SN65HVD230 Connections:**
 
-| ESP32 Pin | SN65HVD230 Pin |
+| ESP32-C3 Pin | SN65HVD230 Pin |
 | :--- | :--- |
 | `GND` | `GND` |
 | `3.3V` | `3.3V` |
@@ -75,8 +75,8 @@ You will need the following components to build the reader. Purchasing your comp
 ## 📊 Usage Instructions
 
 1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank (no PC required for regular use).
-2. Connect your phone or laptop to the Wi-Fi network named: **`ather-obd`**
-3. Open your web browser and go to: [http://192.168.4.1](http://192.168.4.1)
+2. Connect your phone or laptop to the Wi-Fi network named: **ATHER-OBD`** and password for the wifi is **12345678**
+3. After connecting To Wifi open your web browser and go to: [http://192.168.4.1](http://192.168.4.1)
 4. You will now see your live dashboard displaying your scooter's real-time data!
 
 ---
