@@ -4,6 +4,9 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
 
 ---
 
+<img width="1096" height="2343" alt="demo" src="https://github.com/user-attachments/assets/7cd6be0d-cf82-40f1-945c-7545182f45c0" />
+
+
 ## ⚠️ Hardware Recommendations
 
 You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
@@ -53,6 +56,10 @@ You will need the following components to build the reader. Purchasing your comp
 
 ### Step 2: Hardware Connections
 *Make sure the ESP32-C3 is disconnected from power before wiring.*
+
+Follow the wiring diagram below:
+<img width="1294" height="765" alt="diagram-c3" src="https://github.com/user-attachments/assets/15dce686-14bf-4172-84a6-bfb1fb928efe" />
+
 
 **1. ESP32-C3 to SN65HVD230 Connections:**
 
