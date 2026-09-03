@@ -9,20 +9,20 @@ const char* AP_PASS = "12345678";
 
 // ===== simple state — no BMS_/BCM_ prefixes =====
 volatile float soc = 0;            // SoC %
-volatile float soh = 0;            // SoH %  (0x14D byte4+5)
-volatile float deltaSoc = 0;       // Delta SoC % (0x13D)
-volatile float voltage = 0;    // Pack voltage V (0x141)
-volatile float imbalance = 0;      // Voltage imbalance V (0x141)
-volatile int   balancing = 0;      // Balancing state (0x141)
-volatile int   rpm = 0;            // Motor RPM (0x510)  — you wrote 'rom'
-volatile int   driveMode = 0;      // 1=SPORTS 2=DRIVE 3=ECO 6=WARP 8=S.ECO
-volatile bool  sideStand = false;  // was BCM_InSidestand
+volatile float soh = 0;            // SoH % 
+volatile float deltaSoc = 0;       // a
+volatile float voltage = 0;    // a
+volatile float imbalance = 0;      // a
+volatile int   balancing = 0;      // a
+volatile int   rpm = 0;            // a
+volatile int   driveMode = 0;      // a
+volatile bool  sideStand = false;  // a
 volatile bool  frontBrake = false, rearBrake = false, highBeam = false, startSwitch = false;
 volatile bool  killSwitch = false, storageSwitch = false, horn = false;
 volatile bool  indicatorLeftSide = false, indicatorRightSide = false, indicatorCenterSide = false, keyOn = false;
 
 float bootSoc = -1;
-volatile int rangeKm = 0; // VC_VehicleRange from 0x200 byte6
+volatile int rangeKm = 0; // a
 unsigned long lastPrint = 0;
 uint32_t framesTotal = 0;
 WebServer server(80);
