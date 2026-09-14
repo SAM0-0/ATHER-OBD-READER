@@ -110,7 +110,7 @@ Once connections aare done connect it to port in the boot :
 
 ### Step 3: Usage Instructions
 
-1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank (no PC required for regular use).
+1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank or Even your Mobile phone (no PC required for regular use).
 2. Connect your phone or laptop to the Wi-Fi network named: **ATHER-OBD`** and password for the wifi is **12345678**
 3. After connecting To Wifi open your web browser and go to: [http://192.168.4.1](http://192.168.4.1)
 4. You will now see your live dashboard displaying your scooter's real-time data!
