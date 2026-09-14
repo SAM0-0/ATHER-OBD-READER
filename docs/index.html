@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ather-OBD | Pre-Assembled Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1115; /* Very dark slate */
+      --card: #16181d; /* Slightly lighter slate */
+      --card-hover: #1f2229;
+      --text: #f1f5f9; /* Off-white text */
+      --muted: #8b98a9; /* Muted text */
+      --border: #292d36; /* Subtle borders */
+      --primary: #cbd5e1; /* Silver/Slate accent */
+      --primary-hover: #ffffff; /* Lighter hover */
+      --accent-badge: rgba(203, 213, 225, 0.1);
+      --accent-badge-border: rgba(203, 213, 225, 0.25);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Scroll Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .animate-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Header */
+    header {
+      padding: 160px 20px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.8), rgba(15, 17, 21, 1)), url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-attachment: fixed;
+    }
+    .badges {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 25px;
+      animation: fadeDown 1s ease-out forwards;
+    }
+    .badge {
+      background: var(--accent-badge);
+      color: var(--text);
+      border: 1px solid var(--accent-badge-border);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+    }
+    header h1 {
+      font-size: clamp(48px, 8vw, 84px);
+      margin: 0 0 20px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      animation: fadeDown 1s ease-out 0.1s forwards;
+      opacity: 0;
+    }
+    header p {
+      font-size: clamp(18px, 3vw, 22px);
+      max-width: 700px;
+      margin: 0 auto 50px;
+      color: var(--muted);
+      font-weight: 400;
+      animation: fadeUp 1s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    .header-btn-wrap {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card);
+      color: var(--text);
+      padding: 16px 36px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .btn:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f1115;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Sections */
+    .section {
+      padding: 120px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(36px, 5vw, 48px);
+      margin-bottom: 20px;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .section-title span {
+      color: var(--primary);
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      font-weight: 400;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .feature-card {
+      background: var(--card);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(203, 213, 225, 0.4);
+      transform: translateY(-5px);
+    }
+    .feature-card h3 {
+      color: var(--text);
+      font-size: 24px;
+      margin-top: 0;
+      font-weight: 600;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .feature-card h3::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    .feature-card ul {
+      padding-left: 0;
+      list-style: none;
+      color: var(--muted);
+      margin: 0;
+    }
+    .feature-card ul li {
+      margin-bottom: 16px;
+      font-size: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .feature-card ul li::before {
+      content: '→';
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Action Grid - The Selling Point */
+    .action-section {
+      background: #090a0c;
+      padding: 120px 20px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 900px) {
+      .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 400px;
+      }
+    }
+    .action-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0f1115;
+      height: 100%;
+      min-height: 350px;
+      border: 1px solid var(--border);
+    }
+    .action-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s;
+      filter: brightness(0.8);
+    }
+    .action-item.split-view {
+      display: flex;
+    }
+    .action-item.split-view img {
+      width: 50%;
+      object-fit: cover;
+    }
+    .action-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+    .action-item .overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(15,17,21,0.95) 0%, rgba(15,17,21,0.5) 40%, rgba(15,17,21,0) 100%);
+      padding: 40px 30px 30px;
+      pointer-events: none;
+    }
+    .action-item h4 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 120px 20px;
+      background: var(--bg);
+    }
+    
+    footer {
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: var(--card);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    .modal-overlay.active .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: none;
+      border: none;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--text);
+    }
+    .modal h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 28px;
+    }
+    .modal p.subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      transition: all 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(203, 213, 225, 0.1);
+    }
+    #formSuccess { display: none; text-align: center; padding: 20px 0; }
+    #formSuccess h4 { color: var(--primary); font-size: 24px; margin-bottom: 12px; }
+    .v2-item {
+      background: rgba(148, 163, 184, 0.07);
+      padding: 4px 8px 4px 0;
+      border-radius: 4px;
+      align-items: center;
+    }
+    .v2-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(74, 142, 115, 0.12);
+      color: #6aab90;
+      border: 1px solid rgba(74, 142, 115, 0.28);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-left: auto;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    /* In-Button Lightning Animation */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary .btn-flash {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, rgba(255, 220, 50, 0.5) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .btn-primary .btn-bolt {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 50px;
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(255, 220, 50, 0.9)) drop-shadow(0 0 20px rgba(255, 200, 0, 0.5));
+      z-index: 2;
+    }
+    .btn-primary .btn-spark {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: #ffd700;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: 0 0 6px #ffd700, 0 0 12px rgba(255, 200, 0, 0.5);
+      z-index: 2;
+    }
+    .btn-primary.zap .btn-flash {
+      animation: btnFlash 0.5s ease-out forwards;
+    }
+    .btn-primary.zap .btn-bolt {
+      animation: btnBolt 0.45s ease-out forwards;
+    }
+    .btn-primary.zap .btn-spark {
+      animation: btnSpark 0.4s ease-out forwards;
+    }
+    @keyframes btnFlash {
+      0% { opacity: 0; }
+      15% { opacity: 1; }
+      40% { opacity: 0.3; }
+      55% { opacity: 0.7; }
+      100% { opacity: 0; }
+    }
+    @keyframes btnBolt {
+      0% { opacity: 0; transform: translate(-50%, -80%) scaleY(0.2); }
+      12% { opacity: 1; transform: translate(-50%, -50%) scaleY(1); }
+      25% { opacity: 0.3; }
+      40% { opacity: 1; }
+      55% { opacity: 0.5; }
+      100% { opacity: 0; transform: translate(-50%, -50%) scaleY(1); }
+    }
+    @keyframes btnSpark {
+      0% { opacity: 1; transform: translate(0,0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
+    }
+  </style>
+</head>
+<body>
+
+
+  <header>
+    <div class="badges">
+      <div class="badge">100% Plug & Play</div>
+      <div class="badge">Open Source</div>
+    </div>
+    <h1>Ather-OBD</h1>
+    <p>The Ultimate Pre-Assembled Plug & Play Device To Check Your Ather's Health</p>
+    <div class="header-btn-wrap">
+      <button class="btn btn-primary" onclick="openOrderModal()">Order Now - ₹849 + Shipping</button>
+      <button class="btn" onclick="openHowToModal()">How to Use</button>
+      <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" class="btn">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <div class="section">
+    <h2 class="section-title animate-on-scroll">Unlock Hidden <span>Telemetry</span></h2>
+    <p class="section-subtitle animate-on-scroll">Comprehensive real-time insights delivered directly to your device.</p>
+    
+    <div class="features">
+      <div class="feature-card animate-on-scroll delay-1">
+        <h3>Battery Diagnostics</h3>
+        <ul>
+          <li>State of Charge (SoC %)</li>
+          <li>State of Health (SoH %)</li>
+          <li>Real-time Delta SoC</li>
+          <li>Live Pack Voltage Monitoring</li>
+          <li>Voltage Imbalance Detection</li>
+          <li>Cell Balancing State</li>
+          <li class="v2-item">Per Cell Info including Voltage &amp; SoH <span class="v2-tag">New in V2</span></li>
+        </ul>
+      </div>
+      <div class="feature-card animate-on-scroll delay-2">
+        <h3>Drive Dynamics</h3>
+        <ul>
+          <li>Live Motor RPM Tracking</li>
+          <li>Active Drive Mode (ECO, RIDE, SPORTS, WARP)</li>
+          <li>Real-time Range Estimates</li>
+          <li>Instant CAN-bus Data Processing</li>
+        </ul>
+      </div>
+      <div class="feature-card animate-on-scroll delay-3">
+        <h3>Input Telemetry</h3>
+        <ul>
+          <li>Brake Sensors (Front &amp; Rear)</li>
+          <li>Sidestand Sensor Status</li>
+          <li>Kill Switch &amp; Start Button State</li>
+          <li>Indicators &amp; High-Beam State</li>
+          <li>Storage Switch Sensors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-section">
+    <h2 class="section-title animate-on-scroll" style="margin-bottom:60px;">See It In Action</h2>
+    
+    <div class="action-grid">
+      <!-- 1: Seamless Integration -->
+      <div class="action-item animate-on-scroll delay-1">
+        <img src="images/hero.jpg" alt="Ather OBD in Action">
+        <div class="overlay"><h4>Seamless Integration</h4></div>
+      </div>
+      
+      <!-- 2: Real-time Telemetry (Paired) -->
+      <div class="action-item animate-on-scroll delay-2" style="display: flex;">
+        <img src="images/demo.jpg" style="width: 50%; object-fit: contain; filter: brightness(0.9); padding: 15px; border-right: 1px solid var(--border);" alt="Ather OBD Hardware Setup">
+        <img src="images/demo2.jpg" style="width: 50%; object-fit: contain; padding: 15px; filter: brightness(1);" alt="Ather OBD Web App Interface">
+        <div class="overlay"><h4>Real-time Telemetry on the Go</h4></div>
+      </div>
+      
+      <!-- 3: Hardware Details (Paired) -->
+      <div class="action-item split-view animate-on-scroll delay-1">
+        <img src="images/1.jpg" style="border-right: 1px solid var(--border);" alt="Ather OBD Compact Design">
+        <img src="images/2.jpg" alt="Ather OBD PCB">
+        <div class="overlay"><h4>Compact & Clean Design</h4></div>
+      </div>
+      
+      <!-- 4: Clean Installation (Paired) -->
+      <div class="action-item split-view animate-on-scroll delay-2">
+        <img src="images/3.jpg" style="border-right: 1px solid var(--border);" alt="Ather OBD Installation 1">
+        <img src="images/4.jpg" alt="Ather OBD Installation 2">
+        <div class="overlay"><h4>100% Plug & Play Wiring</h4></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section animate-on-scroll">
+    <h2 class="section-title" style="margin-bottom: 20px;">Ready to Upgrade Your Ride?</h2>
+    <p class="section-subtitle">Get the complete plug and play device today.</p>
+    <button class="btn btn-primary" onclick="openOrderModal()" style="padding: 18px 45px; font-size: 20px;">Buy Ather-OBD for ₹849 + Shipping</button>
+  </div>
+
+  <footer>
+    <div style="max-width: 600px; margin: 0 auto; margin-bottom: 30px;">
+      <p style="color: var(--text); font-size: 16px; margin-bottom: 10px;">Want to build it yourself?</p>
+      <p>Here's the open source repo: <br><a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" style="font-size: 18px;">github.com/SAM0-0/ATHER-OBD-READER</a></p>
+    </div>
+    <div style="opacity: 0.5;">
+      &copy; 2026 Ather-OBD. All rights reserved.<br>
+      <span style="font-size: 12px; margin-top: 8px; display: inline-block;">Not officially affiliated with Ather Energy.</span>
+    </div>
+  </footer>
+
+  <!-- Order Modal -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      
+      <div id="formContainer">
+        <h3>Place Your Order</h3>
+        <p class="subtitle">Enter your details below and we will contact you in the meantime regarding your order!</p>
+        
+        <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="91e2eaf0-b2a8-44c2-b3f6-b3d06a935234">
+          <input type="hidden" name="subject" value="New Ather-OBD Order (₹849)">
+          <input type="hidden" name="redirect" value="">
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Doe">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="jane@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 10px; font-size: 18px;">Submit</button>
+        </form>
+      </div>
+
+      <div id="formSuccess">
+        <h4>Thanks!</h4>
+        <p style="color: var(--muted);">We have received your order information and will contact you in the meantime!</p>
+        <button class="btn btn-primary" onclick="closeModal()" style="margin-top: 25px; width: 100%;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Modal -->
+  <div class="modal-overlay" id="howToModal">
+    <div class="modal" style="max-width: 600px;">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      
+      <div style="text-align: left;">
+        <h3 style="margin-bottom: 25px;">How to Use Ather-OBD</h3>
+        
+        <div style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px;">
+          <div style="background: var(--accent-badge); color: var(--text); border: 1px solid var(--accent-badge-border); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+          <div>
+            <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Locate Port</strong>
+            <p style="margin: 0; color: var(--muted); font-size: 15px;">In your boot, open the tiny cover to access your scooter's OBD port.</p>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px;">
+          <div style="background: var(--accent-badge); color: var(--text); border: 1px solid var(--accent-badge-border); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+          <div>
+            <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Plug It In</strong>
+            <p style="margin: 0; color: var(--muted); font-size: 15px;">Connect the Ather-OBD reader directly to the port.</p>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px;">
+          <div style="background: var(--accent-badge); color: var(--text); border: 1px solid var(--accent-badge-border); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Power Up</strong>
+            <p style="margin: 0; color: var(--muted); font-size: 15px;">Power the OBD reader using a power bank or any USB Type-C cable.</p>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px;">
+          <div style="background: var(--accent-badge); color: var(--text); border: 1px solid var(--accent-badge-border); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">4</div>
+          <div>
+            <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Connect WiFi</strong>
+            <p style="margin: 0; color: var(--muted); font-size: 15px;">Connect your phone to the WiFi network named <strong>Ather-OBD</strong> (Password: <code style="background:var(--card); padding:2px 6px; border-radius:4px; border:1px solid var(--border);">12345678</code>).</p>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: 35px; display: flex; align-items: flex-start; gap: 15px;">
+          <div style="background: var(--accent-badge); color: var(--text); border: 1px solid var(--accent-badge-border); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">5</div>
+          <div>
+            <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">View Live Data</strong>
+            <p style="margin: 0; color: var(--muted); font-size: 15px;">Open <a href="http://192.168.0.104" target="_blank" style="color:var(--text); text-decoration:underline;">http://192.168.0.104</a> in your browser and wait 10 seconds for live telemetry to appear!</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="closeModal()" style="width: 100%; padding: 14px; font-size: 16px;">Got It!</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Scroll Animation */
+    document.addEventListener("DOMContentLoaded", function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    });
+
+    /* Modals */
+    const orderModal = document.getElementById('orderModal');
+    const howToModal = document.getElementById('howToModal');
+    const orderForm = document.getElementById('orderForm');
+    const formContainer = document.getElementById('formContainer');
+    const formSuccess = document.getElementById('formSuccess');
+
+    /* Inject lightning elements into every .btn-primary */
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+      btn.innerHTML += `
+        <div class="btn-flash"></div>
+        <svg class="btn-bolt" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="55,0 20,85 45,85 30,180 80,75 52,75 75,0" fill="#ffd700"/>
+          <polygon points="55,0 20,85 45,85 30,180 80,75 52,75 75,0" fill="white" opacity="0.4"/>
+        </svg>
+        <div class="btn-spark" style="top:30%;left:35%;--sx:-18px;--sy:-14px;animation-delay:0.08s"></div>
+        <div class="btn-spark" style="top:40%;left:65%;--sx:20px;--sy:-10px;animation-delay:0.12s"></div>
+        <div class="btn-spark" style="top:60%;left:40%;--sx:-14px;--sy:16px;animation-delay:0.1s"></div>
+        <div class="btn-spark" style="top:55%;left:60%;--sx:16px;--sy:12px;animation-delay:0.14s"></div>
+      `;
+    });
+
+    function zapButton(btn, callback) {
+      btn.classList.remove('zap');
+      void btn.offsetWidth;
+      btn.classList.add('zap');
+      setTimeout(() => {
+        btn.classList.remove('zap');
+        if (callback) callback();
+      }, 500);
+    }
+
+    function openOrderModal() {
+      const btn = event.currentTarget;
+      zapButton(btn, () => {
+        orderModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+    function openHowToModal() {
+      howToModal.classList.add('active');
+      document.body.style.overflow = 'hidden'; 
+    }
+    function closeModal() {
+      orderModal.classList.remove('active');
+      howToModal.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        formContainer.style.display = 'block';
+        formSuccess.style.display = 'none';
+        orderForm.reset();
+      }, 300);
+    }
+    window.addEventListener('click', function(e) {
+      if (e.target === orderModal || e.target === howToModal) closeModal();
+    });
+
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(orderForm)))
+      })
+      .then(async (response) => {
+        if (response.status == 200) {
+          formContainer.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          let jsonResponse = await response.json();
+          alert('Something went wrong: ' + jsonResponse.message);
+        }
+      }).catch(error => { alert('Something went wrong. Please try again.'); });
+    });
+  </script>
+</body>
+</html>
