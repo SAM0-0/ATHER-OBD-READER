@@ -7,7 +7,7 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
 
 # **Order a Plug-and-Play Device:** 
 If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
-You can Buy it here : [CLICK HERE TO BUY IT](https://sam0-0.github.io/ATHER-OBD-READER/)
+You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)
 
 ---
 <p align="center">
