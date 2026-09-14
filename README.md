@@ -106,7 +106,7 @@ Once connections are done connect it to port in the boot :
 
 <p align="center">
 <img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" />
-<img src="images/rizta-boot.jpg" alt="Ather OBD BOOT COVER" width="150" height="150" />
+<img src="images/rizta-boot.jpg" alt="Ather OBD BOOT COVER" width="250" height="250" />
 <img src="images/rizta-boot-cvoer.jpg" alt="Ather OBD BOOT COVER" width="250" height="250" />
 </p>
 
