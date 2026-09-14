@@ -76,14 +76,6 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 
 ### Step 2: Hardware Connections
-*Make sure the ESP32-C3 is disconnected from power before wiring.*
-
-*The connector in which this device connects is in in boot of your ather ! there's tiny black cover just remove it and you'll be able to see the connector*
-
-
-<p align="center">
-<img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" /> </p>
-
 
 Follow the wiring diagram below:
 
@@ -106,6 +98,16 @@ Follow the wiring diagram below:
 | :--- | :--- |
 | `CANH` | **Yellow** Wire |
 | `CANL` | **Green** Wire |
+
+
+*Make sure the ESP32-C3 is disconnected from power before wiring.*
+
+*The connector in which this device connects is in in boot of your ather ! there's tiny black cover just remove it and you'll be able to see the connector*
+
+
+<p align="center">
+<img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" /> </p>
+
 
 ---
 
