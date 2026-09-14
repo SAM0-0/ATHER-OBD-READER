@@ -123,6 +123,7 @@ Once connections aare done connect it to port in the boot :
 *   **Battery Imbalance Metrics:** Crucial for tracking individual cell health. If your imbalance is above `0.3`, it indicates excessive imbalance, and you may need to visit the service center for a warranty claim.
 *   **Live Switch Diagnostics:** Check the real-time status of all buttons and switches on the scooter to isolate faulty hardware individually.
 *   **Real-time Accuracy:** All data is pulled live directly from the BMS, ensuring 100% accuracy.
+*   **Per Cell Information:** Data like Voltages & SoH for each cell in the battery.[Added in V2] 
 *   *More features in active development!*
 
 ----
