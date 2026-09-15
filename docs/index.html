@@ -319,13 +319,14 @@
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(8px);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       z-index: 1000;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease;
-      padding: 20px;
+      padding: 40px 20px;
+      overflow-y: auto;
     }
     .modal-overlay.active {
       opacity: 1;
@@ -342,6 +343,7 @@
       transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       border: 1px solid var(--border);
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      margin: auto;
     }
     .modal-overlay.active .modal {
       transform: translateY(0) scale(1);
@@ -622,6 +624,28 @@
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label for="address1">Address Line 1</label>
+            <input type="text" id="address1" name="address_line_1" required placeholder="House/Flat No., Street">
+          </div>
+          <div class="form-group">
+            <label for="address2">Address Line 2</label>
+            <input type="text" id="address2" name="address_line_2" placeholder="Landmark, Area (Optional)">
+          </div>
+          <div style="display: flex; gap: 16px;">
+            <div class="form-group" style="flex: 1;">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required placeholder="Mumbai">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label for="state">State</label>
+              <input type="text" id="state" name="state" required placeholder="Maharashtra">
+            </div>
+          </div>
+          <div class="form-group" style="max-width: 200px;">
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" name="pincode" required placeholder="400001" pattern="[0-9]{6}" maxlength="6">
           </div>
           
           <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 10px; font-size: 18px;">Submit</button>
