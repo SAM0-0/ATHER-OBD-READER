@@ -89,8 +89,8 @@ Follow the wiring diagram below: *Make sure the ESP32-C3 is disconnected from po
 | :--- | :--- |
 | `GND` | `GND` |
 | `3.3V` | `3.3V` |
-| `GPIO 10` | `CRX` |
-| `GPIO 20` | `CTX` |
+| `GPIO 20` | `CRX` |
+| `GPIO 10` | `CTX` |
 
 **2. SN65HVD230 to Ather Boot Connector:**
 
