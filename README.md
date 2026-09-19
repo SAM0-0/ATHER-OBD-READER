@@ -59,7 +59,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
     *   [Download it here - V3.1 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.1.bin)
     *   [Download it here - V3.2 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.2.bin)
 
-**Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2**
+**🛑 Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2**
   
 
 ---
@@ -79,7 +79,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 ### Step 2: Hardware Connections
 
- **Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before**
+ **🙇‍♂️Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before**
 
 Follow the wiring diagram below: *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
