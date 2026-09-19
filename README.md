@@ -11,7 +11,7 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 **You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)**
 
 ---
-<p align="left"> <b> DEMO OF HOW IT LOOKS </b></p>
+<p align="left"> <b> ** DEMO OF HOW IT LOOKS ** </b></p>
 <p align="center">
 <img src="images/demo.jpg" alt="Ather OBD Demo" width="300" height="400" />
    <img src="images/demo2.jpg" alt="Ather OBD Demo" width="360" height="460" />
@@ -20,12 +20,7 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
    <img src="images/demo4.jpg" alt="Ather OBD Demo" width="300" height="400" />
 </p>
 
-<p align="center"> <b> DEMO OF HOW IT LOOKS </b></p>
-
-
-
-
-
+---
 
 ## 🛠️ Hardware Module Required :
 
