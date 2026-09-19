@@ -1,4 +1,4 @@
-# Ather OBD & Diagnostic Reader
+# Ather OBD & Diagnostic Reader v3
 
 [![Star on GitHub](https://img.shields.io/badge/⭐_Star_This_Project_on_GitHub-gray?style=for-the-badge&logo=github)](https://github.com/SAM0-0/ATHER-OBD-READER)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
@@ -38,8 +38,8 @@ You will need the following components to build the reader. Purchasing your comp
 
 You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
 
-*   **ESP32-WROOM (Highly Recommended):** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for months without any issues.
-*   **ESP32-C3:** Only recommended for quick, limited usage (30-40 minutes at a time). Due to lower compute power, it tends to heat up quickly under this workload.
+*   **ESP32-WROOM (Recommended):** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for months without any issues.
+*   **ESP32-C3:** Only recommended for quick, limited usage (50-60 minutes at a time). Due to lower compute power, it tends to heat up quickly under this workload.
 
 ---
 
@@ -47,6 +47,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 > **🛑 IMPORTANT NOTE (CURRENT RELEASE):** 
 > The current `.bin` file, source code, and wiring diagram provided in this repository are **ONLY for the ESP32-C3**. 
 > *The code and diagrams for the ESP32-WROOM are currently in development and will be added very soon!*
+
 
 
 ---
@@ -57,7 +58,10 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
     *   [Download for Windows (.zip)](https://github.com/Jason2866/ESP_Flasher/releases/download/v4.5.1/ESP-Flasher-Windows.zip)
     *   [Download for macOS / Linux](https://github.com/Jason2866/ESP_Flasher/releases)
 *   The `.bin` firmware file (located in this repository).
-    *   [Download it here - V2 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v2/v2.bin)
+    *   [Download it here - V3.1 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.1.bin)
+    *   [Download it here - V3.2 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.2.bin)
+
+   ** Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2 **
   
 
 ---
@@ -76,6 +80,8 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 
 ### Step 2: Hardware Connections
+
+ ** Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before **
 
 Follow the wiring diagram below: *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
@@ -127,7 +133,8 @@ Once connections are done connect it to port in the boot :
 *   **Battery Imbalance Metrics:** Crucial for tracking individual cell health. If your imbalance is above `0.3`, it indicates excessive imbalance, and you may need to visit the service center for a warranty claim.
 *   **Live Switch Diagnostics:** Check the real-time status of all buttons and switches on the scooter to isolate faulty hardware individually.
 *   **Real-time Accuracy:** All data is pulled live directly from the BMS, ensuring 100% accuracy.
-*   **Per Cell Information:** Data like Voltages & SoH for each cell in the battery.[Added in V2] 
+*   **Per Cell Information:** Data like Voltages & SoH for each cell in the battery.[Added in V2]
+*   **Charger Information:** Values like Charger Input voltage, Output voltage , Charger current, Watts are now added and Tiny bug in balancing state is fixed.[Added in V3]
 *   *More features in active development!*
 
 ----
