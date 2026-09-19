@@ -427,7 +427,8 @@
       vertical-align: middle;
     }
     .v3-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
@@ -437,6 +438,7 @@
       border: 1px solid rgba(210, 140, 60, 0.28);
       border-radius: 4px;
       padding: 2px 7px;
+      margin-left: auto;
       white-space: nowrap;
       vertical-align: middle;
     }
@@ -528,7 +530,7 @@
     <h1>Ather-OBD</h1>
     <p>The Ultimate Pre-Assembled Plug & Play Device To Check Your Ather's Health</p>
     <div class="header-btn-wrap">
-      <button class="btn btn-primary" onclick="openOrderModal()">Order Now - ₹849 + Shipping</button>
+      <button class="btn btn-primary" onclick="openOrderModal()">Order Now - ₹949 + Shipping</button>
       <button class="btn" onclick="openHowToModal()">How to Use</button>
       <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" class="btn">
         <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -575,8 +577,7 @@
       <div class="feature-card animate-on-scroll delay-1">
         <h3>Charger Telemetry</h3>
         <ul>
-          <li class="v2-item">Charger Input Voltage <span class="v3-tag">New in V3</span></li>
-          <li class="v2-item">Charger Output Voltage <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Charger Input &amp; Output Voltage <span class="v3-tag">New in V3</span></li>
           <li class="v2-item">Total Watts of Charging <span class="v3-tag">New in V3</span></li>
           <li class="v2-item">Charger Output Current <span class="v3-tag">New in V3</span></li>
           <li class="v2-item">Battery Current <span class="v3-tag">New in V3</span></li>
@@ -622,7 +623,7 @@
   <div class="cta-section animate-on-scroll">
     <h2 class="section-title" style="margin-bottom: 20px;">Ready to Upgrade Your Ride?</h2>
     <p class="section-subtitle">Get the complete plug and play device today.</p>
-    <button class="btn btn-primary" onclick="openOrderModal()" style="padding: 18px 45px; font-size: 20px;">Buy Ather-OBD for ₹849 + Shipping</button>
+    <button class="btn btn-primary" onclick="openOrderModal()" style="padding: 18px 45px; font-size: 20px;">Buy Ather-OBD for ₹949 + Shipping</button>
   </div>
 
   <footer>
@@ -647,7 +648,7 @@
         
         <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="91e2eaf0-b2a8-44c2-b3f6-b3d06a935234">
-          <input type="hidden" name="subject" value="New Ather-OBD Order (₹849)">
+          <input type="hidden" name="subject" value="New Ather-OBD Order (₹949)">
           <input type="hidden" name="redirect" value="">
           
           <div class="form-group">
@@ -725,11 +726,11 @@
             <div style="display: flex; gap: 8px;">
               <div style="width: 50%; text-align: center;">
                 <img src="images/boot-cover.png" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="450 Boot Cover">
-                <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For 450</p>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For 450 Series</p>
               </div>
               <div style="width: 50%; text-align: center;">
                 <img src="images/rizta-boot.jpg" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Rizta Boot Area">
-                <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For Rizta</p>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For Rizta Series</p>
               </div>
             </div>
           </div>
@@ -742,10 +743,10 @@
             <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Plug It In</strong>
             <p style="margin: 0 0 10px; color: var(--muted); font-size: 15px;">Connect the Ather-OBD reader directly to the OBD port.</p>
             <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-              <img src="images/3.jpg" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="OBD Port">
-              <img src="images/4.jpg" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Plugging In">
+              <img src="images/boot-cover-2.JPG" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="OBD Port">
+              <img src="images/boot-cover.png" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Plugging In">
             </div>
-            <p style="margin: 0; color: #e8a040; font-size: 13px; font-weight: 600;">⚠️ Do NOT plug it in the wrong way! Make sure the marked line on the connector is on the top side, as shown in the images above.</p>
+            <p style="margin: 0; color: #e8a040; font-size: 13px; font-weight: 600;">⚠️ Do NOT plug it in the wrong way! Make sure the marked line on the connector is on the top side, as shown in the images above. Be gentle with the connector, also if you connect it wrong way it will damage the pins inside connector and will damage it.</p>
           </div>
         </div>
         
