@@ -7,7 +7,7 @@ A passive, open-source OBD data reader for Ather electric scooters. This device 
 
 # **Order a Plug-and-Play Device:** 
 If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
-You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)
+**You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)**
 
 ---
 <p align="center">
@@ -28,7 +28,7 @@ You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.gith
 
 You will need the following components to build the reader. Purchasing your components through the links below helps support this open-source project at **zero extra cost to you**:
 
-* 1 × [ESP32-C3 SuperMini Development Board](https://www.flyrobo.in/esp32-c3-supermini-development-board-wifi-bluetooth-usb-c-soldered/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2) *(ESP32-WROOM support coming soon)*
+* 1 × [ESP32-C3 SuperMini Development Board](https://www.flyrobo.in/esp32-c3-supermini-development-board-wifi-bluetooth-usb-c-soldered/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2) **(ESP32-WROOM support coming soon)**
 * 1 × [SN65HVD230 CAN Bus Transceiver Module ](https://www.flyrobo.in/wcmcu-230-can-bus-module-based-on-sn65hvd230/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 4 × [Female-to-Female Jumper Wires](https://www.flyrobo.in/40pcs_10cm_female_to_female_jumper_cable_wire_for_arduino/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 2 × [Female-to-Male Jumper Wires](https://www.flyrobo.in/10cm_male_to_female_jumper_cable_wire_for_arduino/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
@@ -61,7 +61,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
     *   [Download it here - V3.1 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.1.bin)
     *   [Download it here - V3.2 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.2.bin)
 
-   ** Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2 **
+**Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2**
   
 
 ---
@@ -81,7 +81,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 ### Step 2: Hardware Connections
 
- ** Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before **
+ **Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before**
 
 Follow the wiring diagram below: *Make sure the ESP32-C3 is disconnected from power before wiring.*
 
@@ -135,7 +135,7 @@ Once connections are done connect it to port in the boot :
 *   **Real-time Accuracy:** All data is pulled live directly from the BMS, ensuring 100% accuracy.
 *   **Per Cell Information:** Data like Voltages & SoH for each cell in the battery.[Added in V2]
 *   **Charger Information:** Values like Charger Input voltage, Output voltage , Charger current, Watts are now added and Tiny bug in balancing state is fixed.[Added in V3]
-*   *More features in active development!*
+*   **More features in active development!**
 
 ----
 
@@ -148,7 +148,7 @@ Once connections are done connect it to port in the boot :
 <img src="images/dead-display.jpg" alt="Ather dead Demo" width="150" height="350" />
 </p>
    
-*   **Base Variant Upgrades:** A lightweight external display for base variants (like the Ather Rizta without the Pro Pack) to view hidden metrics effortlessly. *(Note: Needs testing! Contact me if you own a Rizta and want to help test).*
+*   **Base Variant Upgrades:** A lightweight external display for base variants (like the Ather Rizta without the Pro Pack) to view hidden metrics effortlessly. **(Note: Needs testing! Contact me if you own a Rizta and want to help test).**
 
 ---
 
