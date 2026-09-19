@@ -3,17 +3,18 @@
 [![Star on GitHub](https://img.shields.io/badge/⭐_Star_This_Project_on_GitHub-gray?style=for-the-badge&logo=github)](https://github.com/SAM0-0/ATHER-OBD-READER)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
 
-A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, and more. 
+A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, per-cell information, Charging information and more. 
 
 # **Order a Plug-and-Play Device:** 
 If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
+
 **You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)**
 
 ---
 <p align="center">
-<img src="images/demo2.jpg" alt="Ather OBD Demo" width="300" height="400" />
+<img src="images/demo.jpg" alt="Ather OBD Demo" width="300" height="400" />
+   <img src="images/demo2.jpg" alt="Ather OBD Demo" width="300" height="400" />
    <img src="images/demo3.jpg" alt="Ather OBD Demo" width="300" height="400" />
-   <img src="images/demo.jpg" alt="Ather OBD Demo" width="300" height="400" />
    <img src="images/demo1.jpg" alt="Ather OBD Demo" width="300" height="400" />
    <img src="images/demo4.jpg" alt="Ather OBD Demo" width="300" height="400" />
 </p>
