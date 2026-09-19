@@ -426,6 +426,33 @@
       white-space: nowrap;
       vertical-align: middle;
     }
+    .v3-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(210, 140, 60, 0.12);
+      color: #c4883a;
+      border: 1px solid rgba(210, 140, 60, 0.28);
+      border-radius: 4px;
+      padding: 2px 7px;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .v3-title-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(210, 140, 60, 0.12);
+      color: #c4883a;
+      border: 1px solid rgba(210, 140, 60, 0.28);
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
 
     /* In-Button Lightning Animation */
     .btn-primary {
@@ -523,7 +550,6 @@
           <li>Real-time Delta SoC</li>
           <li>Live Pack Voltage Monitoring</li>
           <li>Voltage Imbalance Detection</li>
-          <li>Cell Balancing State</li>
           <li class="v2-item">Per Cell Info including Voltage &amp; SoH <span class="v2-tag">New in V2</span></li>
         </ul>
       </div>
@@ -544,6 +570,17 @@
           <li>Kill Switch &amp; Start Button State</li>
           <li>Indicators &amp; High-Beam State</li>
           <li>Storage Switch Sensors</li>
+        </ul>
+      </div>
+      <div class="feature-card animate-on-scroll delay-1">
+        <h3>Charger Telemetry</h3>
+        <ul>
+          <li class="v2-item">Charger Input Voltage <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Charger Output Voltage <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Total Watts of Charging <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Charger Output Current <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Battery Current <span class="v3-tag">New in V3</span></li>
+          <li class="v2-item">Cell Balancing State <span class="v3-tag">New in V3</span></li>
         </ul>
       </div>
     </div>
@@ -575,8 +612,8 @@
       
       <!-- 4: Clean Installation (Paired) -->
       <div class="action-item split-view animate-on-scroll delay-2">
-        <img src="images/3.jpg" style="border-right: 1px solid var(--border);" alt="Ather OBD Installation 1">
-        <img src="images/4.jpg" alt="Ather OBD Installation 2">
+        <img src="images/boot-cover-2.JPG" style="border-right: 1px solid var(--border);" alt="Ather OBD Installation 1">
+        <img src="images/boot-cover.png" alt="Ather OBD Installation 2">
         <div class="overlay"><h4>100% Plug & Play Wiring</h4></div>
       </div>
     </div>
@@ -675,6 +712,7 @@
             <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Turn the Key On</strong>
             <p style="margin: 0; color: var(--muted); font-size: 15px;">Turn the key on in your Ather scooter before doing anything else.</p>
             <p style="margin: 8px 0 0; color: #e8a040; font-size: 13px; font-weight: 600;">⚠️ Note: The OBD reader will NOT work if the key is off.</p>
+            <p style="margin: 6px 0 0; color: #e8a040; font-size: 13px; font-weight: 600;">💡 If it's charging, no need to turn on the key.</p>
           </div>
         </div>
         
