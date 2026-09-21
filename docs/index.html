@@ -692,7 +692,11 @@
 
       <div id="formSuccess">
         <h4>Details Received!</h4>
-        <p style="color: var(--muted); margin-bottom: 25px;">Your shipping details are saved. Complete your payment below to finalize the order.</p>
+        <p style="color: var(--muted); margin-bottom: 15px;">Your shipping details are saved. Complete your payment below to finalize the order.</p>
+        <div style="background: rgba(232, 160, 64, 0.1); border: 1px solid rgba(232, 160, 64, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 25px; text-align: left;">
+          <p style="margin: 0; color: #e8a040; font-size: 13px; font-weight: 600;">📦 Shipping Note:</p>
+          <p style="margin: 4px 0 0; color: var(--text); font-size: 13px;">We are charging a flat shipping fee of ₹170 on each order.</p>
+        </div>
         <form style="display: flex; justify-content: center; margin-bottom: 20px;">
           <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TeiHJo7wMjK9Ka" async> </script>
         </form>
@@ -807,7 +811,7 @@
 
     // Handle hash check on load for Razorpay redirect
     window.addEventListener('load', function() {
-      if (window.location.hash.toLowerCase() === '#thank-you') {
+      if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
         const thankYouModal = document.getElementById('thankYouModal');
         if (thankYouModal) {
           thankYouModal.classList.add('active');
