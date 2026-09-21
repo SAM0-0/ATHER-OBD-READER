@@ -808,17 +808,26 @@
       document.getElementById('thankYouModal').classList.remove('active');
     }
 
-    // Handle hash check on load for Razorpay redirect
-    window.addEventListener('load', function() {
+    function handlePaymentSuccess() {
       if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
         const thankYouModal = document.getElementById('thankYouModal');
         if (thankYouModal) {
+          // Forcefully close Razorpay's stuck overlay iframe
+          const rzpContainer = document.querySelector('.razorpay-container');
+          if (rzpContainer) {
+            rzpContainer.remove();
+          }
+          
           thankYouModal.classList.add('active');
           // Clean up the URL hash so it doesn't stay on refresh
           window.history.replaceState(null, null, window.location.pathname);
         }
       }
-    });
+    }
+
+    // Handle hash check on initial load or dynamic hash change
+    window.addEventListener('load', handlePaymentSuccess);
+    window.addEventListener('hashchange', handlePaymentSuccess);
 
     /* Scroll Animation */
     document.addEventListener("DOMContentLoaded", function() {
