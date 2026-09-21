@@ -664,15 +664,17 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
+            <p id="phone-note" style="display: none; color: var(--primary); font-size: 12px; margin: 6px 0 0 0;">💡 Add WhatsApp number for WhatsApp updates if possible.</p>
           </div>
           <div class="form-group">
             <label for="address1">Address Line 1</label>
-            <input type="text" id="address1" name="address_line_1" required placeholder="House/Flat No., Street">
+            <input type="text" id="address1" name="address_line_1" required placeholder="House/Flat No., Street" onfocus="document.getElementById('address-note').style.display = 'block';" onblur="document.getElementById('address-note').style.display = 'none';">
+            <p id="address-note" style="display: none; color: #e8a040; font-size: 12px; margin: 6px 0 0 0;">📦 Add proper house/flat number as it helps us for better shipping.</p>
           </div>
           <div class="form-group">
-            <label for="address2">Address Line 2</label>
-            <input type="text" id="address2" name="address_line_2" placeholder="Landmark, Area (Optional)">
+            <label for="address2">Address Line 2 (Optional)</label>
+            <input type="text" id="address2" name="address_line_2" placeholder="Landmark, Area">
           </div>
           <div style="display: flex; gap: 16px;">
             <div class="form-group" style="flex: 1;">
