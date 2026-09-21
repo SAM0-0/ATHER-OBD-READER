@@ -664,7 +664,7 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
+            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (typeof preloadRazorpay === 'function') preloadRazorpay();" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
             <p id="phone-note" style="display: none; color: var(--primary); font-size: 12px; margin: 6px 0 0 0;">💡 Add WhatsApp number for WhatsApp updates if possible.</p>
           </div>
           <div class="form-group">
@@ -822,6 +822,17 @@
       document.getElementById('thankYouModal').classList.remove('active');
     }
 
+    function preloadRazorpay() {
+      const rzpForm = document.getElementById('rzp_form');
+      if (rzpForm && !rzpForm.querySelector('script')) {
+        const rzpScript = document.createElement('script');
+        rzpScript.src = 'https://checkout.razorpay.com/v1/payment-button.js';
+        rzpScript.setAttribute('data-payment_button_id', 'pl_TeiHJo7wMjK9Ka');
+        rzpScript.async = true;
+        rzpForm.appendChild(rzpScript);
+      }
+    }
+
     function handlePaymentSuccess() {
       if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
         const thankYouModal = document.getElementById('thankYouModal');
@@ -927,15 +938,8 @@
           formContainer.style.display = 'none';
           formSuccess.style.display = 'block';
           
-          // Dynamically load Razorpay button to avoid 429 Too Many Requests on page load
-          const rzpForm = document.getElementById('rzp_form');
-          if (rzpForm && !rzpForm.querySelector('script')) {
-            const rzpScript = document.createElement('script');
-            rzpScript.src = 'https://checkout.razorpay.com/v1/payment-button.js';
-            rzpScript.setAttribute('data-payment_button_id', 'pl_TeiHJo7wMjK9Ka');
-            rzpScript.async = true;
-            rzpForm.appendChild(rzpScript);
-          }
+          // Ensure Razorpay button is loaded (if not already preloaded)
+          if (typeof preloadRazorpay === 'function') preloadRazorpay();
         } else {
           let jsonResponse = await response.json();
           alert('Something went wrong: ' + jsonResponse.message);
