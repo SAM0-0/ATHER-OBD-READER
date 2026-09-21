@@ -686,14 +686,17 @@
             <input type="text" id="pincode" name="pincode" required placeholder="400001" pattern="[0-9]{6}" maxlength="6">
           </div>
           
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 10px; font-size: 18px;">Submit</button>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 10px; font-size: 18px;">Proceed to Payment</button>
         </form>
       </div>
 
       <div id="formSuccess">
-        <h4>Thanks!</h4>
-        <p style="color: var(--muted);">We have received your order information and will contact you in the meantime!</p>
-        <button class="btn btn-primary" onclick="closeModal()" style="margin-top: 25px; width: 100%;">Close</button>
+        <h4>Details Received!</h4>
+        <p style="color: var(--muted); margin-bottom: 25px;">Your shipping details are saved. Complete your payment below to finalize the order.</p>
+        <form style="display: flex; justify-content: center; margin-bottom: 20px;">
+          <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TeiHJo7wMjK9Ka" async> </script>
+        </form>
+        <button class="btn" onclick="closeModal()" style="width: 100%;">Close (I'll pay later)</button>
       </div>
     </div>
   </div>
@@ -785,9 +788,35 @@
         <button class="btn btn-primary" onclick="closeModal()" style="width: 100%; padding: 14px; font-size: 16px;">Got It!</button>
       </div>
     </div>
+  </div>  <!-- Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal" style="text-align: center;">
+      <button class="modal-close" onclick="closeThankYouModal()">&times;</button>
+      <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
+      <h3 style="color: var(--primary);">Payment Successful!</h3>
+      <p style="color: var(--muted); margin-top: 15px;">Your order has been confirmed and we have received your payment.</p>
+      <p style="color: var(--muted);">Thank you for choosing Ather-OBD. We'll be in touch soon with tracking details.</p>
+      <button class="btn btn-primary" onclick="closeThankYouModal()" style="margin-top: 25px; width: 100%;">Continue</button>
+    </div>
   </div>
 
   <script>
+    function closeThankYouModal() {
+      document.getElementById('thankYouModal').classList.remove('active');
+    }
+
+    // Handle hash check on load for Razorpay redirect
+    window.addEventListener('load', function() {
+      if (window.location.hash.toLowerCase() === '#thank-you') {
+        const thankYouModal = document.getElementById('thankYouModal');
+        if (thankYouModal) {
+          thankYouModal.classList.add('active');
+          // Clean up the URL hash so it doesn't stay on refresh
+          window.history.replaceState(null, null, window.location.pathname);
+        }
+      }
+    });
+
     /* Scroll Animation */
     document.addEventListener("DOMContentLoaded", function() {
       const observer = new IntersectionObserver((entries) => {
