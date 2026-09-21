@@ -826,11 +826,14 @@
       if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
         const thankYouModal = document.getElementById('thankYouModal');
         if (thankYouModal) {
-          // Forcefully close Razorpay's stuck overlay iframe
-          const rzpContainer = document.querySelector('.razorpay-container');
-          if (rzpContainer) {
-            rzpContainer.remove();
-          }
+          // Forcefully close Razorpay's stuck overlay iframe by finding anything related to Razorpay
+          document.querySelectorAll('iframe, div').forEach(el => {
+            if (el.className && typeof el.className === 'string' && el.className.includes('razorpay')) {
+              el.remove();
+            }
+          });
+          // Also hide body overflow if Razorpay locked it
+          document.body.style.overflow = 'auto';
           
           thankYouModal.classList.add('active');
           // Clean up the URL hash so it doesn't stay on refresh
