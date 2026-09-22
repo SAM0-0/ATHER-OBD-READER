@@ -850,6 +850,14 @@
           // Also hide body overflow if Razorpay locked it
           document.body.style.overflow = 'auto';
           
+          // Close the order modal and reset its state so "Details Received!" doesn't linger
+          const orderModal = document.getElementById('orderModal');
+          if (orderModal) orderModal.classList.remove('active');
+          const formContainer = document.getElementById('formContainer');
+          const formSuccess = document.getElementById('formSuccess');
+          if (formContainer) formContainer.style.display = 'block';
+          if (formSuccess) formSuccess.style.display = 'none';
+          
           thankYouModal.classList.add('active');
           // Clean up the URL hash so it doesn't stay on refresh
           window.history.replaceState(null, null, window.location.pathname);
