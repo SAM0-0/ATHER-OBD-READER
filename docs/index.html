@@ -696,19 +696,32 @@
       </div>
 
       <div id="formSuccess">
-        <h4>Details Received!</h4>
-        <p style="color: var(--muted); margin-bottom: 15px;">Your shipping details are saved. Complete your payment below to finalize the order.</p>
-        <div style="background: rgba(232, 160, 64, 0.1); border: 1px solid rgba(232, 160, 64, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 25px; text-align: left;">
-          <p style="margin: 0; color: #e8a040; font-size: 13px; font-weight: 600;">📦 Shipping Note:</p>
-          <p style="margin: 4px 0 0; color: var(--text); font-size: 13px;">We are charging a flat shipping fee of ₹175 on each order.</p>
+        <h4 style="font-size: 22px;">Order Summary</h4>
+        <p style="color: var(--muted); margin-bottom: 20px;">Shipping details saved! Please review your order below.</p>
+        
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 25px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--text); font-size: 15px;">
+            <span>A-OBD Reader</span>
+            <span>₹949</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 16px; color: var(--muted); font-size: 14px;">
+            <span>Flat Shipping 📦</span>
+            <span>₹175</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 16px; font-weight: 700; color: var(--text); font-size: 18px;">
+            <span>Total</span>
+            <span style="color: var(--primary);">₹1124</span>
+          </div>
         </div>
-        <div style="border: 2px dashed var(--primary); border-radius: 12px; padding: 25px 20px; margin-bottom: 25px; background: rgba(74, 222, 128, 0.05); text-align: center;">
-          <h4 style="color: var(--primary); margin: 0 0 10px 0; font-size: 18px;">Final Step: Secure Payment</h4>
-          <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Click the button below to pay securely via Razorpay</p>
+        
+        <div style="text-align: center;">
           <form id="rzp_form" style="display: flex; justify-content: center; margin: 0; min-height: 45px;">
           </form>
+          <p style="color: var(--muted); font-size: 12px; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Payments are processed securely
+          </p>
         </div>
-        <button class="btn" onclick="closeModal()" style="width: 100%;">Close (I'll pay later)</button>
       </div>
     </div>
   </div>
