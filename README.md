@@ -109,7 +109,7 @@ Once connections are done connect it to port in the boot :
 *The connector in which this device connects is in in boot of your ather 450 series, and also in boot for rizta as well see the images ! there's tiny black cover just remove it and you'll be able to see the connector*
 
 <p align="center">
-<img src="images/boot-cover.png" alt="Ather OBD BOOT COVER" width="250" height="250" />
+<img src="images/boot-cover.jpg" alt="Ather OBD BOOT COVER" width="250" height="250" />
 <img src="images/rizta-boot.jpg" alt="Ather OBD BOOT COVER" width="250" height="250" />
 <img src="images/rizta-boot-cvoer.jpg" alt="Ather OBD BOOT COVER" width="250" height="250" />
 </p>
