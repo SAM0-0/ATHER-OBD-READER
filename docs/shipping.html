@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipping Policy | A-OBD</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1115; /* Very dark slate */
+      --card: #16181d; /* Slightly lighter slate */
+      --card-hover: #1f2229;
+      --text: #f1f5f9; /* Off-white text */
+      --muted: #8b98a9; /* Muted text */
+      --border: #292d36; /* Subtle borders */
+      --primary: #cbd5e1; /* Silver/Slate accent */
+      --primary-hover: #ffffff; /* Lighter hover */
+      --accent-badge: rgba(203, 213, 225, 0.1);
+      --accent-badge-border: rgba(203, 213, 225, 0.25);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Scroll Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .animate-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Header */
+    header {
+      padding: 160px 20px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.8), rgba(15, 17, 21, 1)), url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-attachment: fixed;
+    }
+    .badges {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 25px;
+      animation: fadeDown 1s ease-out forwards;
+    }
+    .badge {
+      background: var(--accent-badge);
+      color: var(--text);
+      border: 1px solid var(--accent-badge-border);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+    }
+    header h1 {
+      font-size: clamp(48px, 8vw, 84px);
+      margin: 0 0 20px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      animation: fadeDown 1s ease-out 0.1s forwards;
+      opacity: 0;
+    }
+    header p {
+      font-size: clamp(18px, 3vw, 22px);
+      max-width: 700px;
+      margin: 0 auto 50px;
+      color: var(--muted);
+      font-weight: 400;
+      animation: fadeUp 1s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+    .header-btn-wrap {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card);
+      color: var(--text);
+      padding: 16px 36px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .btn:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f1115;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Sections */
+    .section {
+      padding: 120px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(36px, 5vw, 48px);
+      margin-bottom: 20px;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .section-title span {
+      color: var(--primary);
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      font-weight: 400;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .feature-card {
+      background: var(--card);
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(203, 213, 225, 0.4);
+      transform: translateY(-5px);
+    }
+    .feature-card h3 {
+      color: var(--text);
+      font-size: 24px;
+      margin-top: 0;
+      font-weight: 600;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .feature-card h3::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    .feature-card ul {
+      padding-left: 0;
+      list-style: none;
+      color: var(--muted);
+      margin: 0;
+    }
+    .feature-card ul li {
+      margin-bottom: 16px;
+      font-size: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .feature-card ul li::before {
+      content: '→';
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Action Grid - The Selling Point */
+    .action-section {
+      background: #090a0c;
+      padding: 120px 20px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 900px) {
+      .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 400px;
+      }
+    }
+    .action-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0f1115;
+      height: 100%;
+      min-height: 350px;
+      border: 1px solid var(--border);
+    }
+    .action-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s;
+      filter: brightness(0.8);
+    }
+    .action-item.split-view {
+      display: flex;
+    }
+    .action-item.split-view img {
+      width: 50%;
+      object-fit: cover;
+    }
+    .action-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+    .action-item .overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(15,17,21,0.95) 0%, rgba(15,17,21,0.5) 40%, rgba(15,17,21,0) 100%);
+      padding: 40px 30px 30px;
+      pointer-events: none;
+    }
+    .action-item h4 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 120px 20px;
+      background: var(--bg);
+    }
+    
+    footer {
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: var(--card);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      margin: auto;
+    }
+    .modal-overlay.active .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: none;
+      border: none;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--text);
+    }
+    .modal h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 28px;
+    }
+    .modal p.subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      transition: all 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(203, 213, 225, 0.1);
+    }
+    #formSuccess { display: none; text-align: center; padding: 20px 0; }
+    #formSuccess h4 { color: var(--primary); font-size: 24px; margin-bottom: 12px; }
+    .v2-item {
+      background: rgba(148, 163, 184, 0.07);
+      padding: 4px 8px 4px 0;
+      border-radius: 4px;
+      align-items: center;
+    }
+    .v2-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(74, 142, 115, 0.12);
+      color: #6aab90;
+      border: 1px solid rgba(74, 142, 115, 0.28);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-left: auto;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .v3-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(210, 140, 60, 0.12);
+      color: #c4883a;
+      border: 1px solid rgba(210, 140, 60, 0.28);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-left: auto;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .v3-title-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(210, 140, 60, 0.12);
+      color: #c4883a;
+      border: 1px solid rgba(210, 140, 60, 0.28);
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+
+    /* In-Button Lightning Animation */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary .btn-flash {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, rgba(255, 220, 50, 0.5) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .btn-primary .btn-bolt {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 50px;
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(255, 220, 50, 0.9)) drop-shadow(0 0 20px rgba(255, 200, 0, 0.5));
+      z-index: 2;
+    }
+    .btn-primary .btn-spark {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: #ffd700;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: 0 0 6px #ffd700, 0 0 12px rgba(255, 200, 0, 0.5);
+      z-index: 2;
+    }
+    .btn-primary.zap .btn-flash {
+      animation: btnFlash 0.5s ease-out forwards;
+    }
+    .btn-primary.zap .btn-bolt {
+      animation: btnBolt 0.45s ease-out forwards;
+    }
+    .btn-primary.zap .btn-spark {
+      animation: btnSpark 0.4s ease-out forwards;
+    }
+    @keyframes btnFlash {
+      0% { opacity: 0; }
+      15% { opacity: 1; }
+      40% { opacity: 0.3; }
+      55% { opacity: 0.7; }
+      100% { opacity: 0; }
+    }
+    @keyframes btnBolt {
+      0% { opacity: 0; transform: translate(-50%, -80%) scaleY(0.2); }
+      12% { opacity: 1; transform: translate(-50%, -50%) scaleY(1); }
+      25% { opacity: 0.3; }
+      40% { opacity: 1; }
+      55% { opacity: 0.5; }
+      100% { opacity: 0; transform: translate(-50%, -50%) scaleY(1); }
+    }
+    @keyframes btnSpark {
+      0% { opacity: 1; transform: translate(0,0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
+    }
+  </style>
+</head><body><div style="max-width: 800px; margin: 0 auto; padding: 30px 20px 0;"><a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">&larr; Back to A-OBD</a></div><div style="max-width: 800px; margin: 0 auto; padding: 20px 20px 60px;"><h1 style="font-size: clamp(30px, 4vw, 40px); margin-bottom: 16px;">Shipping &amp; <span>Delivery</span></h1><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">1. Shipping Timelines</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">All orders are processed and shipped within 2-3 business days. Orders are not shipped or delivered on weekends or public holidays.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">2. Delivery Estimates</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Estimated delivery time for domestic orders is 5-7 business days. Delivery delays can occasionally occur depending on the courier partner or remote delivery locations.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">3. Shipping Charges</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Shipping charges for your order will be displayed at checkout.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">4. Tracking Your Order</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">You will receive a shipment confirmation email or SMS containing your tracking number(s) once your order has shipped.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">5. Contact Us</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">For tracking or delivery queries, please email us at <a href="mailto:testz11qp@gmail.com" style="color: var(--primary);">testz11qp@gmail.com</a>.</p></div><footer><div style="max-width: 700px; margin: 0 auto; margin-bottom: 30px; font-size: 14px; line-height: 2.2;"><a href="index.html">Home</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="contact.html">Contact Us</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="terms.html">Terms &amp; Conditions</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="privacy.html">Privacy Policy</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="refunds.html">Refunds &amp; Returns</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="shipping.html">Shipping</a></div><div style="opacity: 0.5;">&copy; 2026 A-OBD. All rights reserved.<br><span style="font-size: 12px; margin-top: 8px; display: inline-block;">Not officially affiliated with Ather Energy.</span></div></footer></body></html>
