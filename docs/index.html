@@ -532,7 +532,7 @@
     <h1>A-OBD</h1>
     <p>The Ultimate Pre-Assembled Plug & Play Device To Check Your Scooter's Health</p>
     <div class="header-btn-wrap">
-      <button class="btn btn-primary" onclick="openOrderModal()">Order Now - ₹949 + Shipping</button>
+      <button class="btn btn-primary" onclick="showPausedModal()">Orders Paused - Check Back Soon</button>
       <button class="btn" onclick="openHowToModal()">How to Use</button>
       <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" class="btn">
         <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -625,7 +625,8 @@
   <div class="cta-section animate-on-scroll">
     <h2 class="section-title" style="margin-bottom: 20px;">Ready to Upgrade Your Ride?</h2>
     <p class="section-subtitle">Get the complete plug and play device today.</p>
-    <button class="btn btn-primary" onclick="openOrderModal()" style="padding: 18px 45px; font-size: 20px;">Buy A-OBD for ₹949 + Shipping</button>
+    <button class="btn btn-primary" onclick="showPausedModal()" style="padding: 18px 45px; font-size: 20px;">Orders Paused - Check Back Soon</button>
+    <p style="color: #e8a040; font-size: 14px; margin-top: 15px; margin-bottom: 0;">&#9208; We're not accepting orders right now due to a payment gateway issue. Please check back later!</p>
   </div>
   <div class="section animate-on-scroll" style="padding-top: 0; padding-bottom: 80px;">
     <style>
@@ -774,6 +775,18 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Orders Paused Modal -->
+  <div class="modal-overlay" id="pausedModal">
+    <div class="modal" style="text-align: center;">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div style="font-size: 48px; margin-bottom: 10px;">&#9208;</div>
+      <h3>Orders Paused</h3>
+      <p class="subtitle" style="margin-bottom: 8px;">We're not accepting orders right now due to an issue with our payment gateway.</p>
+      <p style="color: var(--muted); font-size: 15px; margin-bottom: 25px;">Please check back later to place your order. Sorry for the inconvenience!</p>
+      <button class="btn btn-primary" onclick="closeModal()" style="width: 100%;">Got It</button>
     </div>
   </div>
 
@@ -953,6 +966,7 @@
     /* Modals */
     const orderModal = document.getElementById('orderModal');
     const howToModal = document.getElementById('howToModal');
+    const pausedModal = document.getElementById('pausedModal');
     const orderForm = document.getElementById('orderForm');
     const formContainer = document.getElementById('formContainer');
     const formSuccess = document.getElementById('formSuccess');
@@ -989,6 +1003,13 @@
         document.body.style.overflow = 'hidden';
       });
     }
+    function showPausedModal() {
+      const btn = event.currentTarget;
+      zapButton(btn, () => {
+        pausedModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
     function openHowToModal() {
       howToModal.classList.add('active');
       document.body.style.overflow = 'hidden'; 
@@ -996,6 +1017,7 @@
     function closeModal() {
       orderModal.classList.remove('active');
       howToModal.classList.remove('active');
+      pausedModal.classList.remove('active');
       document.body.style.overflow = '';
       setTimeout(() => {
         formContainer.style.display = 'block';
