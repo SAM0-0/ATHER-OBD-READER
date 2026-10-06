@@ -118,7 +118,7 @@ Once connections are done connect it to port in the boot :
 *   **Real-time Accuracy:** All data is pulled live directly from the BMS, ensuring 100% accuracy.
 *   **Per Cell Information:** Data like Voltages & SoH for each cell in the battery.[Added in V2]
 *   **Charger Information:** Values like Charger Input voltage, Output voltage , Charger current, Watts are now added and Tiny bug in balancing state is fixed.[Added in V3]
-*   **More Information:** Charger locks, Dashboard fan status, Smart and Forced Eco Status, Charger Fan info and Cell balancing bug fixes [Some are experimental values]. [Added in V4]
+*   **More Information:** Charger locks, Dashboard fan status, Smart and Forced Eco Status, Charger Fan info, Motor current, Temperature and Cell balancing bug fixes [Some are experimental values]. [Added in V4]
 *   **More features in active development!**
 
 ----
