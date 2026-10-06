@@ -519,6 +519,34 @@
       0% { opacity: 1; transform: translate(0,0) scale(1); }
       100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
     }
+
+    /* Cashfree payment button */
+    .button-container {
+      border: 1px solid black;
+      border-radius: 15px;
+      display: flex;
+      padding: 10px;
+      width: fit-content;
+      cursor: pointer;
+    }
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 10px;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    .logo-container {
+      width: 40px;
+      height: 40px;
+    }
+    .seconday-logo-container {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+    form a { text-decoration: none; }
   </style>
 </head>
 <body>
@@ -532,7 +560,7 @@
     <h1>A-OBD</h1>
     <p>The Ultimate Pre-Assembled Plug & Play Device To Check Your Scooter's Health</p>
     <div class="header-btn-wrap">
-      <button class="btn btn-primary" onclick="showPausedModal()">Orders Paused - Check Back Soon</button>
+      <button class="btn btn-primary" onclick="openOrderModal()">Order Now - ₹949 + Shipping</button>
       <button class="btn" onclick="openHowToModal()">How to Use</button>
       <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" class="btn">
         <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -625,8 +653,7 @@
   <div class="cta-section animate-on-scroll">
     <h2 class="section-title" style="margin-bottom: 20px;">Ready to Upgrade Your Ride?</h2>
     <p class="section-subtitle">Get the complete plug and play device today.</p>
-    <button class="btn btn-primary" onclick="showPausedModal()" style="padding: 18px 45px; font-size: 20px;">Orders Paused - Check Back Soon</button>
-    <p style="color: #e8a040; font-size: 14px; margin-top: 15px; margin-bottom: 0;">&#9208; We're not accepting orders right now due to a payment gateway issue. Please check back later!</p>
+    <button class="btn btn-primary" onclick="openOrderModal()" style="padding: 18px 45px; font-size: 20px;">Buy A-OBD for ₹949 + Shipping</button>
   </div>
   <div class="section animate-on-scroll" style="padding-top: 0; padding-bottom: 80px;">
     <style>
@@ -716,7 +743,7 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (typeof preloadRazorpay === 'function') preloadRazorpay();" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
+            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
             <p id="phone-note" style="display: none; color: var(--primary); font-size: 12px; margin: 6px 0 0 0;">💡 Add WhatsApp number for WhatsApp updates if possible.</p>
           </div>
           <div class="form-group">
@@ -767,26 +794,30 @@
         </div>
         
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
-          <form id="rzp_form" style="display: flex; justify-content: center; margin: 0; min-height: 45px;">
+          <form>
+            <a href="https://payments.cashfree.com/forms/A-OBD-C3" target="_parent">
+              <div class="button-container" style="background: #000; margin: 0 auto;">
+                <div>
+                  <img src="https://cashfreelogo.cashfree.com/assets_images/cfbrand/cf_logo.svg" alt="logo" class="logo-container">
+                </div>
+                <div class="text-container">
+                  <div style="font-family: Arial; color: #fff; margin-bottom: 5px; font-size: 14px;">
+                    BUY A - OBD
+                  </div>
+                  <div style="font-family: Arial; color: #fff; font-size: 10px;">
+                      <span>Powered By Cashfree</span>
+                      <img src="https://cashfreelogo.cashfree.com/assets_images/cfbrand/cf_logo.svg" alt="logo" class="seconday-logo-container">
+                  </div>
+                </div>
+              </div>
+            </a>
           </form>
           <p style="color: var(--muted); font-size: 12px; margin-top: 15px; margin-bottom: 0; display: flex; align-items: center; justify-content: center; gap: 6px;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            Payments are processed securely
+            Payments are processed securely via Cashfree
           </p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Orders Paused Modal -->
-  <div class="modal-overlay" id="pausedModal">
-    <div class="modal" style="text-align: center;">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div style="font-size: 48px; margin-bottom: 10px;">&#9208;</div>
-      <h3>Orders Paused</h3>
-      <p class="subtitle" style="margin-bottom: 8px;">We're not accepting orders right now due to an issue with our payment gateway.</p>
-      <p style="color: var(--muted); font-size: 15px; margin-bottom: 25px;">Please check back later to place your order. Sorry for the inconvenience!</p>
-      <button class="btn btn-primary" onclick="closeModal()" style="width: 100%;">Got It</button>
     </div>
   </div>
 
@@ -908,17 +939,6 @@
       document.getElementById('thankYouModal').classList.remove('active');
     }
 
-    function preloadRazorpay() {
-      const rzpForm = document.getElementById('rzp_form');
-      if (rzpForm && !rzpForm.querySelector('script')) {
-        const rzpScript = document.createElement('script');
-        rzpScript.src = 'https://checkout.razorpay.com/v1/payment-button.js';
-        rzpScript.setAttribute('data-payment_button_id', 'pl_TeiHJo7wMjK9Ka');
-        rzpScript.async = true;
-        rzpForm.appendChild(rzpScript);
-      }
-    }
-
     function handlePaymentSuccess() {
       if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
         const thankYouModal = document.getElementById('thankYouModal');
@@ -966,7 +986,6 @@
     /* Modals */
     const orderModal = document.getElementById('orderModal');
     const howToModal = document.getElementById('howToModal');
-    const pausedModal = document.getElementById('pausedModal');
     const orderForm = document.getElementById('orderForm');
     const formContainer = document.getElementById('formContainer');
     const formSuccess = document.getElementById('formSuccess');
@@ -1003,13 +1022,6 @@
         document.body.style.overflow = 'hidden';
       });
     }
-    function showPausedModal() {
-      const btn = event.currentTarget;
-      zapButton(btn, () => {
-        pausedModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    }
     function openHowToModal() {
       howToModal.classList.add('active');
       document.body.style.overflow = 'hidden'; 
@@ -1017,7 +1029,6 @@
     function closeModal() {
       orderModal.classList.remove('active');
       howToModal.classList.remove('active');
-      pausedModal.classList.remove('active');
       document.body.style.overflow = '';
       setTimeout(() => {
         formContainer.style.display = 'block';
@@ -1038,9 +1049,6 @@
         if (response.status == 200) {
           formContainer.style.display = 'none';
           formSuccess.style.display = 'block';
-          
-          // Ensure Razorpay button is loaded (if not already preloaded)
-          if (typeof preloadRazorpay === 'function') preloadRazorpay();
         } else {
           let jsonResponse = await response.json();
           alert('Something went wrong: ' + jsonResponse.message);
