@@ -45,23 +45,15 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
 
 ---
 
-
-> **🛑 IMPORTANT NOTE (CURRENT RELEASE):** 
-> The current `.bin` file, source code, and wiring diagram provided in this repository are **ONLY for the ESP32-C3**. 
-> *The code and diagrams for the ESP32/WROOM are currently in development and will be added very soon!*
-
-
-
----
-
 ## 💻 Software Requirements
 
 *   **ESP Flasher Tool:**
     *   [Download for Windows (.zip)](https://github.com/Jason2866/ESP_Flasher/releases/download/v4.5.1/ESP-Flasher-Windows.zip)
     *   [Download for macOS / Linux](https://github.com/Jason2866/ESP_Flasher/releases)
 *   The `.bin` firmware file (located in this repository).
-    *   [Download it here - V3.1 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.1.bin)
-    *   [Download it here - V3.2 ](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v3/can-dash-v3.2.bin)
+    *   [Download it here - C3 V4](#)
+    *   [Download it here - S3 V4](#)
+    *   [Download it here - WROOM/S1 V4](#)
 
 **🛑 Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2**
   
