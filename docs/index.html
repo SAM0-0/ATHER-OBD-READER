@@ -724,75 +724,31 @@
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       
-      <div id="formContainer">
-        <h3>Place Your Order</h3>
-        <p class="subtitle">Enter your details below and we will contact you in the meantime regarding your order!</p>
-        
-        <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="91e2eaf0-b2a8-44c2-b3f6-b3d06a935234">
-          <input type="hidden" name="subject" value="New A-OBD Order (₹949)">
-          <input type="hidden" name="redirect" value="">
-          
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required placeholder="Jane Doe">
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="jane@example.com">
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="9876543210" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onfocus="document.getElementById('phone-note').style.display = 'block';" onblur="document.getElementById('phone-note').style.display = 'none';">
-            <p id="phone-note" style="display: none; color: var(--primary); font-size: 12px; margin: 6px 0 0 0;">💡 Add WhatsApp number for WhatsApp updates if possible.</p>
-          </div>
-          <div class="form-group">
-            <label for="address1">Address Line 1</label>
-            <input type="text" id="address1" name="address_line_1" required placeholder="House/Flat No., Street" onfocus="document.getElementById('address-note').style.display = 'block';" onblur="document.getElementById('address-note').style.display = 'none';">
-            <p id="address-note" style="display: none; color: #e8a040; font-size: 12px; margin: 6px 0 0 0;">📦 Add proper house/flat number as it helps us for better shipping.</p>
-          </div>
-          <div class="form-group">
-            <label for="address2">Address Line 2 (Optional)</label>
-            <input type="text" id="address2" name="address_line_2" placeholder="Landmark, Area">
-          </div>
-          <div style="display: flex; gap: 16px;">
-            <div class="form-group" style="flex: 1;">
-              <label for="city">City</label>
-              <input type="text" id="city" name="city" required placeholder="Mumbai">
-            </div>
-            <div class="form-group" style="flex: 1;">
-              <label for="state">State</label>
-              <input type="text" id="state" name="state" required placeholder="Maharashtra">
-            </div>
-          </div>
-          <div class="form-group" style="max-width: 200px;">
-            <label for="pincode">Pincode</label>
-            <input type="text" id="pincode" name="pincode" required placeholder="400001" pattern="[0-9]{6}" maxlength="6">
-          </div>
-          
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 10px; font-size: 18px;">Proceed to Payment</button>
-        </form>
-      </div>
+      <div>
+        <h3>Order A-OBD</h3>
+        <p class="subtitle">Your details are collected securely by Cashfree at checkout.</p>
 
-      <div id="formSuccess">
-        <h4 style="font-size: 22px;">Order Summary</h4>
-        <p style="color: var(--muted); margin-bottom: 20px;">Shipping details saved! Please review your order below.</p>
-        
-        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 25px; text-align: left;">
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: left;">
           <div style="display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--text); font-size: 15px;">
             <span>A-OBD Reader</span>
-            <span>₹949</span>
+            <span>&#8377;949</span>
           </div>
           <div style="display: flex; justify-content: space-between; margin-bottom: 16px; color: var(--muted); font-size: 14px;">
-            <span>Flat Shipping 📦</span>
-            <span>₹175</span>
+            <span>Flat Shipping &#128230;</span>
+            <span>&#8377;175</span>
           </div>
           <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 16px; font-weight: 700; color: var(--text); font-size: 18px;">
             <span>Total</span>
-            <span style="color: var(--primary);">₹1124</span>
+            <span style="color: var(--primary);">&#8377;1124</span>
           </div>
         </div>
-        
+
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; text-align: left;">
+          <p style="margin: 0 0 8px; color: var(--text); font-size: 14px; font-weight: 600;">&#128666; Delivery Timeline:</p>
+          <p style="margin: 0 0 6px; color: var(--muted); font-size: 13px;">&#8226; Assembly and testing takes <strong>2-3 days</strong>.</p>
+          <p style="margin: 0; color: var(--muted); font-size: 13px;">&#8226; Shipping takes <strong>4-5 days</strong> &mdash; expect delivery in about <strong>one week</strong>.</p>
+        </div>
+
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
           <form>
             <a href="https://payments.cashfree.com/forms/A-OBD-C3" target="_parent">
@@ -986,9 +942,6 @@
     /* Modals */
     const orderModal = document.getElementById('orderModal');
     const howToModal = document.getElementById('howToModal');
-    const orderForm = document.getElementById('orderForm');
-    const formContainer = document.getElementById('formContainer');
-    const formSuccess = document.getElementById('formSuccess');
 
     /* Inject lightning elements into every .btn-primary */
     document.querySelectorAll('.btn-primary').forEach(btn => {
@@ -1030,31 +983,8 @@
       orderModal.classList.remove('active');
       howToModal.classList.remove('active');
       document.body.style.overflow = '';
-      setTimeout(() => {
-        formContainer.style.display = 'block';
-        formSuccess.style.display = 'none';
-        orderForm.reset();
-      }, 300);
     }
     // Background click-to-close removed to prevent accidental closure during payment.
-
-    orderForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(orderForm)))
-      })
-      .then(async (response) => {
-        if (response.status == 200) {
-          formContainer.style.display = 'none';
-          formSuccess.style.display = 'block';
-        } else {
-          let jsonResponse = await response.json();
-          alert('Something went wrong: ' + jsonResponse.message);
-        }
-      }).catch(error => { alert('Something went wrong. Please try again.'); });
-    });
   </script>
 
   <!-- Fairy Dust Cursor (Vanilla JS Port of the React Code) -->
