@@ -73,9 +73,7 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
 
 ### Step 2: Hardware Connections
 
- **🙇‍♂️Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before**
-
-Follow the wiring diagram below: *Make sure the ESP module is disconnected from power before wiring.*
+Follow the wiring diagram as per your hardware: *Make sure the ESP module is disconnected from power before wiring.*
 
 <p align="center">
 <img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" /> </p>
