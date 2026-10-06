@@ -75,27 +75,11 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
 
  **🙇‍♂️Sorry Note: The previous diagram had a flaw that prevented it from working. I have added an updated diagram with corrected connections. Please follow this new version if you ran into issues before**
 
-Follow the wiring diagram below: *Make sure the ESP32-C3 is disconnected from power before wiring.*
+Follow the wiring diagram below: *Make sure the ESP module is disconnected from power before wiring.*
 
 <p align="center">
 <img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" /> </p>
 
-
-**1. ESP32-C3 to SN65HVD230 Connections:**
-
-| ESP32-C3 Pin | SN65HVD230 Pin |
-| :--- | :--- |
-| `GND` | `GND` |
-| `3.3V` | `3.3V` |
-| `GPIO 20` | `CRX` |
-| `GPIO 10` | `CTX` |
-
-**2. SN65HVD230 to Ather Boot Connector:**
-
-| SN65HVD230 Pin | Ather Connector Wire |
-| :--- | :--- |
-| `CANH` | **Yellow** Wire |
-| `CANL` | **Green** Wire |
 
 
 Once connections are done connect it to port in the boot : 
