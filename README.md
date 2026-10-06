@@ -40,8 +40,8 @@ You will need the following components to build the reader. Purchasing your comp
 You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose based on your usage:**
 
 *   **ESP32/WROOM:** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for longer time without any issues.
-*   **ESP32-S3:** A good middle-ground option with strong compute power. It can be plugged in for up to an hour without any issues at all.
-*   **ESP32-C3:** Only recommended for quick, limited usage (50-60 minutes at a time). Due to lower compute power, it tends to heat up quickly under this workload.
+*   **ESP32-S3:** A good middle-ground option with strong compute power. It can be plugged in for up to an hour without any issues at all, But it also heats up as well.
+*   **ESP32-C3:** It's the best option if you just wanna check your scooter's details as it can easily run for 40-50 minutes and all you need is 2-3 minutes, But due to lower compute power, it tends to heat up quickly under this workload.
 
 ---
 
