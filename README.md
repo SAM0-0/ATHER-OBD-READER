@@ -85,8 +85,7 @@ Follow the wiring diagram as per your hardware: *Make sure the ESP module is dis
 
 <p align="left"> <b>ESP32/WROOM WIRING DIAGRAM :</b></p>
 <p align="center">
-<img src="images/demo.jpg" alt="Wiring diagram coming soon" width="600" /> </p>
-<p align="center"><i>Wiring diagram coming soon.</i></p>
+<img src="images/diagram-wroom-esp32.png" alt="Ather OBD WROOM Wiring Diagram" width="600" /> </p>
 
 
 
