@@ -64,7 +64,7 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
 1. Connect your ESP module to your PC/Laptop via USB.
 2. Open the **ESP Flasher** application.
 3. Select the correct COM/Serial port your ESP32 is connected to.
-4. Select the proper `.bin` file provided in this folder and click **Flash**.
+4. Select the proper `.bin` file provided in this folder for you selected hardware and click **Flash**.
 5. Wait a minute for the process to complete, then disconnect and reconnect the ESP32 to restart it.
 6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`a-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
 
