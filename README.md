@@ -28,7 +28,7 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 You will need the following components to build the reader. Purchasing your components through the links below helps support this open-source project at **zero extra cost to you**:
 
 * 1 × [ESP32 C3 Supermini](https://www.flyrobo.in/esp32-c3-supermini-development-board-wifi-bluetooth-usb-c-soldered/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
-**OR** *(only one module required)*
+**OR** *(only one module required, Either buy esp32 c3 Or ESP32/Wroom)*
 * 1 × [ESP32/WROOM 38 pin](https://www.flyrobo.in/esp32-38-pin-development-board-cp2102-type-c-wifi-and-bluetooth/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 1 × [SN65HVD230 CAN Bus Transceiver Module ](https://www.flyrobo.in/wcmcu-230-can-bus-module-based-on-sn65hvd230/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
 * 4 × [Female-to-Female Jumper Wires](https://www.flyrobo.in/40pcs_10cm_female_to_female_jumper_cable_wire_for_arduino/?tracking=UwR6B669xp9SLKysVbq5gfq4L488E9TzDlFr8pJq41Ui1FcygUSdC9I0KRschPX2)
@@ -37,9 +37,9 @@ You will need the following components to build the reader. Purchasing your comp
 
 ## ⚠️ Hardware Recommendations
 
-You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose based on your usage:**
+You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose based on your usage:**
 
-*   **ESP32-WROOM:** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for months without any issues.
+*   **ESP32/WROOM:** The best option for long-term use. It has adequate compute power, stays cool, and can be left connected to the scooter for months without any issues.
 *   **ESP32-C3:** Only recommended for quick, limited usage (50-60 minutes at a time). Due to lower compute power, it tends to heat up quickly under this workload.
 
 ---
@@ -47,7 +47,7 @@ You can build this using either an ESP32-WROOM or an ESP32-C3. **Please choose b
 
 > **🛑 IMPORTANT NOTE (CURRENT RELEASE):** 
 > The current `.bin` file, source code, and wiring diagram provided in this repository are **ONLY for the ESP32-C3**. 
-> *The code and diagrams for the ESP32-WROOM are currently in development and will be added very soon!*
+> *The code and diagrams for the ESP32/WROOM are currently in development and will be added very soon!*
 
 
 
@@ -160,7 +160,7 @@ Once connections are done connect it to port in the boot :
 
 Building open-source hardware, reverse-engineering CAN bus data, testing safely on actual vehicles, and maintaining the code takes a massive amount of time, effort, and late nights! 
 
-If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32-WROOM support and new diagnostic features), **please consider supporting this project as well !** Your support is what keeps projects like this alive and free for the community. 
+If this tool helped you diagnose your scooter, saved you a trip to the service center, or if you just want to support the development of future updates (like adding full ESP32/WROOM support and new diagnostic features), **please consider supporting this project as well !** Your support is what keeps projects like this alive and free for the community. 
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
 
