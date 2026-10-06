@@ -896,36 +896,24 @@
     }
 
     function handlePaymentSuccess() {
-      if (window.location.hash.toLowerCase().startsWith('#thank-you')) {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('status') === 'paid') {
         const thankYouModal = document.getElementById('thankYouModal');
         if (thankYouModal) {
-          // Forcefully close Razorpay's stuck overlay iframe by finding anything related to Razorpay
-          document.querySelectorAll('iframe, div').forEach(el => {
-            if (el.className && typeof el.className === 'string' && el.className.includes('razorpay')) {
-              el.remove();
-            }
-          });
-          // Also hide body overflow if Razorpay locked it
           document.body.style.overflow = 'auto';
-          
-          // Close the order modal and reset its state so "Details Received!" doesn't linger
+
           const orderModal = document.getElementById('orderModal');
           if (orderModal) orderModal.classList.remove('active');
-          const formContainer = document.getElementById('formContainer');
-          const formSuccess = document.getElementById('formSuccess');
-          if (formContainer) formContainer.style.display = 'block';
-          if (formSuccess) formSuccess.style.display = 'none';
-          
+
           thankYouModal.classList.add('active');
-          // Clean up the URL hash so it doesn't stay on refresh
+          // Clean up the query string so refresh doesn't re-trigger
           window.history.replaceState(null, null, window.location.pathname);
         }
       }
     }
 
-    // Handle hash check on initial load or dynamic hash change
+    // Cashfree redirects back with ?status=paid — check on load
     window.addEventListener('load', handlePaymentSuccess);
-    window.addEventListener('hashchange', handlePaymentSuccess);
 
     /* Scroll Animation */
     document.addEventListener("DOMContentLoaded", function() {
