@@ -75,8 +75,18 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
 
 Follow the wiring diagram as per your hardware: *Make sure the ESP module is disconnected from power before wiring.*
 
+<p align="left"> <b>ESP32-C3 WIRING DIAGRAM :</b></p>
 <p align="center">
 <img src="images/diagram-c3.png" alt="Ather OBD Wiring Diagram" width="600" /> </p>
+
+<p align="left"> <b>ESP32 S3 WIRING DIAGRAM :</b></p>
+<p align="center">
+<img src="images/diagram-s3.png" alt="Ather OBD S3 Wiring Diagram" width="600" /> </p>
+
+<p align="left"> <b>ESP32/WROOM WIRING DIAGRAM :</b></p>
+<p align="center">
+<img src="images/demo.jpg" alt="Wiring diagram coming soon" width="600" /> </p>
+<p align="center"><i>Wiring diagram coming soon.</i></p>
 
 
 
