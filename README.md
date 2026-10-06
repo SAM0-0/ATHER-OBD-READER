@@ -55,20 +55,18 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
     *   [Download it here - S3 V4](#)
     *   [Download it here - WROOM/S1 V4](#)
 
-**🛑 Note : For optimal performance, V3.2 is recommended. Although both versions are identical in functionality and features, V3.2 has been entirely rewritten from the ground up to maximize ESP32 efficiency. Also Only use V3.1 if you're having any issues with the V3.2**
-  
 
 ---
 
 ## 🚀 Installation Guide
 
-### Step 1: Flashing the ESP32-C3
-1. Connect your ESP32 module to your PC/Laptop via USB.
+### Step 1: Flashing the ESP
+1. Connect your ESP module to your PC/Laptop via USB.
 2. Open the **ESP Flasher** application.
 3. Select the correct COM/Serial port your ESP32 is connected to.
-4. Select the `.bin` file provided in this folder and click **Flash**.
+4. Select the proper `.bin` file provided in this folder and click **Flash**.
 5. Wait a minute for the process to complete, then disconnect and reconnect the ESP32 to restart it.
-6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`ather-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
+6. Check the Wi-Fi networks on your phone or laptop. If you see a network named **`a-obd`**, the flashing was successful! (If it doesn't appear, try flashing again).
 
 [Video for flashing](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/images/flashing-setup.mp4)
 
@@ -115,7 +113,7 @@ Once connections are done connect it to port in the boot :
 ### Step 3: Usage Instructions
 
 1. Once all connections are securely made, power up the ESP32. You can use your PC or just a standard USB Power Bank or Even your Mobile phone (no PC required for regular use).
-2. Connect your phone or laptop to the Wi-Fi network named: **ATHER-OBD`** and password for the wifi is **12345678**
+2. Connect your phone or laptop to the Wi-Fi network named: **A-OBD`** and password for the wifi is **12345678**
 3. After connecting To Wifi open your web browser and go to: [http://192.168.4.1](http://192.168.4.1)
 4. You will now see your live dashboard displaying your scooter's real-time data!
 
