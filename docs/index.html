@@ -289,6 +289,64 @@
       color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
+    .demo-carousel {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .demo-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #0f1115;
+    }
+    .demo-track::-webkit-scrollbar { display: none; }
+    .demo-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+    .demo-slide img {
+      display: block;
+      width: 100%;
+      height: 620px;
+      object-fit: contain;
+      background: #0f1115;
+    }
+    .demo-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(15, 17, 21, 0.85);
+      color: var(--text);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      backdrop-filter: blur(6px);
+    }
+    .demo-btn:hover {
+      background: rgba(40, 44, 52, 0.95);
+      border-color: var(--primary);
+    }
+    .demo-btn.prev { left: 14px; }
+    .demo-btn.next { right: 14px; }
+    @media (max-width: 640px) {
+      .demo-slide img { height: 480px; }
+      .demo-btn { width: 38px; height: 38px; font-size: 16px; }
+      .demo-btn.prev { left: 8px; }
+      .demo-btn.next { right: 8px; }
+    }
 
     /* CTA Section */
     .cta-section {
@@ -586,6 +644,24 @@
     </div>
   </header>
 
+  <div class="action-section">
+    <h2 class="section-title animate-on-scroll" style="margin-bottom:60px;">See It In Action</h2>
+    <div class="demo-carousel animate-on-scroll">
+      <button class="demo-btn prev" onclick="demoScroll(-1)" aria-label="Previous image">&#10094;</button>
+      <div class="demo-track" id="demoTrack">
+        <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Demo 1"></div>
+        <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Demo 2"></div>
+        <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD Demo 3"></div>
+        <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD Demo 4"></div>
+        <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD Demo 5"></div>
+        <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD Demo 6"></div>
+        <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD Demo 7"></div>
+        <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD Demo 8"></div>
+      </div>
+      <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
+    </div>
+  </div>
+
   <div class="section">
     <h2 class="section-title animate-on-scroll">Unlock Hidden <span>Telemetry</span></h2>
     <p class="section-subtitle animate-on-scroll">Comprehensive real-time insights delivered directly to your device.</p>
@@ -660,39 +736,6 @@
           <li>Multi-Line Charts: Battery, Motor, Distance &amp; Ride Mode</li>
           <li>CSV Export from Browser</li>
         </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="action-section">
-    <h2 class="section-title animate-on-scroll" style="margin-bottom:60px;">See It In Action</h2>
-    
-    <div class="action-grid">
-      <!-- 1: Seamless Integration -->
-      <div class="action-item animate-on-scroll delay-1">
-        <img src="images/hero.jpg" alt="A-OBD in Action">
-        <div class="overlay"><h4>Seamless Integration</h4></div>
-      </div>
-      
-      <!-- 2: Real-time Telemetry (Paired) -->
-      <div class="action-item animate-on-scroll delay-2" style="display: flex;">
-        <img src="images/demo.jpg" style="width: 50%; object-fit: contain; filter: brightness(0.9); padding: 15px; border-right: 1px solid var(--border);" alt="A-OBD Hardware Setup">
-        <img src="images/demo2.jpg" style="width: 50%; object-fit: contain; padding: 15px; filter: brightness(1);" alt="A-OBD Web App Interface">
-        <div class="overlay"><h4>Real-time Telemetry on the Go</h4></div>
-      </div>
-      
-      <!-- 3: Hardware Details (Paired) -->
-      <div class="action-item split-view animate-on-scroll delay-1">
-        <img src="images/1.jpg" style="border-right: 1px solid var(--border);" alt="A-OBD Compact Design">
-        <img src="images/2.jpg" alt="A-OBD PCB">
-        <div class="overlay"><h4>Compact & Clean Design</h4></div>
-      </div>
-      
-      <!-- 4: Clean Installation (Paired) -->
-      <div class="action-item split-view animate-on-scroll delay-2">
-        <img src="images/boot-cover-2.JPG" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Installation 1">
-        <img src="images/boot-cover.jpg" loading="lazy" alt="A-OBD Installation 2">
-        <div class="overlay"><h4>100% Plug & Play Wiring</h4></div>
       </div>
     </div>
   </div>
@@ -1095,6 +1138,11 @@
         btn.classList.remove('zap');
         if (callback) callback();
       }, 500);
+    }
+
+    function demoScroll(dir) {
+      const track = document.getElementById('demoTrack');
+      track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
     }
 
     function openOrderModal() {
