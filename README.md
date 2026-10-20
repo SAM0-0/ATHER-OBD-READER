@@ -1,4 +1,4 @@
-# Ather OBD & Diagnostic Reader v5
+# A OBD & Diagnostic Reader v5
 
 [![Star on GitHub](https://img.shields.io/badge/⭐_Star_This_Project_on_GitHub-gray?style=for-the-badge&logo=github)](https://github.com/SAM0-0/ATHER-OBD-READER)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
