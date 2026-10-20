@@ -1,9 +1,17 @@
-# Ather OBD & Diagnostic Reader v4
+# Ather OBD & Diagnostic Reader v5
 
 [![Star on GitHub](https://img.shields.io/badge/⭐_Star_This_Project_on_GitHub-gray?style=for-the-badge&logo=github)](https://github.com/SAM0-0/ATHER-OBD-READER)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/sam0_0)
 
 A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, per-cell information, Charging information and more experimental values. 
+
+## 🆕 What's New in v5
+
+Version 5 adds nine new CAN values to the dashboard — controller temperature, throttle output, throttle 1, throttle 3, humidity, ambient temperature, PDU voltage, and maximum and minimum cell SoH. It also introduces a completely new **Extra** tab, contributed by the community (Kukun), which adds twenty-six more battery and vehicle values: cell temperatures, AFE die temperature, pack current, EFT/ECI/sense temperatures, derated discharge, charge and regen currents, discharge limit, charge cell rule and rate limit, charge post quantization, SoE, SoC EKF, max SoC, min SoC estimate, min V1/V2 estimates, odometer, BMS hardware and firmware, BCM/GTW/motor firmware, and the BIN ID. Cell Info now also shows the state of charge of all fourteen cells, making pack balance easy to check cell by cell.
+
+On top of the live data, v5 brings **Live Chart**, which records any one of 49 selectable signals for up to 45 seconds and exports it as CSV — the phone must stay connected while logging. For longer sessions, **Offline Logging** (added by Dhruv, ESP32/WROOM only) records eight key signals — voltage, SoC, motor temperature, range, drive mode, motor current, RPM and odometer — on the device for up to one hour without needing a phone. The browser stores the data in IndexedDB and only acknowledges samples once they are safely saved, so nothing is lost, and the logs can be exported as CSV or viewed as four multi-line charts (Battery, Motor, Distance and Ride Mode) across 5-minute, 15-minute and 1-hour ranges.
+
+---
 
 # **Order a Plug-and-Play Device:** 
 If you don't want to deal with wiring, flashing, or soldering, I am building fully assembled, ready-to-use plug-and-play devices! 
@@ -11,6 +19,14 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 **You can Buy it here : [CLICK HERE TO BUY PLUG & PLAY DEVICE](https://sam0-0.github.io/ATHER-OBD-READER/)**
 
 ---
+
+## 🤝 Contributors
+
+* **[Kukun7610](https://github.com/Kukun7610)** — added the whole new **Extra tab** with additional battery and vehicle values.
+* **[Dhruv2605](https://github.com/Dhruv2605)** — added **offline logging**.
+
+---
+
 <p align="left"> <b> ** DEMO OF HOW IT LOOKS ** </b></p>
 <p align="center">
 <img src="images/demo5.jpg" alt="Ather OBD Demo" width="300" height="400" />
