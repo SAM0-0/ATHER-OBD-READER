@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A-OBD | Pre-Assembled Scanner</title>
+  <meta name="description" content="A-OBD is a plug &amp; play OBD reader for Ather scooters. See real battery health, per-cell data, charger info, live charts and offline logging — straight from the BMS.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
+  <meta property="og:description" content="Check your Ather's real battery health, per-cell data, charger info, live charts &amp; offline logging. 100% plug &amp; play, open source.">
+  <meta property="og:url" content="https://sam0-0.github.io/ATHER-OBD-READER/">
+  <meta property="og:image" content="https://sam0-0.github.io/ATHER-OBD-READER/images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
+  <meta name="twitter:description" content="Check your Ather's real battery health, per-cell data, charger info, live charts &amp; offline logging.">
+  <meta name="twitter:image" content="https://sam0-0.github.io/ATHER-OBD-READER/images/hero.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -644,6 +654,35 @@
       vertical-align: middle;
     }
     form a { text-decoration: none; }
+    .faq-list { max-width: 760px; margin: 0 auto; text-align: left; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+    .faq-q:hover { color: var(--primary-hover); }
+    .faq-icon { font-size: 22px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a p { margin: 0; padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
   </style>
 </head>
 <body>
@@ -653,6 +692,7 @@
     <div class="badges">
       <div class="badge">100% Plug & Play</div>
       <div class="badge">Open Source</div>
+      <div class="badge">Now on V5</div>
     </div>
     <h1>A-OBD</h1>
     <p>The Ultimate Pre-Assembled Plug & Play Device To Check Your Scooter's Health</p>
@@ -843,10 +883,41 @@
   </div>
 
 
+  <div class="section animate-on-scroll" style="padding-top: 20px; padding-bottom: 80px;">
+    <h2 class="section-title" style="font-size: 28px; margin-bottom: 30px;">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does it harm the vehicle or void my warranty?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Absolutely not. A-OBD is a purely passive reader — it only listens to incoming CAN data and never transmits commands or changes anything. You don't splice or cut any wires, so it works exactly like a standard OBD-II car scanner and will not void your warranty.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is it safe to use?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes. Even if you plug the wires into the wrong pins on the Ather connector, the device only reads passive data and will not harm the scooter.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there any hidden code?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No. The project is fully open source — you're free to read the code and compile/verify it yourself on GitHub.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Which one should I pick — C3 or WROOM?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>The ESP32-C3 is great for quick 2–3 minute checks. The ESP32/WROOM stays cool and can be left connected longer, so it's the better choice for extended sessions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need a PC to use it?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No. Once flashed, any phone, tablet or power bank can power it — just connect to the A-OBD Wi-Fi and open 192.168.4.1.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does it collect or send my data anywhere?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Never. There is no telemetry or tracking — your scooter's data stays between your scooter and your phone.</p></div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div style="max-width: 600px; margin: 0 auto; margin-bottom: 30px;">
       <p style="color: var(--text); font-size: 16px; margin-bottom: 10px;">Want to build it yourself?</p>
       <p>Here's the open source repo: <br><a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" style="font-size: 18px;">github.com/SAM0-0/ATHER-OBD-READER</a></p>
+      <p style="color: var(--muted); margin-top: 18px; font-size: 14px;">Contributors: <a href="https://github.com/Kukun7610" target="_blank" style="color: var(--primary);">Kukun7610</a> (Extra tab) &amp; <a href="https://github.com/Dhruv2605" target="_blank" style="color: var(--primary);">Dhruv2605</a> (offline logging)</p>
     </div>
     <div style="max-width: 600px; margin: 0 auto; margin-bottom: 30px; font-size: 15px;">
       <p style="color: var(--muted); margin: 0;">Have queries? Mail us at: <a href="mailto:testz11qp@gmail.com" style="color: var(--primary); text-decoration: underline;">testz11qp@gmail.com</a></p>
@@ -1201,6 +1272,13 @@
       document.getElementById('demoTab2').style.display = i === 2 ? 'block' : 'none';
       document.getElementById('demoTabBtn1').classList.toggle('active', i === 1);
       document.getElementById('demoTabBtn2').classList.toggle('active', i === 2);
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const ans = item.querySelector('.faq-a');
+      const open = item.classList.toggle('open');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
     }
 
     function openOrderModal() {
