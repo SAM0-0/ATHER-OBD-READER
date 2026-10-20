@@ -309,7 +309,7 @@
       flex: 0 0 100%;
       scroll-snap-align: start;
     }
-    .demo-slide img {
+    .demo-slide img, .demo-slide video {
       display: block;
       width: 100%;
       height: 620px;
@@ -342,7 +342,7 @@
     .demo-btn.prev { left: 14px; }
     .demo-btn.next { right: 14px; }
     @media (max-width: 640px) {
-      .demo-slide img { height: 480px; }
+      .demo-slide img, .demo-slide video { height: 480px; }
       .demo-btn { width: 38px; height: 38px; font-size: 16px; }
       .demo-btn.prev { left: 8px; }
       .demo-btn.next { right: 8px; }
@@ -687,6 +687,7 @@
           <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD Demo 6"></div>
           <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD Demo 7"></div>
           <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD Demo 8"></div>
+          <div class="demo-slide"><video src="images/demo-vid.mp4" controls playsinline muted loop preload="metadata"></video></div>
         </div>
         <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
       </div>
