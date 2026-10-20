@@ -26,12 +26,12 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 
 <p align="left"> <b> ** DEMO OF HOW IT LOOKS ** </b></p>
 <p align="center">
-<img src="images/demo5.jpg" alt="Ather OBD Demo" width="300" height="400" />
+<img src="images/demo5.png" alt="Ather OBD Demo" width="300" height="400" />
 <img src="images/demo.jpg" alt="Ather OBD Demo" width="300" height="400" />
-   <img src="images/demo2.jpg" alt="Ather OBD Demo" width="360" height="460" />
-   <img src="images/demo3.jpg" alt="Ather OBD Demo" width="300" height="400" />
+   <img src="images/demo2.png" alt="Ather OBD Demo" width="360" height="460" />
+   <img src="images/demo3.png" alt="Ather OBD Demo" width="300" height="400" />
    <img src="images/demo1.jpg" alt="Ather OBD Demo" width="300" height="400" />
-   <img src="images/demo4.jpg" alt="Ather OBD Demo" width="300" height="400" />
+   <img src="images/demo4.png" alt="Ather OBD Demo" width="300" height="400" />
 </p>
 
 ---
