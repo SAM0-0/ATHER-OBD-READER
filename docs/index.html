@@ -347,6 +347,29 @@
       .demo-btn.prev { left: 8px; }
       .demo-btn.next { right: 8px; }
     }
+    .demo-tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 35px;
+    }
+    .demo-tab {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .demo-tab:hover { color: var(--text); border-color: var(--primary); }
+    .demo-tab.active {
+      background: var(--primary);
+      color: #0f1115;
+      border-color: var(--primary);
+    }
 
     /* CTA Section */
     .cta-section {
@@ -645,20 +668,46 @@
   </header>
 
   <div class="action-section">
-    <h2 class="section-title animate-on-scroll" style="margin-bottom:60px;">See It In Action</h2>
-    <div class="demo-carousel animate-on-scroll">
-      <button class="demo-btn prev" onclick="demoScroll(-1)" aria-label="Previous image">&#10094;</button>
-      <div class="demo-track" id="demoTrack">
-        <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Demo 1"></div>
-        <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Demo 2"></div>
-        <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD Demo 3"></div>
-        <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD Demo 4"></div>
-        <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD Demo 5"></div>
-        <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD Demo 6"></div>
-        <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD Demo 7"></div>
-        <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD Demo 8"></div>
+    <h2 class="section-title animate-on-scroll" style="margin-bottom:40px;">See It In Action</h2>
+    <div class="demo-tabs animate-on-scroll">
+      <button id="demoTabBtn1" class="demo-tab active" onclick="showDemoTab(1)">Demo Gallery</button>
+      <button id="demoTabBtn2" class="demo-tab" onclick="showDemoTab(2)">Hardware &amp; Install</button>
+    </div>
+
+    <div id="demoTab1">
+      <div class="demo-carousel animate-on-scroll">
+        <button class="demo-btn prev" onclick="demoScroll(-1)" aria-label="Previous image">&#10094;</button>
+        <div class="demo-track" id="demoTrack">
+          <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Demo 1"></div>
+          <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Demo 2"></div>
+          <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD Demo 3"></div>
+          <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD Demo 4"></div>
+          <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD Demo 5"></div>
+          <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD Demo 6"></div>
+          <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD Demo 7"></div>
+          <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD Demo 8"></div>
+        </div>
+        <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
       </div>
-      <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
+    </div>
+
+    <div id="demoTab2" style="display: none;">
+      <div class="action-grid">
+        <div class="action-item animate-on-scroll delay-1">
+          <img src="images/hero.jpg" loading="lazy" alt="A-OBD in Action">
+          <div class="overlay"><h4>Seamless Integration</h4></div>
+        </div>
+        <div class="action-item split-view animate-on-scroll delay-2">
+          <img src="images/1.jpg" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Compact Design">
+          <img src="images/2.jpg" loading="lazy" alt="A-OBD PCB">
+          <div class="overlay"><h4>Compact &amp; Clean Design</h4></div>
+        </div>
+        <div class="action-item split-view animate-on-scroll delay-1">
+          <img src="images/boot-cover-2.JPG" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Installation 1">
+          <img src="images/boot-cover.jpg" loading="lazy" alt="A-OBD Installation 2">
+          <div class="overlay"><h4>100% Plug &amp; Play Wiring</h4></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1143,6 +1192,13 @@
     function demoScroll(dir) {
       const track = document.getElementById('demoTrack');
       track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    }
+
+    function showDemoTab(i) {
+      document.getElementById('demoTab1').style.display = i === 1 ? 'block' : 'none';
+      document.getElementById('demoTab2').style.display = i === 2 ? 'block' : 'none';
+      document.getElementById('demoTabBtn1').classList.toggle('active', i === 1);
+      document.getElementById('demoTabBtn2').classList.toggle('active', i === 2);
     }
 
     function openOrderModal() {
