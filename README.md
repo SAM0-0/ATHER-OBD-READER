@@ -5,6 +5,8 @@
 
 A passive, open-source OBD data reader for Ather electric scooters. This device reads real-time CAN bus data directly from the scooter's BMS (Battery Management System), allowing owners and technicians to monitor actual battery health, cell imbalance, switch statuses, per-cell information, Charging information and more experimental values. 
 
+**What's new in v5:** Nine new CAN values (controller temp, throttle output, humidity, ambient temp, PDU voltage, max/min cell SoH), a brand new **Extra** tab with 26 more battery and vehicle values by Kukun, per-cell SoC in Cell Info, **Live Chart** (45s CSV export), and **Offline Logging** on WROOM by Dhruv (1 hour, no phone needed).
+
 ---
 
 # **Order a Plug-and-Play Device:** 
@@ -19,7 +21,6 @@ If you don't want to deal with wiring, flashing, or soldering, I am building ful
 * **[Kukun7610](https://github.com/Kukun7610)** — added the whole new **Extra tab** with additional battery and vehicle values.
 * **[Dhruv2605](https://github.com/Dhruv2605)** — added **offline logging**.
 
-**What's new in v5:** Nine new CAN values (controller temp, throttle output, humidity, ambient temp, PDU voltage, max/min cell SoH), a brand new **Extra** tab with 26 more battery and vehicle values by Kukun, per-cell SoC in Cell Info, **Live Chart** (45s CSV export), and **Offline Logging** on WROOM by Dhruv (1 hour, no phone needed).
 
 ---
 
