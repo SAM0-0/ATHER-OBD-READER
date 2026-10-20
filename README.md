@@ -64,9 +64,9 @@ You can build this using either an ESP32/WROOM or an ESP32-C3. **Please choose b
     *   [Download for Windows (.zip)](https://github.com/Jason2866/ESP_Flasher/releases/download/v4.5.1/ESP-Flasher-Windows.zip)
     *   [Download for macOS / Linux](https://github.com/Jason2866/ESP_Flasher/releases)
 *   The `.bin` firmware file (located in this repository).
-    *   [Download it here - C3 V4](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v4/c3-v4.bin)
-    *   [Download it here - S3 V4](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v4/s3-v4.bin)
-    *   [Download it here - WROOM/S1 V4](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v4/wroom-v4.bin)
+    *   [Download it here - C3 V5](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v5/c3-v5.bin)
+    *   [Download it here - S3 V5](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v5/s3-v5.bin)
+    *   [Download it here - WROOM/S1 V5](https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/v5/wroom-v5.bin)
 
 
 ---
