@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sam0-0.github.io/ATHER-OBD-READER/sitemap.xml
+Sitemap: https://a-obd.in/sitemap.xml
