@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-OBD | Pre-Assembled Scanner</title>
-  <meta name="description" content="A-OBD is a plug &amp; play OBD reader for Ather scooters. See real battery health, per-cell data, charger info, live charts and offline logging — straight from the BMS.">
+  <title>A-OBD — Ather Battery Health (SOH) Checker & OBD Diagnostic Tool</title>
+  <link rel="canonical" href="https://sam0-0.github.io/ATHER-OBD-READER/">
+  <meta name="description" content="Check your Ather 450X or Rizta battery health (SOH), per-cell voltage & imbalance at home. Plug &amp; play OBD diagnostic tool — no service centre needed.">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="website">
   <meta property="og:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
   <meta property="og:description" content="Check your Ather's real battery health, per-cell data, charger info, live charts &amp; offline logging. 100% plug &amp; play, open source.">
@@ -684,6 +686,43 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
     .faq-a p { margin: 0; padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "A-OBD",
+        "url": "https://sam0-0.github.io/ATHER-OBD-READER/"
+      },
+      {
+        "@type": "Product",
+        "name": "A-OBD — Ather OBD Diagnostic Reader",
+        "description": "Plug & play OBD reader for Ather electric scooters. Check real battery health (SOH), per-cell voltage, cell imbalance, charger data and more from the BMS — no service centre needed.",
+        "brand": { "@type": "Brand", "name": "A-OBD" },
+        "category": "OBD Diagnostic Tool",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "A-OBD (ESP32-C3)",
+            "price": "949",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://sam0-0.github.io/ATHER-OBD-READER/"
+          },
+          {
+            "@type": "Offer",
+            "name": "A-OBD (ESP32/WROOM)",
+            "price": "1150",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://sam0-0.github.io/ATHER-OBD-READER/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -718,16 +757,16 @@
       <div class="demo-carousel animate-on-scroll">
         <button class="demo-btn prev" onclick="demoScroll(-1)" aria-label="Previous image">&#10094;</button>
         <div class="demo-track" id="demoTrack">
-          <div class="demo-slide"><img src="images/demo0.png" loading="lazy" alt="A-OBD Demo 0"></div>
-          <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Demo 1"></div>
-          <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Demo 2"></div>
-          <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD Demo 3"></div>
-          <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD Demo 4"></div>
-          <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD Demo 5"></div>
-          <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD Demo 6"></div>
-          <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD Demo 7"></div>
-          <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD Demo 8"></div>
-          <div class="demo-slide"><video src="images/demo-vid.mp4" controls playsinline muted loop preload="metadata"></video></div>
+          <div class="demo-slide"><img src="images/demo0.png" loading="lazy" alt="A-OBD Ather battery health checker demo"></div>
+          <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Ather diagnostic tool dashboard demo"></div>
+          <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Ather battery SOH screen demo"></div>
+          <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD per-cell battery info for Ather scooter"></div>
+          <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD charger telemetry screen demo"></div>
+          <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD extra battery data for Ather 450X"></div>
+          <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD live chart demo for Ather scooter"></div>
+          <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD offline logging demo"></div>
+          <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD web dashboard on phone"></div>
+          <div class="demo-slide"><video src="images/demo-vid.mp4" controls playsinline muted loop preload="metadata" aria-label="A-OBD demo video"></video></div>
         </div>
         <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
       </div>
@@ -736,7 +775,7 @@
     <div id="demoTab2" style="display: none;">
       <div class="action-grid">
         <div class="action-item animate-on-scroll delay-1">
-          <img src="images/hero.jpg" loading="lazy" alt="A-OBD in Action">
+          <img src="images/hero.jpg" loading="lazy" alt="A-OBD plug and play OBD reader for Ather scooters">
           <div class="overlay"><h4>Seamless Integration</h4></div>
         </div>
         <div class="action-item split-view animate-on-scroll delay-2">
@@ -883,6 +922,15 @@
   </div>
 
 
+  <div class="section animate-on-scroll" style="padding-top: 40px; padding-bottom: 40px;">
+    <h2 class="section-title" style="font-size: 28px; margin-bottom: 25px;">Check Your Ather's Real Battery Health at Home</h2>
+    <div style="max-width: 780px; margin: 0 auto; text-align: left; color: var(--muted); font-size: 16px; line-height: 1.8;">
+      <p style="margin: 0 0 18px;">The Ather app shows your charge and range, but not the number owners actually want: the battery's real <strong style="color: var(--text);">State of Health (SOH)</strong>. Service centres can read it over the scooter's CAN bus, but most owners are never shown the percentage. A-OBD changes that — this tiny plug &amp; play OBD scanner connects to your scooter's diagnostic port and shows your true battery health in minutes, without a service centre visit.</p>
+      <p style="margin: 0 0 18px;">It goes beyond a single SOH number. A-OBD reads <strong style="color: var(--text);">every cell in the pack</strong> — per-cell voltage, charge and temperatures — so you can spot <strong style="color: var(--text);">cell imbalance</strong> early, the warning sign that shows up as uneven range drop long before a full failure. You also get charger input/output, motor temperature, odometer, drive modes and 40+ more live values, plus live charting and offline logging on the WROOM version.</p>
+      <p style="margin: 0 0 18px;">Why does it matter? Ather's battery warranty guarantees the pack stays at or above <strong style="color: var(--text);">70% SOH</strong> during the cover period — knowing your real number helps you act early, back up a warranty claim, or value your scooter fairly on resale. A-OBD works with the <strong style="color: var(--text);">Ather 450X, 450S, 450 Apex and the Rizta series</strong>. It's 100% plug &amp; play (no wires to cut), fully open source, and built by the community for Ather owners.</p>
+    </div>
+  </div>
+
   <div class="section animate-on-scroll" style="padding-top: 20px; padding-bottom: 80px;">
     <h2 class="section-title" style="font-size: 28px; margin-bottom: 30px;">Frequently Asked Questions</h2>
     <div class="faq-list">
@@ -909,6 +957,30 @@
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Does it collect or send my data anywhere?<span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Never. There is no telemetry or tracking — your scooter's data stays between your scooter and your phone.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I check my Ather's battery health (SOH) at home?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Plug A-OBD into the diagnostic port in your scooter's boot, connect your phone to its Wi-Fi, and open the dashboard at 192.168.4.1 — your real battery SOH shows up in seconds.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why doesn't the Ather app show battery SOH?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Ather doesn't surface SOH in the app — service centres read it over the scooter's CAN bus. A-OBD reads that same CAN data directly and shows you the percentage yourself.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is cell imbalance and how do I check it on my Ather?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Over time, individual battery cells drift apart in voltage — that's cell imbalance, and it shows up as uneven range drop. A-OBD displays the voltage and charge of every cell; an imbalance above about 0.3 means it's worth visiting a service centre.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is the battery health reading accurate before 10,000 km?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Ather notes that SOH readings are less reliable in the first 10,000 km. It's still useful as a baseline — record it once and track how it changes over the years.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I use this reading for an Ather battery warranty claim?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes — Ather's battery warranty (Pro Pack / Battery Protect) guarantees 70% SOH or above during the cover period. Knowing your real number helps you act early and bring evidence to the service centre.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What do common Ather 450X battery issues look like?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Sharp range drops, sudden charge percentage jumps and high cell imbalance are the usual warning signs — they often point to a weak cell group or BMS fault. A-OBD lets you see all of it yourself before assuming the whole pack is dead.</p></div>
       </div>
     </div>
   </div>
@@ -1537,6 +1609,74 @@
       
       requestAnimationFrame(animate);
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does it harm the vehicle or void my warranty?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely not. A-OBD is a purely passive reader — it only listens to incoming CAN data and never transmits commands or changes anything. You don't splice or cut any wires, so it works exactly like a standard OBD-II car scanner and will not void your warranty." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Even if you plug the wires into the wrong pins on the Ather connector, the device only reads passive data and will not harm the scooter." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there any hidden code?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The project is fully open source — you're free to read the code and compile/verify it yourself on GitHub." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which one should I pick — C3 or WROOM?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The ESP32-C3 is great for quick checks — all you need is 2–3 minutes, and it can stay connected for up to 30–40 minutes if needed. The ESP32/WROOM stays cool and can be left connected longer, so it's the better choice for extended sessions." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a PC to use it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Once flashed, any phone, tablet or power bank can power it — just connect to the A-OBD Wi-Fi and open 192.168.4.1." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it collect or send my data anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Never. There is no telemetry or tracking — your scooter's data stays between your scooter and your phone." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I check my Ather's battery health (SOH) at home?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Plug A-OBD into the diagnostic port in your scooter's boot, connect your phone to its Wi-Fi, and open the dashboard at 192.168.4.1 — your real battery SOH shows up in seconds." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why doesn't the Ather app show battery SOH?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather doesn't surface SOH in the app — service centres read it over the scooter's CAN bus. A-OBD reads that same CAN data directly and shows you the percentage yourself." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is cell imbalance and how do I check it on my Ather?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Over time, individual battery cells drift apart in voltage — that's cell imbalance, and it shows up as uneven range drop. A-OBD displays the voltage and charge of every cell; an imbalance above about 0.3 means it's worth visiting a service centre." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the battery health reading accurate before 10,000 km?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather notes that SOH readings are less reliable in the first 10,000 km. It's still useful as a baseline — record it once and track how it changes over the years." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this reading for an Ather battery warranty claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — Ather's battery warranty (Pro Pack / Battery Protect) guarantees 70% SOH or above during the cover period. Knowing your real number helps you act early and bring evidence to the service centre." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do common Ather 450X battery issues look like?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sharp range drops, sudden charge percentage jumps and high cell imbalance are the usual warning signs — they often point to a weak cell group or BMS fault. A-OBD lets you see all of it yourself before assuming the whole pack is dead." }
+      }
+    ]
+  }
   </script>
 </body>
 </html>
