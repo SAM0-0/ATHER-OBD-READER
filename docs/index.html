@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A-OBD — Ather Battery Health (SOH) Checker & OBD Diagnostic Tool</title>
   <link rel="canonical" href="https://a-obd.in/">
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="description" content="Ather battery health checker for 450X, 450S, 450 Plus, 450 Apex, Rizta Z, Rizta S & Rizta X. Check SOH, per-cell voltage & imbalance at home — plug &amp; play OBD tool.">
   <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="website">
@@ -93,6 +95,16 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
       font-family: 'Outfit', sans-serif;
+    }
+    .header-logo {
+      width: clamp(84px, 14vw, 120px);
+      height: auto;
+      border-radius: 24px;
+      margin-bottom: 26px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeDown 1s ease-out forwards;
+      opacity: 0;
     }
     header h1 {
       font-size: clamp(48px, 8vw, 84px);
@@ -733,6 +745,7 @@
       <div class="badge">Open Source</div>
       <div class="badge">Now on V5</div>
     </div>
+    <img class="header-logo" src="images/logo-mark.png" alt="A-OBD — Ather battery health checker logo" width="120" height="120">
     <h1>A-OBD</h1>
     <p>Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</p>
     <div class="header-btn-wrap">
