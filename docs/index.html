@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A-OBD — Ather Battery Health (SOH) Checker & OBD Diagnostic Tool</title>
   <link rel="canonical" href="https://a-obd.in/">
+  <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high">
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="description" content="Ather battery health checker for 450X, 450S, 450 Plus, 450 Apex, Rizta Z, Rizta S & Rizta X. Check SOH, per-cell voltage & imbalance at home — plug &amp; play OBD tool.">
@@ -13,21 +14,22 @@
   <meta property="og:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
   <meta property="og:description" content="Check your Ather's real battery health (SOH), per-cell data, charger info, live charts &amp; offline logging — for 450X, 450S, 450 Apex &amp; Rizta. 100% plug &amp; play, open source.">
   <meta property="og:url" content="https://a-obd.in/">
-  <meta property="og:image" content="https://a-obd.in/images/hero.jpg">
+  <meta property="og:image" content="https://a-obd.in/images/hero.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
   <meta name="twitter:description" content="Check your Ather's real battery health, per-cell data, charger info, live charts &amp; offline logging.">
-  <meta name="twitter:image" content="https://a-obd.in/images/hero.jpg">
+  <meta name="twitter:image" content="https://a-obd.in/images/hero.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
   <style>
     :root {
       --bg: #0f1115; /* Very dark slate */
       --card: #16181d; /* Slightly lighter slate */
       --card-hover: #1f2229;
       --text: #f1f5f9; /* Off-white text */
-      --muted: #8b98a9; /* Muted text */
+      --muted: #9aa8ba; /* Muted text */
       --border: #292d36; /* Subtle borders */
       --primary: #cbd5e1; /* Silver/Slate accent */
       --primary-hover: #ffffff; /* Lighter hover */
@@ -69,11 +71,14 @@
     header {
       padding: 160px 20px;
       text-align: center;
-      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.8), rgba(15, 17, 21, 1)), url('images/hero.jpg');
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.8), rgba(15, 17, 21, 1)), url('images/hero.webp');
       background-size: cover;
       background-position: center;
       position: relative;
       background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      header { background-attachment: scroll; }
     }
     .badges {
       display: flex;
@@ -743,7 +748,7 @@
       <div class="badge">Open Source</div>
       <div class="badge">Now on V5</div>
     </div>
-    <img class="header-logo" src="images/logo-mark.png" alt="A-OBD — Ather battery health checker logo" width="120" height="120">
+    <img class="header-logo" src="images/logo-mark.webp" alt="A-OBD — Ather battery health checker logo" width="120" height="120">
     <h1>A-OBD</h1>
     <p>Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</p>
     <div class="header-btn-wrap">
@@ -757,6 +762,8 @@
     </div>
   </header>
 
+  <main id="main-content">
+
   <div class="action-section">
     <h2 class="section-title animate-on-scroll" style="margin-bottom:40px;">See It In Action</h2>
     <div class="demo-tabs animate-on-scroll">
@@ -768,16 +775,16 @@
       <div class="demo-carousel animate-on-scroll">
         <button class="demo-btn prev" onclick="demoScroll(-1)" aria-label="Previous image">&#10094;</button>
         <div class="demo-track" id="demoTrack">
-          <div class="demo-slide"><img src="images/demo0.png" loading="lazy" alt="A-OBD Ather battery health checker demo"></div>
-          <div class="demo-slide"><img src="images/demo1.jpg" loading="lazy" alt="A-OBD Ather diagnostic tool dashboard demo"></div>
-          <div class="demo-slide"><img src="images/demo2.png" loading="lazy" alt="A-OBD Ather battery SOH screen demo"></div>
-          <div class="demo-slide"><img src="images/demo3.png" loading="lazy" alt="A-OBD per-cell battery info for Ather scooter"></div>
-          <div class="demo-slide"><img src="images/demo4.png" loading="lazy" alt="A-OBD charger telemetry screen demo"></div>
-          <div class="demo-slide"><img src="images/demo5.png" loading="lazy" alt="A-OBD extra battery data for Ather 450X"></div>
-          <div class="demo-slide"><img src="images/demo6.png" loading="lazy" alt="A-OBD live chart demo for Ather scooter"></div>
-          <div class="demo-slide"><img src="images/demo7.png" loading="lazy" alt="A-OBD offline logging demo"></div>
-          <div class="demo-slide"><img src="images/demo8.png" loading="lazy" alt="A-OBD web dashboard on phone"></div>
-          <div class="demo-slide"><video src="images/demo-vid.mp4" controls playsinline muted loop preload="metadata" aria-label="A-OBD demo video"></video></div>
+          <div class="demo-slide"><img width="443" height="653" src="images/demo0.webp" loading="lazy" alt="A-OBD Ather battery health checker demo"></div>
+          <div class="demo-slide"><img width="1096" height="1373" src="images/demo1.webp" loading="lazy" alt="A-OBD Ather diagnostic tool dashboard demo"></div>
+          <div class="demo-slide"><img width="1091" height="1881" src="images/demo2.webp" loading="lazy" alt="A-OBD Ather battery SOH screen demo"></div>
+          <div class="demo-slide"><img width="1079" height="2287" src="images/demo3.webp" loading="lazy" alt="A-OBD per-cell battery info for Ather scooter"></div>
+          <div class="demo-slide"><img width="1070" height="1881" src="images/demo4.webp" loading="lazy" alt="A-OBD charger telemetry screen demo"></div>
+          <div class="demo-slide"><img width="1079" height="2201" src="images/demo5.webp" loading="lazy" alt="A-OBD extra battery data for Ather 450X"></div>
+          <div class="demo-slide"><img width="1091" height="1993" src="images/demo6.webp" loading="lazy" alt="A-OBD live chart demo for Ather scooter"></div>
+          <div class="demo-slide"><img width="1087" height="2005" src="images/demo7.webp" loading="lazy" alt="A-OBD offline logging demo"></div>
+          <div class="demo-slide"><img width="1071" height="2281" src="images/demo8.webp" loading="lazy" alt="A-OBD web dashboard on phone"></div>
+          <div class="demo-slide"><video src="images/demo-vid.mp4" poster="images/demo0.webp" controls playsinline muted loop preload="none" aria-label="A-OBD demo video"><track kind="captions" src="images/demo-captions.vtt" srclang="en" label="English" default></video></div>
         </div>
         <button class="demo-btn next" onclick="demoScroll(1)" aria-label="Next image">&#10095;</button>
       </div>
@@ -786,17 +793,17 @@
     <div id="demoTab2" style="display: none;">
       <div class="action-grid">
         <div class="action-item animate-on-scroll delay-1">
-          <img src="images/hero.jpg" loading="lazy" alt="A-OBD plug and play OBD reader for Ather scooters">
+          <img width="1400" height="594" src="images/hero.webp" loading="lazy" alt="A-OBD plug and play OBD reader for Ather scooters">
           <div class="overlay"><h4>Seamless Integration</h4></div>
         </div>
         <div class="action-item split-view animate-on-scroll delay-2">
-          <img src="images/1.jpg" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Compact Design">
-          <img src="images/2.jpg" loading="lazy" alt="A-OBD PCB">
+          <img width="1200" height="896" src="images/1.webp" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Compact Design">
+          <img width="1200" height="896" src="images/2.webp" loading="lazy" alt="A-OBD PCB">
           <div class="overlay"><h4>Compact &amp; Clean Design</h4></div>
         </div>
         <div class="action-item split-view animate-on-scroll delay-1">
-          <img src="images/boot-cover-2.JPG" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Installation 1">
-          <img src="images/boot-cover.jpg" loading="lazy" alt="A-OBD Installation 2">
+          <img width="1280" height="960" src="images/boot-cover-2.webp" loading="lazy" style="border-right: 1px solid var(--border);" alt="A-OBD Installation 1">
+          <img width="1280" height="960" src="images/boot-cover.webp" loading="lazy" alt="A-OBD Installation 2">
           <div class="overlay"><h4>100% Plug &amp; Play Wiring</h4></div>
         </div>
       </div>
@@ -1001,6 +1008,8 @@
     </div>
   </div>
 
+  </main>
+
   <footer>
     <div style="max-width: 600px; margin: 0 auto; margin-bottom: 30px;">
       <p style="color: var(--text); font-size: 16px; margin-bottom: 10px;">Want to build it yourself?</p>
@@ -1011,9 +1020,9 @@
       <p style="color: var(--muted); margin: 0;">Have queries? Mail us at: <a href="mailto:hello@a-obd.in" style="color: var(--primary); text-decoration: underline;">hello@a-obd.in</a></p>
     </div>
     <div style="max-width: 700px; margin: 0 auto; margin-bottom: 30px; font-size: 14px; line-height: 2.2;">
-      <a href="contact.html">Contact Us</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="terms.html">Terms &amp; Conditions</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="privacy.html">Privacy Policy</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="refunds.html">Refunds &amp; Returns</a><span style="opacity: 0.4;">&nbsp;&bull;&nbsp;</span><a href="shipping.html">Shipping</a>
+      <a href="contact.html">Contact Us</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="terms.html">Terms &amp; Conditions</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="privacy.html">Privacy Policy</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="refunds.html">Refunds &amp; Returns</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="shipping.html">Shipping</a>
     </div>
-    <div style="opacity: 0.5;">
+    <div style="color: var(--muted);">
       &copy; 2026 A-OBD. All rights reserved.<br>
       <span style="font-size: 12px; margin-top: 8px; display: inline-block;">Not officially affiliated with Ather Energy.</span>
     </div>
@@ -1079,7 +1088,7 @@
             Payments are processed securely via Cashfree
           </p>
         </div>
-        <p style="text-align: center; margin-top: 14px; margin-bottom: 0;"><a href="javascript:void(0)" onclick="backToVersions()" style="color: var(--primary); font-size: 14px;">&larr; Choose a different version</a></p>
+        <p style="text-align: center; margin-top: 14px; margin-bottom: 0;"><a href="#versions" onclick="event.preventDefault();backToVersions()" style="color: var(--primary); font-size: 14px;">&larr; Choose a different version</a></p>
       </div>
 
       <div id="summaryWroom" style="display: none;">
@@ -1127,7 +1136,7 @@
             Payments are processed securely via Cashfree
           </p>
         </div>
-        <p style="text-align: center; margin-top: 14px; margin-bottom: 0;"><a href="javascript:void(0)" onclick="backToVersions()" style="color: var(--primary); font-size: 14px;">&larr; Choose a different version</a></p>
+        <p style="text-align: center; margin-top: 14px; margin-bottom: 0;"><a href="#versions" onclick="event.preventDefault();backToVersions()" style="color: var(--primary); font-size: 14px;">&larr; Choose a different version</a></p>
       </div>
     </div>
   </div>
@@ -1159,11 +1168,11 @@
             <p style="margin: 0 0 10px; color: var(--muted); font-size: 15px;">In your boot, open the tiny cover to access your scooter's OBD port.</p>
             <div style="display: flex; gap: 8px;">
               <div style="width: 50%; text-align: center;">
-                <img src="images/boot-cover.jpg" loading="lazy" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="450 Boot Cover">
+                <img width="1280" height="960" src="images/boot-cover.webp" loading="lazy" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="450 Boot Cover">
                 <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For 450 Series</p>
               </div>
               <div style="width: 50%; text-align: center;">
-                <img src="images/rizta-boot.jpg" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Rizta Boot Area">
+                <img width="960" height="1280" src="images/rizta-boot.webp" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Rizta Boot Area">
                 <p style="margin: 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600;">For Rizta Series</p>
               </div>
             </div>
@@ -1177,8 +1186,8 @@
             <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 6px;">Plug It In</strong>
             <p style="margin: 0 0 10px; color: var(--muted); font-size: 15px;">Connect the A-OBD reader directly to the OBD port.</p>
             <div style="display: flex; gap: 8px; margin-bottom: 10px;">
-<img src="images/boot-cover-1.png" loading="lazy" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Plugging In">
-              <img src="images/boot-cover-2.JPG" loading="lazy" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="OBD Port">
+<img width="877" height="411" src="images/boot-cover-1.webp" loading="lazy" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="Plugging In">
+              <img width="1280" height="960" src="images/boot-cover-2.webp" loading="lazy" style="width: 50%; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; max-height: 140px;" alt="OBD Port">
             </div>
             <p style="margin: 0; color: #e8a040; font-size: 13px; font-weight: 600;">⚠️ Do NOT plug it in the wrong way! Make sure the marked line on the connector is on the top side, as shown in the images above. Be gentle with the connector, also if you connect it wrong way it will damage the pins inside connector and will damage it.</p>
           </div>
@@ -1253,7 +1262,7 @@
         <p style="margin: 8px 0 20px; color: #e8a040; font-size: 13px; font-weight: 600;">&#9888;&#65039; Flash the wrong version's file and the device won't work &mdash; double-check C3 vs WROOM.</p>
 
         <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 10px;">Watch: Flashing Walkthrough</strong>
-        <video controls preload="none" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 25px;" src="https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/images/flashing-setup.mp4"></video>
+        <video controls preload="none" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 25px;" src="https://github.com/SAM0-0/ATHER-OBD-READER/raw/refs/heads/main/images/flashing-setup.mp4"><track kind="captions" src="images/flashing-captions.vtt" srclang="en" label="English" default></video>
 
         <strong style="display: block; font-size: 18px; color: var(--text); margin-bottom: 10px;">Flashing Fails? Bootloader Mode</strong>
         <p style="margin: 0 0 8px; color: var(--muted); font-size: 15px;">If the flasher can't connect, force the board into bootloader mode first:</p>
