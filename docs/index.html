@@ -9,7 +9,7 @@
   <link rel="preload" as="image" href="images/logo-mark.webp" fetchpriority="high">
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-  <meta name="description" content="Ather battery health checker for 450X, 450S, 450 Plus, 450 Apex, Rizta Z, Rizta S & Rizta X. Check SOH, per-cell voltage & imbalance at home — plug &amp; play OBD tool.">
+  <meta name="description" content="Ather battery health checker for 450X, 450S, 450 Plus, 450 Apex, Rizta Z/S/X. Check SOH, per-cell voltage & imbalance at home — plug &amp; play OBD tool.">
   <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="website">
   <meta property="og:title" content="A-OBD — Pre-Assembled OBD Scanner for Ather Scooters">
@@ -116,6 +116,17 @@
       font-weight: 700;
       letter-spacing: -1.5px;
       animation: fadeDown 1s ease-out 0.1s forwards;
+      opacity: 0;
+    }
+    .header-sub {
+      display: block;
+      max-width: 700px;
+      margin: 20px auto 50px;
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 400;
+      letter-spacing: normal;
+      color: var(--muted);
+      animation: fadeUp 1s ease-out 0.2s forwards;
       opacity: 0;
     }
     header p {
@@ -750,8 +761,7 @@
       <div class="badge">Now on V5</div>
     </div>
     <img class="header-logo" src="images/logo-mark.webp" alt="A-OBD — Ather battery health checker logo" width="120" height="120" fetchpriority="high">
-    <h1>A-OBD</h1>
-    <p>Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</p>
+    <h1>A-OBD<span class="header-sub">Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</span></h1>
     <div class="header-btn-wrap">
       <button class="btn btn-primary" onclick="openOrderModal()">Order Now</button>
       <button class="btn" onclick="openHowToModal()">How to Use</button>
@@ -944,7 +954,7 @@
   <div class="section animate-on-scroll" style="padding-top: 40px; padding-bottom: 40px;">
     <h2 class="section-title" style="font-size: 28px; margin-bottom: 25px;">Check Your Ather's Real Battery Health at Home</h2>
     <div style="max-width: 780px; margin: 0 auto; text-align: left; color: var(--muted); font-size: 16px; line-height: 1.8;">
-      <p style="margin: 0 0 18px;">The Ather app shows your charge and range, but not the number owners actually want: the battery's real <strong style="color: var(--text);">State of Health (SOH)</strong>. Service centres can read it over the scooter's CAN bus, but most owners are never shown the percentage. A-OBD changes that — this tiny plug &amp; play OBD scanner connects to your scooter's diagnostic port and shows your true battery health in minutes, without a service centre visit.</p>
+      <p style="margin: 0 0 18px;">The Ather app shows your charge and range, but not the number owners actually want: the battery's real <strong style="color: var(--text);">State of Health (SOH)</strong>. Service centres can read it over the scooter's CAN bus, but most owners are never shown the percentage. A-OBD changes that — this tiny plug &amp; play OBD diagnostic tool connects to your scooter's diagnostic port and works as a battery health checker, showing your true SOH in minutes, without a service centre visit.</p>
       <p style="margin: 0 0 18px;">It goes beyond a single SOH number. A-OBD reads <strong style="color: var(--text);">every cell in the pack</strong> — per-cell voltage, charge and temperatures — so you can spot <strong style="color: var(--text);">cell imbalance</strong> early, the warning sign that shows up as uneven range drop long before a full failure. You also get charger input/output, motor temperature, odometer, drive modes and 40+ more live values, plus live charting and offline logging on the WROOM version.</p>
       <p style="margin: 0 0 18px;">Why does it matter? Ather's battery warranty guarantees the pack stays at or above <strong style="color: var(--text);">70% SOH</strong> during the cover period — knowing your real number helps you act early, back up a warranty claim, or value your scooter fairly on resale. It's 100% plug &amp; play (no wires to cut), fully open source, and built by the community for Ather owners.</p>
       <p style="margin: 0 0 18px;"><strong style="color: var(--text);">Every Ather model is supported — except Gen 1, Gen 1.5 and Gen 2.</strong> Whether you ride an Ather 450X, Ather 450S, Ather 450 Plus, Ather 450 Apex or an Ather Rizta Z, Rizta S or Rizta X — with the 2.9 kWh or the 3.7 kWh battery — the process is the same. Checking an Ather 450X battery health at home, verifying a Rizta SOH before buying second-hand, or hunting down a cell imbalance on a 450S all take three steps: plug in, connect, read.</p>
@@ -1063,8 +1073,8 @@
         </div>
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; text-align: left;">
           <p style="margin: 0 0 8px; color: var(--text); font-size: 14px; font-weight: 600;">&#128666; Delivery Timeline:</p>
-          <p style="margin: 0 0 6px; color: var(--muted); font-size: 13px;">&#8226; Assembly and thorough testing takes <strong>2-3 days</strong>.</p>
-          <p style="margin: 0; color: var(--muted); font-size: 13px;">&#8226; Shipping takes <strong>4-5 days</strong> &mdash; expect delivery in about <strong>one week</strong>.</p>
+          <p style="margin: 0 0 6px; color: var(--muted); font-size: 13px;">&#8226; Assembly and thorough testing takes 2-3 days.</p>
+          <p style="margin: 0; color: var(--muted); font-size: 13px;">&#8226; Shipping takes 4-5 days &mdash; expect delivery in about one week.</p>
         </div>
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
 <form>
@@ -1111,8 +1121,8 @@
         </div>
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; text-align: left;">
           <p style="margin: 0 0 8px; color: var(--text); font-size: 14px; font-weight: 600;">&#128666; Delivery Timeline:</p>
-          <p style="margin: 0 0 6px; color: var(--muted); font-size: 13px;">&#8226; Assembly and thorough testing takes <strong>2-3 days</strong>.</p>
-          <p style="margin: 0; color: var(--muted); font-size: 13px;">&#8226; Shipping takes <strong>4-5 days</strong> &mdash; expect delivery in about <strong>one week</strong>.</p>
+          <p style="margin: 0 0 6px; color: var(--muted); font-size: 13px;">&#8226; Assembly and thorough testing takes 2-3 days.</p>
+          <p style="margin: 0; color: var(--muted); font-size: 13px;">&#8226; Shipping takes 4-5 days &mdash; expect delivery in about one week.</p>
         </div>
         <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
 <form>
