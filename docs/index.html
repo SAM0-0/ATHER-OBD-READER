@@ -101,14 +101,28 @@
       font-family: 'Outfit', sans-serif;
     }
     .header-logo {
-      width: clamp(84px, 14vw, 120px);
-      height: auto;
-      border-radius: 24px;
-      margin-bottom: 26px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+      width: auto;
+      height: clamp(54px, 7.6vw, 80px);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      animation: fadeDown 1s ease-out forwards;
-      opacity: 0;
+    }
+    .h1-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      vertical-align: middle;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     header h1 {
       font-size: clamp(48px, 8vw, 84px);
@@ -811,8 +825,7 @@
       <div class="badge">Open Source</div>
       <div class="badge">Now on V5</div>
     </div>
-    <img class="header-logo" src="images/logo-mark.webp" alt="A-OBD — Ather battery health checker logo" width="120" height="120" fetchpriority="high">
-    <h1>A-OBD<span class="header-sub">Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</span></h1>
+    <h1><span class="h1-lockup"><img class="header-logo" src="images/logo-mark.webp" alt="" aria-hidden="true" width="120" height="120" fetchpriority="high"><span class="sr-only">A</span><span class="h1-word">-OBD</span></span><span class="header-sub">Pre-Assembled Plug &amp; Play OBD Reader for Ather 450X, 450S, 450 Plus &amp; Rizta — Check Your Real Battery Health (SOH) at Home</span></h1>
     <div class="header-btn-wrap">
       <button class="btn btn-primary" onclick="openOrderModal()">Order Now</button>
       <a href="guide.html" class="btn">How to Use</a>
