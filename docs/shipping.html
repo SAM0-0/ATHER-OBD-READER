@@ -518,9 +518,168 @@
       0% { opacity: 1; transform: translate(0,0) scale(1); }
       100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0); }
     }
-  </style>
+  
+    /* Site footer */
+    .site-footer {
+      position: relative;
+      background: #0b0d10;
+      border: 0;
+      overflow: hidden;
+      text-align: left;
+      padding: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .sf-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, #0f1115 0%, rgba(15, 17, 21, 0.85) 14%, rgba(15, 17, 21, 0.35) 34%, rgba(10, 15, 12, 0.25) 55%, rgba(6, 9, 8, 0.92) 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(74, 222, 128, 0.10) 0%, rgba(6, 9, 8, 0) 60%),
+        url('images/footer-bg.webp');
+      background-size: cover, cover, cover;
+      background-position: center top, center bottom, center 62%;
+      background-repeat: no-repeat;
+    }
+    .sf-inner {
+      position: relative;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 165px 24px 30px;
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+    }
+    .sf-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 0.9fr;
+      gap: 44px;
+    }
+    .sf-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: #f1f5f9;
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .sf-logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+    .sf-logo:hover { color: #ffffff; }
+    .sf-brand p {
+      margin: 0 0 12px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: rgba(226, 232, 240, 0.72);
+      max-width: 330px;
+    }
+    .sf-brand .sf-repo {
+      margin: 14px 0 6px;
+      font-size: 14px;
+      color: rgba(226, 232, 240, 0.6);
+    }
+    .sf-brand .sf-repo a {
+      color: #e2e8f0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sf-brand .sf-credits {
+      margin: 0;
+      font-size: 12.5px;
+      color: rgba(203, 213, 225, 0.5);
+    }
+    .sf-col h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: rgba(241, 245, 249, 0.5);
+      margin: 4px 0 14px;
+    }
+    .sf-col a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14.5px;
+      color: rgba(237, 242, 247, 0.82);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .sf-col a:hover {
+      color: #ffffff;
+      transform: translateX(2px);
+      text-decoration: none;
+    }
+    .sf-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: 52px;
+      padding-top: 24px;
+      font-size: 13px;
+      color: rgba(203, 213, 225, 0.6);
+    }
+    @media (max-width: 900px) {
+      .sf-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
+      .sf-brand { grid-column: 1 / -1; }
+      .sf-inner { padding: 130px 20px 26px; }
+    }
+    @media (max-width: 560px) {
+      .sf-grid { grid-template-columns: 1fr; gap: 28px; }
+      .sf-inner { padding: 110px 18px 24px; }
+      .sf-bottom { justify-content: flex-start; }
+    }
+</style>
   <link rel="canonical" href="https://a-obd.in/shipping.html">
   <meta name="description" content="Shipping and delivery information for the A-OBD plug and play OBD diagnostic reader for Ather scooters.">
   <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-</head><body><div style="max-width: 800px; margin: 0 auto; padding: 30px 20px 0;"><a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">&larr; Back to A-OBD</a></div><main id="main-content"><div style="max-width: 800px; margin: 0 auto; padding: 20px 20px 60px;"><h1 style="font-size: clamp(30px, 4vw, 40px); margin-bottom: 16px;">Shipping &amp; <span>Delivery</span></h1><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">1. Shipping Timelines</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">All orders are processed and shipped within 2-3 business days. Orders are not shipped or delivered on weekends or public holidays.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">2. Delivery Estimates</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Estimated delivery time for domestic orders is 5-7 business days. Delivery delays can occasionally occur depending on the courier partner or remote delivery locations.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">3. Shipping Charges</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Shipping charges for your order will be displayed at checkout.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">4. Tracking Your Order</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">You will receive a shipment confirmation email or SMS containing your tracking number(s) once your order has shipped.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">5. Contact Us</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">For tracking or delivery queries, please email us at <a href="mailto:hello@a-obd.in" style="color: var(--primary);">hello@a-obd.in</a>.</p></div></main><footer><div style="max-width: 700px; margin: 0 auto; margin-bottom: 30px; font-size: 14px; line-height: 2.2;"><a href="index.html">Home</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="guide.html">How to Use Guide</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="contact.html">Contact Us</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="terms.html">Terms &amp; Conditions</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="privacy.html">Privacy Policy</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="refunds.html">Refunds &amp; Returns</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="shipping.html">Shipping</a></div><div style="color: var(--muted);">&copy; 2026 A-OBD. All rights reserved.<br><span style="font-size: 12px; margin-top: 8px; display: inline-block;">Not officially affiliated with Ather Energy.</span></div></footer></body></html>
+</head><body><div style="max-width: 800px; margin: 0 auto; padding: 30px 20px 0;"><a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">&larr; Back to A-OBD</a></div><main id="main-content"><div style="max-width: 800px; margin: 0 auto; padding: 20px 20px 60px;"><h1 style="font-size: clamp(30px, 4vw, 40px); margin-bottom: 16px;">Shipping &amp; <span>Delivery</span></h1><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">1. Shipping Timelines</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">All orders are processed and shipped within 2-3 business days. Orders are not shipped or delivered on weekends or public holidays.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">2. Delivery Estimates</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Estimated delivery time for domestic orders is 5-7 business days. Delivery delays can occasionally occur depending on the courier partner or remote delivery locations.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">3. Shipping Charges</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">Shipping charges for your order will be displayed at checkout.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">4. Tracking Your Order</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">You will receive a shipment confirmation email or SMS containing your tracking number(s) once your order has shipped.</p><p style="margin: 26px 0 8px; font-size: 18px; font-weight: 700;">5. Contact Us</p><p style="color: var(--muted); font-size: 16px; margin: 0 0 18px;">For tracking or delivery queries, please email us at <a href="mailto:hello@a-obd.in" style="color: var(--primary);">hello@a-obd.in</a>.</p></div></main>  <footer class="site-footer">
+    <div class="sf-bg" aria-hidden="true"></div>
+    <div class="sf-inner">
+      <div class="sf-grid">
+        <div class="sf-brand">
+          <a class="sf-logo" href="index.html">
+            <img src="images/logo-mark.webp" alt="A-OBD logo" width="42" height="42">
+            <span>A-OBD</span>
+          </a>
+          <p>Real Ather battery health (SOH), per-cell data and 40+ live values &mdash; plug &amp; play, open source, built by the community.</p>
+          <p class="sf-repo">Want to build it yourself? <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">github.com/SAM0-0/ATHER-OBD-READER</a></p>
+          <p class="sf-credits">Contributors: <a href="https://github.com/Kukun7610" target="_blank" rel="noopener">Kukun7610</a> (Extra tab) &amp; <a href="https://github.com/Dhruv2605" target="_blank" rel="noopener">Dhruv2605</a> (offline logging)</p>
+        </div>
+        <nav class="sf-col">
+          <h4>Product</h4>
+          <a href="index.html#versions">Order A-OBD</a>
+          <a href="index.html">Features &amp; demos</a>
+          <a href="guide.html">How to use guide</a>
+          <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">Firmware &amp; source</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Support</h4>
+          <a href="contact.html">Contact us</a>
+          <a href="shipping.html">Shipping &amp; delivery</a>
+          <a href="refunds.html">Refunds &amp; returns</a>
+          <a href="mailto:hello@a-obd.in">hello@a-obd.in</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Legal</h4>
+          <a href="terms.html">Terms &amp; conditions</a>
+          <a href="privacy.html">Privacy policy</a>
+        </nav>
+      </div>
+      <div class="sf-bottom">
+        <span>&copy; 2026 A-OBD. All rights reserved.</span>
+        <span>Not officially affiliated with Ather Energy.</span>
+      </div>
+    </div>
+  </footer></body></html>
