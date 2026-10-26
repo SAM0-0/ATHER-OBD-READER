@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ather Battery Health Check at Home (SOH) — Step-by-Step</title>
+  <link rel="canonical" href="https://a-obd.in/guide.html">
+  <meta name="description" content="Step-by-step guide to check Ather battery health (SOH) at home: plug in the A-OBD reader, read real cell data and catch battery degradation early.">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Check Ather Battery Health (SOH) at Home — A-OBD Guide">
+  <meta property="og:description" content="A complete step-by-step guide to checking your Ather battery health (SOH) at home — with photos, real cell data and what the numbers mean.">
+  <meta property="og:url" content="https://a-obd.in/guide.html">
+  <meta property="og:image" content="https://a-obd.in/images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Check Ather Battery Health (SOH) at Home — A-OBD Guide">
+  <meta name="twitter:description" content="Step-by-step Ather battery health check at home: plug in, connect, read SOH and cell data in minutes.">
+  <meta name="twitter:image" content="https://a-obd.in/images/hero.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #16181d;
+      --card-hover: #1f2229;
+      --text: #f1f5f9;
+      --muted: #9aa8ba;
+      --border: #292d36;
+      --primary: #cbd5e1;
+      --primary-hover: #ffffff;
+      --accent-badge: rgba(203, 213, 225, 0.1);
+      --accent-badge-border: rgba(203, 213, 225, 0.25);
+      --warn: #e8a040;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Header band */
+    header {
+      padding: 70px 20px 55px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.82), rgba(15, 17, 21, 1)), url('images/hero.webp');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      max-width: 860px;
+      margin: 0 auto 26px;
+      text-align: left;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; }
+    header h1 {
+      font-size: clamp(32px, 5.2vw, 50px);
+      margin: 0 0 18px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+    header .sub {
+      font-size: clamp(16px, 2.4vw, 19px);
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+    .meta-line {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    .meta-line b { color: var(--text); font-weight: 600; }
+
+    /* Article */
+    .article {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 50px 20px 30px;
+    }
+    .article h2 {
+      font-size: clamp(26px, 3.4vw, 34px);
+      margin: 56px 0 18px;
+      letter-spacing: -0.6px;
+      scroll-margin-top: 20px;
+    }
+    .article h2:first-of-type { margin-top: 0; }
+    .article h3 {
+      font-size: 21px;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+      margin: 0 0 18px;
+    }
+    .article strong { color: var(--text); }
+    .article a { color: var(--primary); }
+    .article ul, .article ol { color: var(--muted); font-size: 16px; padding-left: 22px; line-height: 1.85; }
+    .article ul li, .article ol li { margin-bottom: 10px; }
+
+    /* Table of contents */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 0 0 10px;
+    }
+    .toc p { margin: 0 0 10px; color: var(--text); font-weight: 600; font-size: 15px; }
+    .toc ol { margin: 0; padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 15px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* Steps */
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    .step-body { width: 100%; }
+    .step-title {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .step-body p { margin: 0 0 10px; font-size: 15px; line-height: 1.75; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-imgs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 10px; }
+    .step-imgs figure { margin: 0; width: calc(50% - 4px); }
+    .step-imgs img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+    }
+    .step-imgs figcaption {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .callout.warn {
+      background: rgba(232, 160, 64, 0.1);
+      border: 1px solid rgba(232, 160, 64, 0.3);
+      color: var(--text);
+    }
+    .callout.info {
+      background: rgba(203, 213, 225, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .callout b { color: var(--text); }
+    .callout.warn b { color: var(--warn); }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0 8px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stat-card h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .stat-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .stat-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 9px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 860px; margin: 0 auto; text-align: left; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+    .faq-q:hover { color: var(--primary-hover); }
+    .faq-icon { font-size: 22px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a p { margin: 0; padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .faq-a a { color: var(--primary); }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 44px 30px;
+      margin: 60px 0 20px;
+    }
+    .cta h2 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 30px); }
+    .cta p { margin: 0 auto 26px; max-width: 560px; font-size: 16px; }
+    .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card);
+      color: var(--text);
+      padding: 15px 32px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .btn:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f1115;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    footer {
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header { padding: 40px 16px 40px; }
+      .article { padding: 36px 16px 20px; }
+      .step { padding: 18px; gap: 12px; }
+      .step-imgs figure { width: 100%; }
+      .cta { padding: 32px 20px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://a-obd.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Ather Battery Health Check Guide", "item": "https://a-obd.in/guide.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Check Ather Battery Health (SOH) at Home",
+    "description": "Step-by-step guide to checking your Ather battery health (SOH) at home using the A-OBD plug and play OBD reader — for Ather 450X, 450S, 450 Plus, 450 Apex and Rizta Z, Rizta S and Rizta X.",
+    "totalTime": "PT10M",
+    "tool": [
+      { "@type": "HowToTool", "name": "A-OBD OBD reader (ESP32-C3 or ESP32/WROOM)" }
+    ],
+    "supply": [
+      { "@type": "HowToSupply", "name": "Smartphone or tablet" },
+      { "@type": "HowToSupply", "name": "Power bank or USB-C charger" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Turn the key on",
+        "text": "Turn the scooter's key on before connecting anything. The OBD port is only powered when the key is on — or while the scooter is charging."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Locate the OBD port in the boot",
+        "text": "Open the boot and lift the small cover to reach the diagnostic port. On the 450 series and Rizta the port is in the same place under the boot mat."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Plug the A-OBD reader into the port",
+        "text": "Connect the reader directly to the OBD port, keeping the marked line on the connector on the top side. Do not force it — the wrong orientation can bend the pins."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Power the reader",
+        "text": "Connect the reader to a power bank or any USB-C charger. A red LED confirms it is powered. If the LED does not light up, try another cable or power source."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Connect your phone to the A-OBD Wi-Fi",
+        "text": "Join the Wi-Fi network named Ather-OBD with the password 12345678. The network usually appears 5 to 10 seconds after the red LED lights up."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Open 192.168.4.1 and read your SOH",
+        "text": "Open http://192.168.4.1 in your phone browser (http, not https). After about 10 seconds the live dashboard loads with your real battery SOH, per-cell voltages, cell imbalance and 40+ live values."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I check my Ather battery health at home?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Turn the scooter's key on, plug the A-OBD reader into the OBD port in the boot, power it from a power bank or charger, connect your phone to the Ather-OBD Wi-Fi (password 12345678) and open http://192.168.4.1. Your real battery SOH and per-cell data appear in about 10 seconds — no service centre visit needed." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good SOH for an Ather battery?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A new Ather pack starts at 100% SOH. Above 90% is excellent, 80–90% is typical for a few years of use, and Ather's battery warranty covers the pack while it stays at or above 70% SOH during the cover period. A sudden drop of several percent in a short time is worth investigating." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Ather app show battery health (SOH)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No — the Ather app shows charge, range and ride stats, but not battery State of Health. SOH is read over the scooter's CAN bus, which is what service centres use. A-OBD reads the same CAN data directly and shows you the percentage yourself." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does an Ather battery health check cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "With A-OBD it is a one-time purchase (₹949 for the ESP32-C3 or ₹1150 for the ESP32/WROOM version, plus ₹175 flat shipping) and you can check as often as you like — no subscription, no per-visit charges and no service centre appointment." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I check Ather 450X battery health and Rizta battery health the same way?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The OBD port and CAN data are the same across current Ather models — 450X, 450S, 450 Plus, 450 Apex and Rizta Z, Rizta S and Rizta X, including both the 2.9 kWh and 3.7 kWh battery variants. Only Gen 1, Gen 1.5 and Gen 2 are not supported." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is cell imbalance in an Ather battery?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cell imbalance is the voltage difference between the weakest and strongest cell group in the pack. Healthy packs stay close together; as cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage — an imbalance above about 0.3 is a good reason to visit a service centre." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the SOH reading accurate before 10,000 km?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather notes that SOH readings are less reliable in the first 10,000 km while the pack settles. The number is still useful as a baseline — record it once and track how it changes over the years." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will using A-OBD void my Ather warranty?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. A-OBD is a purely passive reader — it only listens to CAN data and never sends commands or changes anything. Nothing is spliced or cut, so it works like a standard OBD-II scanner and does not void the warranty." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>How to Use Guide
+    </nav>
+    <h1>How to Check Ather Battery Health (SOH) at Home</h1>
+    <p class="sub">A complete walkthrough for Ather 450X, 450S, 450 Plus, 450 Apex and Rizta Z / S / X — plug in the A-OBD reader and read your real battery health in minutes, with no service centre visit.</p>
+    <p class="meta-line">Updated <b>October 2026</b> &nbsp;&middot;&nbsp; <b>6-minute</b> read &nbsp;&middot;&nbsp; Works on <b>2.9 kWh &amp; 3.7 kWh</b> packs</p>
+  </header>
+
+  <main id="main-content">
+    <div class="article">
+
+      <p>Every Ather owner eventually asks the same question: <strong>how healthy is my battery, really?</strong> The app shows charge and range, but not the one number that matters most — the battery's State of Health (SOH). This guide walks you through a complete <strong>Ather battery health check at home</strong>: what SOH means, what you need, the exact steps, and how to read every number on screen.</p>
+      <p>It takes about 10 minutes, works on the Ather 450X, 450S, 450 Plus, 450 Apex and all Rizta models — and once you've done it once, repeat checks take two minutes.</p>
+
+      <div class="toc">
+        <p>In this guide</p>
+        <ol>
+          <li><a href="#what-is-soh">What is Ather battery health (SOH)?</a></li>
+          <li><a href="#what-you-need">What you need for the check</a></li>
+          <li><a href="#steps">How to check Ather battery health — step by step</a></li>
+          <li><a href="#readings">What your readings mean</a></li>
+          <li><a href="#models">Which Ather models are supported</a></li>
+          <li><a href="#service-centre">When to visit an Ather service centre</a></li>
+          <li><a href="#how-often">How often should you check?</a></li>
+          <li><a href="#faq">Ather battery health FAQ</a></li>
+        </ol>
+      </div>
+
+      <h2 id="what-is-soh">What is Ather battery health (SOH)?</h2>
+      <p>State of Health (SOH) is the percentage of original battery capacity your pack can still hold. A brand-new Ather battery is at 100% SOH; a pack that has lost a fifth of its usable capacity reads around 80%. It is the honest, measured number behind the range you see every day — and it is the number Ather's battery warranty is written around: the pack is covered while it stays at or above <strong>70% SOH</strong> during the cover period.</p>
+      <p>SOH drops for normal reasons — age, charge cycles, hot summers, frequent fast charging and long periods parked at 100%. The drop is gradual and normal. What matters is the <em>rate</em> of change: a pack that loses a few percent over a year is healthy, while one that drops several percent in a few months usually has a weak cell group and is worth investigating early.</p>
+      <p>The catch is that Ather does not show SOH in its app. Service centres read it over the scooter's CAN bus — and most owners are never shown the number. A-OBD plugs into that same diagnostic port and displays it on your phone, so you always know where your battery actually stands.</p>
+
+      <h2 id="what-you-need">What you need for the check</h2>
+      <ul>
+        <li><strong>An A-OBD reader</strong> — the ESP32-C3 (₹949, best for quick checks) or the ESP32/WROOM (₹1150, stays cooler for longer sessions and adds offline logging). Both read the same data.</li>
+        <li><strong>A phone or tablet</strong> — any device with a browser. Nothing to install, no app, no account.</li>
+        <li><strong>A power bank or USB-C charger</strong> — the reader is powered over USB-C, not from the scooter.</li>
+        <li><strong>Your Ather scooter</strong> with the key available — or a charging session, which also powers the diagnostic port.</li>
+      </ul>
+      <p>No subscription, no service centre appointment, no special tools. The reader is pre-assembled and pre-flashed, so it works out of the box.</p>
+
+      <h2 id="steps">How to check Ather battery health — step by step</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <span class="step-title">Turn the key on</span>
+          <p>Turn the scooter's key on before connecting anything. The OBD port is only powered while the scooter is on — or while it is charging, in which case you can leave the key off.</p>
+          <div class="callout warn"><b>Note:</b> the reader will not work with the key off and the scooter unplugged. If you see no data later, this is the first thing to check.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <span class="step-title">Locate the OBD port in the boot</span>
+          <p>Open the boot and lift the small cover to reach the diagnostic port. On the 450 series and on Rizta the port sits in the same place under the boot mat.</p>
+          <div class="step-imgs">
+            <figure>
+              <img src="images/boot-cover.webp" width="1280" height="960" loading="lazy" alt="Ather 450 boot cover hiding the OBD diagnostic port">
+              <figcaption>450 series</figcaption>
+            </figure>
+            <figure>
+              <img src="images/rizta-boot.webp" width="960" height="1280" loading="lazy" alt="Ather Rizta boot area with the OBD diagnostic port">
+              <figcaption>Rizta series</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <span class="step-title">Plug the reader into the port</span>
+          <p>Connect the A-OBD reader directly to the port. The marked line on the connector must face the top side, exactly as shown below.</p>
+          <div class="step-imgs">
+            <figure>
+              <img src="images/boot-cover-1.webp" width="877" height="411" loading="lazy" alt="Plugging the A-OBD reader into the Ather OBD port">
+              <figcaption>Correct orientation</figcaption>
+            </figure>
+            <figure>
+              <img src="images/boot-cover-2.webp" width="1280" height="960" loading="lazy" alt="Close-up of the Ather OBD connector pins">
+              <figcaption>Port close-up</figcaption>
+            </figure>
+          </div>
+          <div class="callout warn"><b>Do not force it:</b> plugging it in the wrong way round can bend the pins inside the connector. Line up the marked side with the top, then push gently.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <span class="step-title">Power the reader</span>
+          <p>Connect the reader to a power bank or any USB-C charger. A <strong>red LED</strong> confirms it is powered.</p>
+          <p>No red LED? Try a different USB-C cable (some cables are charge-only) and a different power source.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <span class="step-title">Connect your phone to the A-OBD Wi-Fi</span>
+          <p>Join the Wi-Fi network named <strong>Ather-OBD</strong> — password <code style="background:var(--card); padding:2px 6px; border-radius:4px; border:1px solid var(--border);">12345678</code>. The network usually appears 5–10 seconds after the red LED lights up. If it hasn't appeared after about 20 seconds, unplug and replug the USB-C cable.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <span class="step-title">Open 192.168.4.1 and read your SOH</span>
+          <p>Open <a href="http://192.168.4.1" target="_blank" rel="noopener"><strong>http://192.168.4.1</strong></a> in your phone browser and wait about 10 seconds. The live dashboard loads with your real battery SOH, per-cell voltages, cell imbalance and 40+ live values — all read directly from the BMS.</p>
+          <div class="callout warn"><b>Use http://, not https://</b> — the reader serves a local page only, so the secure version will not load any data.</div>
+        </div>
+      </div>
+
+      <div class="callout warn" style="margin-top:22px;">
+        <b>Safety rules:</b> never keep the reader connected while riding, and do not leave it plugged in for more than 30–40 minutes on the ESP32-C3 — its small CPU gets hot. The WROOM version stays cool for longer sessions.
+      </div>
+
+      <h2 id="readings">What your Ather battery readings mean</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="tag">SOH</span>
+          <h4>State of Health</h4>
+          <p>Capacity remaining vs new. Above 90% is excellent, 80–90% is normal for a few years of use, and near 70% is the warranty threshold — act before you cross it.</p>
+        </div>
+        <div class="stat-card">
+          <span class="tag">Cells</span>
+          <h4>Per-cell voltage</h4>
+          <p>Every cell group's voltage and charge. One cell sitting noticeably lower than the rest points to a weak group — often the cause of sudden range drops.</p>
+        </div>
+        <div class="stat-card">
+          <span class="tag">Balance</span>
+          <h4>Cell imbalance</h4>
+          <p>The gap between the strongest and weakest cell. Small gaps are normal; an imbalance above about 0.3 is worth showing to a service centre.</p>
+        </div>
+      </div>
+      <p style="margin-top:18px;">Beyond the battery, the dashboard also shows charger input/output, motor temperature, odometer, drive modes and live charts — useful for spotting a charger that is under-delivering or a motor running hot before it becomes a bigger problem.</p>
+
+      <h2 id="models">Which Ather models are supported</h2>
+      <p>The OBD port and CAN data are the same across current Ather models, so the process above works on:</p>
+      <ul>
+        <li><strong>Ather 450X</strong>, <strong>450S</strong>, <strong>450 Plus</strong> and <strong>450 Apex</strong></li>
+        <li><strong>Ather Rizta Z</strong>, <strong>Rizta S</strong> and <strong>Rizta X</strong></li>
+        <li>Both the <strong>2.9 kWh</strong> and <strong>3.7 kWh</strong> battery variants</li>
+      </ul>
+      <p>Every Ather model is supported — except Gen 1, Gen 1.5 and Gen 2. Checking an Ather 450X battery health before a long trip, doing a Rizta battery health check before buying a used scooter, or hunting down cell imbalance on a 450S all use the same three steps: plug in, connect, read.</p>
+
+      <h2 id="service-centre">When should you visit an Ather service centre?</h2>
+      <p>A-OBD tells you what is happening — the service centre fixes it. Book a visit if you see any of these:</p>
+      <ul>
+        <li><strong>SOH near or below 70%</strong> while the battery is still under warranty — bring screenshots of your readings as evidence.</li>
+        <li><strong>Cell imbalance above about 0.3</strong>, especially if it grows between checks.</li>
+        <li><strong>Sharp, sudden range drops</strong> that don't match your riding or the weather.</li>
+        <li><strong>Charge percentage jumping</strong> erratically, or the scooter shutting down earlier than the displayed charge suggests.</li>
+        <li><strong>The same BMS warnings reappearing</strong> after a reset.</li>
+      </ul>
+      <p>Ather's battery warranty (Pro Pack / Battery Protect) guarantees 70% SOH or above during the cover period — knowing your real number early is what turns a vague "range feels low" complaint into a clear, evidence-backed claim. For anything else, our <a href="contact.html">contact page</a> is the fastest way to reach us.</p>
+
+      <h2 id="how-often">How often should you check Ather battery health?</h2>
+      <ul>
+        <li><strong>First check:</strong> soon after delivery, to record a baseline (note that readings are less reliable in the first 10,000 km while the pack settles).</li>
+        <li><strong>Routine checks:</strong> every 5,000 km or every six months — whichever comes first. Each check takes about two minutes once you've done it once.</li>
+        <li><strong>Before buying or selling</strong> a used Ather — SOH is the single most valuable number in a second-hand sale.</li>
+        <li><strong>After a hard summer</strong> or a long period parked at full charge, since heat and high state of charge are the two fastest ways to age a pack.</li>
+      </ul>
+
+      <h2 id="faq">Ather battery health check — FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How do I check my Ather battery health at home?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Turn the key on, plug the A-OBD reader into the OBD port in the boot, power it from a power bank or charger, connect your phone to the Ather-OBD Wi-Fi (password 12345678) and open http://192.168.4.1. Your real SOH and per-cell data appear in about 10 seconds.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is a good SOH for an Ather battery?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>A new Ather pack starts at 100% SOH. Above 90% is excellent, 80–90% is typical after a few years, and Ather's battery warranty covers the pack while it stays at or above 70% during the cover period. A sudden drop of several percent in a short time is worth investigating.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Does the Ather app show battery health (SOH)?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>No — the app shows charge, range and ride stats, but not State of Health. SOH is read over the scooter's CAN bus, which is what service centres use. A-OBD reads the same data directly and shows you the percentage yourself.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How much does an Ather battery health check cost?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>With A-OBD it is a one-time purchase (₹949 for the C3 or ₹1150 for the WROOM, plus ₹175 flat shipping) and you can check as often as you like — no subscription and no service centre appointment.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I check 450X and Rizta battery health the same way?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. The port and CAN data are the same across the 450X, 450S, 450 Plus, 450 Apex and Rizta Z / S / X, including both 2.9 kWh and 3.7 kWh variants. Only Gen 1, Gen 1.5 and Gen 2 are not supported.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is cell imbalance in an Ather battery?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>The voltage difference between the weakest and strongest cell group. As cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage — an imbalance above about 0.3 is a good reason to visit a service centre.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is the SOH reading accurate before 10,000 km?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Ather notes that SOH readings are less reliable in the first 10,000 km while the pack settles. The number is still useful as a baseline — record it once and track how it changes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Will using A-OBD void my Ather warranty?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>No. A-OBD is a purely passive reader — it only listens to CAN data and never sends commands or changes anything. Nothing is spliced or cut, so it does not void the warranty.</p></div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <h2>Check your Ather battery health this week</h2>
+        <p>A-OBD is pre-assembled, pre-flashed and 100% plug &amp; play. Order the ESP32-C3 for quick checks or the ESP32/WROOM for longer sessions — both read SOH, per-cell data and 40+ live values.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="index.html#versions">Order A-OBD</a>
+          <a class="btn" href="index.html">See features &amp; demos</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width: 700px; margin: 0 auto; margin-bottom: 30px; font-size: 14px; line-height: 2.2;">
+      <a href="index.html">Home</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="guide.html">How to Use Guide</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="contact.html">Contact Us</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="terms.html">Terms &amp; Conditions</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="privacy.html">Privacy Policy</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="refunds.html">Refunds &amp; Returns</a><span style="color: var(--muted);">&nbsp;&bull;&nbsp;</span><a href="shipping.html">Shipping</a>
+    </div>
+    <div style="color: var(--muted);">
+      &copy; 2026 A-OBD. All rights reserved.<br>
+      <span style="font-size: 12px; margin-top: 8px; display: inline-block;">Not officially affiliated with Ather Energy.</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var open = item.classList.toggle('open');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+    }
+  </script>
+
+</body>
+</html>
