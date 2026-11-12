@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ather Battery Health Check at Home (SOH) — Step-by-Step</title>
+  <title>How to Check Ather Battery Health at Home (450X &amp; Rizta)</title>
   <link rel="canonical" href="https://a-obd.in/guide.html">
-  <meta name="description" content="Step-by-step guide to check Ather battery health (SOH) at home: plug in the A-OBD reader, read real cell data and catch battery degradation early.">
+  <meta name="description" content="How to check your Ather battery health (SOH) at home on a 450X, 450S or Rizta: plug in A-OBD, read real cell voltages and imbalance in minutes.">
   <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="article">
   <meta property="og:title" content="How to Check Ather Battery Health (SOH) at Home — A-OBD Guide">
@@ -569,6 +569,9 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Check Ather Battery Health (SOH) at Home","description":"Step-by-step guide to checking Ather battery health on a 450X, 450S or Rizta with the A-OBD reader: real SOH, per-cell voltage and cell imbalance.","image":"https://a-obd.in/images/hero.jpg","author":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"publisher":{"@type":"Organization","name":"A-OBD","logo":{"@type":"ImageObject","url":"https://a-obd.in/images/logo-mark.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://a-obd.in/guide.html"},"datePublished":"2026-10-26","dateModified":"2026-11-12"}
+  </script>
 </head>
 <body>
 
@@ -595,6 +598,8 @@
           <li><a href="#steps">How to check Ather battery health — step by step</a></li>
           <li><a href="#readings">What your readings mean</a></li>
           <li><a href="#models">Which Ather models are supported</a></li>
+          <li><a href="#450x">Battery health on an Ather 450X</a></li>
+          <li><a href="#rizta">Battery health on an Ather Rizta</a></li>
           <li><a href="#service-centre">When to visit an Ather service centre</a></li>
           <li><a href="#how-often">How often should you check?</a></li>
           <li><a href="#faq">Ather battery health FAQ</a></li>
@@ -721,6 +726,22 @@
         <li>Both the <strong>2.9 kWh</strong> and <strong>3.7 kWh</strong> battery variants</li>
       </ul>
       <p>Every Ather model is supported — except Gen 1, Gen 1.5 and Gen 2. Checking an Ather 450X battery health before a long trip, doing a Rizta battery health check before buying a used scooter, or hunting down cell imbalance on a 450S all use the same three steps: plug in, connect, read.</p>
+
+      <h2 id="450x">How to check battery health in an Ather 450X</h2>
+      <p>The 450X, 450S, 450 Plus and 450 Apex all use the same 14-cell series pack and expose the same diagnostic connector, so the check is identical across the family — and it takes about five minutes.</p>
+      <ol>
+        <li>Park, switch the scooter off, and open the boot to reach the diagnostic port.</li>
+        <li>Plug the A-OBD reader in, power it over USB, and join its <strong>A-OBD</strong> Wi-Fi network from your phone.</li>
+        <li>Open <strong>192.168.4.1</strong> and read the State of Health, the 14 individual cell voltages and the cell imbalance on the dashboard.</li>
+      </ol>
+      <p>On a 450X, the numbers worth writing down are SOH, the lowest and highest cell voltage, and the imbalance value between them. A healthy, balanced pack sits within a few hundredths of a volt cell to cell; an imbalance that grows between checks is the early warning that one cell group is ageing faster than the rest — and that is exactly the thing the Ather app never shows you.</p>
+      <p>Doing this before a long ride, before a warranty conversation, or before buying a used 450X turns "the range feels low" into a number you can actually act on.</p>
+
+      <h2 id="rizta">How to check battery health in an Ather Rizta</h2>
+      <p>The Rizta Z, Rizta S and Rizta X use the same CAN frames as the 450 family, so the same reader and the same three steps apply — there is no separate Rizta tool to buy, and nothing to configure.</p>
+      <p>Both Rizta battery variants (2.9 kWh and 3.7 kWh) are supported. Plug in, connect to the reader's Wi-Fi, open the dashboard, and you get the pack's real SOH plus per-cell voltage for all 14 cells, along with temperatures, charge data and the rest of the live telemetry.</p>
+      <p>A Rizta battery health check is worth doing when the scooter is new (record a baseline), before a long trip, when range drops faster than the weather explains, and any time the scooter is close to the end of its battery warranty — Ather's cover is written around the pack staying at or above <strong>70% SOH</strong>, so a dated screenshot of your readings is useful evidence if you ever need to claim.</p>
+      <p>If you are shopping for a used Rizta, do the same check on the test ride. Five minutes with A-OBD tells you more about the pack than any service history sheet.</p>
 
       <h2 id="service-centre">When should you visit an Ather service centre?</h2>
       <p>A-OBD tells you what is happening — the service centre fixes it. Book a visit if you see any of these:</p>
