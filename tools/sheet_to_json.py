@@ -4,14 +4,20 @@ Turn the Google Form responses sheet into docs/data/community-scooters.json.
 
 Two ways to use it:
 
-  1. Published CSV (no API key, no login):
-     File -> Share -> Publish to web -> select the responses sheet -> CSV
-     python tools/sheet_to_json.py --csv-url "https://docs.google.com/spreadsheets/d/e/.../pub?output=csv"
+  1. Live sheet (works today, no API key, no login):
+     python tools/sheet_to_json.py --csv-url "https://docs.google.com/spreadsheets/d/<id>/gviz/tq?tqx=out:csv"
 
   2. A CSV you downloaded:
      python tools/sheet_to_json.py --csv responses.csv
 
 Then review the diff and commit. The page reads the JSON directly.
+
+Field handling worth knowing:
+  * Scooter Age is free text on the form. "4 Years and 2 Months" -> 50 months,
+    "38 months" -> 38, a bare number is read as months.
+  * Cell Delta is typed with its unit ("38.5 MV") and stored as imbalanceMv.
+  * The model answer carries the pack ("Ather 450X (Gen 3 / 3.7 kWh)"), so the
+    pack size is pulled out into its own field.
 """
 
 import argparse
@@ -28,12 +34,13 @@ OUT = Path(__file__).resolve().parent.parent / "docs" / "data" / "community-scoo
 
 # header keyword -> canonical field. Order matters: first match wins.
 FIELDS = [
-    ("name", ("name",)),
+    ("name", ("name", "handle")),
     ("model", ("model", "scooter")),
-    ("odometerKm", ("odo", "km", "kilomet")),
+    ("odometerKm", ("odometer", "km", "kilomet")),
     ("age", ("age", "month", "year")),
     ("soh", ("soh", "health")),
-    ("imbalance", ("imbalanc", "balanc")),
+    ("soc", ("soc", "state of charge")),
+    ("imbalance", ("imbalanc", "imblance", "cell delta", "delta", "balanc")),
     ("notes", ("note", "comment", "anything")),
     ("submitted", ("timestamp", "date", "submitted")),
 ]
@@ -58,6 +65,38 @@ def to_float(value):
 def to_int(value):
     f = to_float(value)
     return None if f is None else int(round(f))
+
+
+def parse_age_months(value, header=""):
+    """Free-text age -> months. '4 Years and 2 Months' = 50 months."""
+    s = norm(value)
+    if not s:
+        return None
+    years = re.search(r"(\d+(?:\.\d+)?)\s*(?:year|yr)", s)
+    months = re.search(r"(\d+(?:\.\d+)?)\s*(?:month|mo\b)", s)
+    if years or months:
+        total = 0.0
+        if years:
+            total += float(years.group(1)) * 12
+        if months:
+            total += float(months.group(1))
+        return int(round(total))
+    bare = to_int(value)
+    if bare is None:
+        return None
+    # A number with no unit: honour the column header if it says years.
+    return bare * 12 if "year" in norm(header) else bare
+
+
+def parse_pack(*values):
+    """Pull '3.7' out of 'Ather 450X (Gen 3 / 3.7 kWh)'."""
+    for value in values:
+        m = re.search(r"(\d(?:\.\d)?)\s*kwh", norm(value))
+        if m:
+            size = float(m.group(1))
+            if 1.5 <= size <= 6:
+                return size
+    return None
 
 
 def map_headers(header_row):
@@ -106,6 +145,8 @@ def clean_model(value):
         return "450X"
     if "450s" in s or "450 s" in s:
         return "450S"
+    if "not sure" in s or "don" in s:
+        return None
     return value.strip()[:40]
 
 
@@ -123,7 +164,7 @@ def load_rows(args):
 def main():
     ap = argparse.ArgumentParser()
     src = ap.add_mutually_exclusive_group(required=True)
-    src.add_argument("--csv-url", help="published Google Sheets CSV URL")
+    src.add_argument("--csv-url", help="Google Sheets CSV URL (gviz or published)")
     src.add_argument("--csv", help="path to a downloaded CSV")
     args = ap.parse_args()
 
@@ -131,10 +172,13 @@ def main():
     if not rows:
         sys.exit("empty sheet")
 
-    mapping = map_headers(rows[0])
+    header = rows[0]
+    mapping = map_headers(header)
     missing = [f for f in ("model", "odometerKm", "soh") if f not in mapping]
     if missing:
-        sys.exit("could not find columns for: " + ", ".join(missing) + "\nheaders seen: " + str(rows[0]))
+        sys.exit("could not find columns for: " + ", ".join(missing) + "\nheaders seen: " + str(header))
+
+    age_header = header[mapping["age"]] if "age" in mapping else ""
 
     entries, skipped, seen = [], [], set()
 
@@ -144,14 +188,12 @@ def main():
             return row[idx] if idx is not None and idx < len(row) else None
 
         soh = to_float(get("soh"))
+        soc = to_float(get("soc"))
         odo = to_int(get("odometerKm"))
-        imbalance = to_float(get("imbalance"))
-        age_raw = to_int(get("age"))
-
-        if age_raw is None:
-            age_months = None
-        else:
-            age_months = age_raw * 12 if "year" in norm(rows[0][mapping["age"]]) else age_raw
+        imbalance_mv = to_float(get("imbalance"))
+        age_months = parse_age_months(get("age"), age_header)
+        model = clean_model(get("model"))
+        pack = parse_pack(get("model"), get("pack"))
 
         if soh is None or not (0 <= soh <= 100):
             skipped.append((n, "soh missing or out of range"))
@@ -162,11 +204,14 @@ def main():
         if age_months is not None and not (0 <= age_months <= 240):
             skipped.append((n, "age out of range"))
             continue
-        if imbalance is not None and not (0 <= imbalance <= 5):
-            skipped.append((n, "imbalance out of range"))
+        if soc is not None and not (0 <= soc <= 100):
+            skipped.append((n, "soc out of range"))
+            continue
+        if imbalance_mv is not None and not (0 <= imbalance_mv <= 1000):
+            skipped.append((n, "imbalance out of range (expected mV, 0-1000)"))
             continue
 
-        key = (clean_model(get("model")), odo, round(soh, 2), imbalance)
+        key = (model, odo, round(soh, 2), imbalance_mv)
         if key in seen:
             skipped.append((n, "duplicate row"))
             continue
@@ -178,11 +223,13 @@ def main():
 
         entries.append({
             "name": name,
-            "model": clean_model(get("model")),
+            "model": model,
+            "pack": pack,
             "odometerKm": odo,
             "ageMonths": age_months,
             "soh": round(soh, 1),
-            "imbalance": None if imbalance is None else round(imbalance, 3),
+            "imbalanceMv": None if imbalance_mv is None else round(imbalance_mv, 1),
+            "soc": None if soc is None else round(soc, 1),
             "notes": (get("notes") or "").strip()[:280] or None,
             "submitted": parse_date(get("submitted")) or date.today().isoformat(),
         })
@@ -199,6 +246,10 @@ def main():
     OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     print(f"wrote {len(entries)} entries to {OUT}")
+    for e in entries:
+        print(f"  {e['submitted']}  {e['name'] or 'Anonymous':<10} {str(e['model']):<9} "
+              f"{str(e['odometerKm']):>7} km  {str(e['ageMonths']):>3} mo  SOH {e['soh']}  "
+              f"delta {e['imbalanceMv']} mV  SOC {e['soc']}")
     if skipped:
         print(f"skipped {len(skipped)} row(s):")
         for n, why in skipped[:20]:

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ather Battery Data from Real Owners — SOH &amp; Imbalance</title>
   <link rel="canonical" href="https://a-obd.in/data.html">
-  <meta name="description" content="Self-reported Ather battery health data: SOH, odometer and cell imbalance from real owners, grouped by age. Submit your reading anonymously.">
+  <meta name="description" content="Self-reported Ather battery health data: SOH, odometer and cell delta in mV from real owners, grouped by age. Submit your reading anonymously.">
   <meta property="og:locale" content="en_IN">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Ather Battery Data from Real Owners — SOH &amp; Imbalance">
@@ -464,6 +464,9 @@
     }
 
     /* Community data page */
+    #stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    #stats .stat-card { padding: 16px 18px; }
+    h2#submit { margin-top: 44px; }
     .chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin: 0 0 10px; }
     .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .data-table th { text-align: left; font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
@@ -475,7 +478,7 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://a-obd.in/"},{"@type":"ListItem","position":2,"name":"Community battery data","item":"https://a-obd.in/data.html"}]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Dataset","name":"Ather battery health data (self-reported)","description":"State of Health, odometer and cell imbalance readings submitted by Ather owners, grouped by scooter age. Self-reported and unverified.","creator":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/","keywords":["Ather","battery health","SOH","cell imbalance","electric scooter"],"distribution":[{"@type":"DataDownload","contentUrl":"https://a-obd.in/data/community-scooters.json","encodingFormat":"application/json"}]}
+  {"@context":"https://schema.org","@type":"Dataset","name":"Ather battery health data (self-reported)","description":"State of Health, odometer, cell delta (mV) and state of charge readings submitted by Ather owners, grouped by scooter age. Self-reported and unverified.","creator":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/","keywords":["Ather","battery health","SOH","cell imbalance","cell delta","electric scooter"],"variableMeasured":[{"@type":"PropertyValue","name":"State of Health (SOH)","unitText":"%"},{"@type":"PropertyValue","name":"Odometer","unitText":"km"},{"@type":"PropertyValue","name":"Cell delta","unitText":"mV"},{"@type":"PropertyValue","name":"State of Charge (SoC)","unitText":"%"},{"@type":"PropertyValue","name":"Scooter age","unitText":"months"}],"distribution":[{"@type":"DataDownload","contentUrl":"https://a-obd.in/data/community-scooters.json","encodingFormat":"application/json"}]}
   </script>
 </head>
 <body>
@@ -493,7 +496,7 @@
     <div class="article">
 
       <p>Every owner wants to know the same thing: <strong>is my battery normal for its age?</strong> The honest answer is that nobody can tell you without data &mdash; and the data that exists publicly is almost all anecdote. This page is an attempt to fix that, one owner at a time.</p>
-      <p>Submit your numbers once, anonymously if you prefer, and they appear here alongside everyone else&rsquo;s. Three fields do most of the work: <strong>State of Health</strong>, <strong>odometer</strong> and <strong>cell imbalance</strong>.</p>
+      <p>Submit your numbers once, anonymously if you prefer, and they appear here alongside everyone else&rsquo;s. Three fields do most of the work: <strong>State of Health</strong>, <strong>odometer</strong> and <strong>cell delta</strong>.</p>
 
       <div class="callout info">
         <b>Nothing here is verified.</b> These are self-reported readings from owners using their own reader. That is the point &mdash; it reflects real scooters in real conditions &mdash; but treat individual rows as claims, not measurements. The pattern across many rows is what is useful.
@@ -508,7 +511,7 @@
         <div id="scatter-soh" class="chart-box"></div>
 
         <h2 id="balance-chart">Cell imbalance vs odometer</h2>
-        <p>Imbalance tends to drift upward with age and mileage. A cluster near zero with a few high outliers usually means individual weak packs rather than a fleet-wide problem.</p>
+        <p>Cell delta is measured in millivolts (mV) &mdash; the gap between the strongest and weakest cell group, which is why it starts small. It tends to drift upward with age and mileage. A tight cluster with a few high outliers usually means individual weak packs rather than a fleet-wide problem.</p>
         <div id="scatter-imbalance" class="chart-box"></div>
 
         <h2 id="age-band">Median SOH by scooter age</h2>
@@ -526,7 +529,8 @@
                 <th scope="col">Age</th>
                 <th scope="col">Odometer</th>
                 <th scope="col">SOH</th>
-                <th scope="col">Imbalance</th>
+                <th scope="col">Cell delta</th>
+                <th scope="col">SoC</th>
               </tr>
             </thead>
             <tbody id="rows"></tbody>
@@ -535,13 +539,13 @@
       </div>
 
       <div id="empty" class="callout info" hidden>
-        <b>No submissions yet.</b> This page is live but the dataset is empty &mdash; so here is what it will show once owners start sending numbers: median SOH by age band, a health-versus-odometer scatter, an imbalance trend and a sortable table of every submission. Be the first and it stops being theoretical.
+        <b>No submissions yet.</b> This page is live but the dataset is empty &mdash; so here is what it will show once owners start sending numbers: median SOH by age band, a health-versus-odometer scatter, a cell delta trend and a table of every submission with the SoC it was read at. Be the first and it stops being theoretical.
       </div>
 
       <h2 id="submit">Submit your numbers</h2>
-      <p>Six fields, no account, no email address, under a minute. You can leave your name blank and it will show as <em>Anonymous</em>.</p>
+      <p>Seven fields, no account, no email address, under a minute. You can leave your name blank and it will show as <em>Anonymous</em>.</p>
       <p id="submit-cta">
-        <a class="btn btn-primary" id="form-link" href="mailto:hello@a-obd.in?subject=Ather%20battery%20data&amp;body=Model%3A%0AOdometer%20(km)%3A%0AScooter%20age%20(months)%3A%0ASOH%20(%25)%3A%0AImbalance%3A%0AName%20(optional)%3A%0A">Send your reading</a>
+        <a class="btn btn-primary" id="form-link" href="mailto:hello@a-obd.in?subject=Ather%20battery%20data&amp;body=Model%3A%0AOdometer%20(km)%3A%0AScooter%20age%3A%0ASOH%20(%25)%3A%0ASoC%20(%25)%3A%0ACell%20delta%20(mV)%3A%0AName%20(optional)%3A%0A">Send your reading</a>
       </p>
       <p>What happens to it: I read the form, sanity-check the numbers, and add them to the dataset behind this page. No accounts, no analytics, no email list &mdash; and if you ask for it to be removed, it is removed.</p>
 
@@ -549,7 +553,8 @@
       <p><strong>Self-reported.</strong> Owners read their own dashboards. A typo or an optimistic reading is possible, and there is no way to audit a submission. The values are shown as sent, with light range checks that drop obvious nonsense (SOH outside 0&ndash;100, odometer beyond six figures).</p>
       <p><strong>One point in time.</strong> Each row is a snapshot, not a degradation curve. The same scooter can appear twice at different mileages, which is useful &mdash; but rows are submissions, not unique scooters.</p>
       <p><strong>Not a warranty opinion.</strong> Nothing here decides whether Ather will honour a claim. If your pack reads below 70% SOH inside the cover period, the <a href="guide.html#warranty">warranty section of the guide</a> explains what evidence to gather.</p>
-      <p><strong>Why imbalance is included.</strong> SOH tells you how much capacity is left; imbalance tells you whether the pack is still working evenly. Two scooters can share an SOH and be in very different health. If you only send one number, send imbalance.</p>
+      <p><strong>Why cell delta is included.</strong> SOH tells you how much capacity is left; cell delta tells you whether the pack is still working evenly. Two scooters can share an SOH and be in very different health. If you only send one number, send cell delta.</p>
+      <p><strong>Charge level matters.</strong> Both SOH and cell delta read slightly differently depending on state of charge, so the form asks for SoC at the time of reading. It is there to keep comparisons honest, not to score anyone.</p>
 
       <div class="cta">
         <h2>Reading your own scooter takes ten minutes</h2>
@@ -565,8 +570,7 @@
 
 <script>
 (function () {
-  // Set this to the public Google Form link once it exists.
-  var FORM_URL = "";
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScHCqysfnQ3bhibFqfTHxBx-bJ7zGbs3vp1uxr-HyGAFYlvpQ/viewform";
   var DATA_URL = "data/community-scooters.json";
 
   var formLink = document.getElementById("form-link");
@@ -579,6 +583,11 @@
   function num(v) { return typeof v === "number" && isFinite(v) ? v : null; }
   function km(v) { return v == null ? "\u2014" : Number(v).toLocaleString("en-IN"); }
   function pct(v, dec) { if (v == null) return "\u2014"; var d = dec == null ? 1 : dec; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); }
+
+  function modelText(e) {
+    if (!e.model) return "\u2014";
+    return e.pack ? e.model + " \u00b7 " + e.pack + " kWh" : e.model;
+  }
 
   function median(values) {
     var v = values.filter(function (n) { return n != null; }).sort(function (a, b) { return a - b; });
@@ -603,7 +612,7 @@
     return n;
   }
 
-  function scatter(box, entries, key, yLabel, yMin, yMax, dec) {
+  function scatter(box, entries, key, yLabel, yMin, yMax, dec, unit) {
     var W = 720, H = 340, m = { l: 58, r: 18, t: 18, b: 48 };
     var pts = entries.filter(function (e) { return num(e.odometerKm) != null && num(e[key]) != null; });
     if (!pts.length) { box.innerHTML = '<p style="font-size:14px;">Not enough submissions yet to plot this.</p>'; return; }
@@ -613,8 +622,7 @@
 
     var lo = yMin != null ? yMin : Math.min.apply(null, pts.map(function (e) { return e[key]; }));
     var hi = yMax != null ? yMax : Math.max.apply(null, pts.map(function (e) { return e[key]; }));
-    if (hi - lo < 1) { hi = lo + 1; }
-    if (dec === 2) { hi = Math.ceil(hi * 10) / 10 || 0.1; }
+    if (hi - lo < 0.5) { hi = lo + 0.5; }
 
     var sx = function (v) { return m.l + (v / maxX) * (W - m.l - m.r); };
     var sy = function (v) { return H - m.b - ((v - lo) / (hi - lo)) * (H - m.t - m.b); };
@@ -627,7 +635,7 @@
       var y = sy(val);
       svg.appendChild(svgEl("line", { x1: m.l, y1: y, x2: W - m.r, y2: y, stroke: "#292d36", "stroke-width": 1 }));
       var t = svgEl("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", fill: "#9aa8ba", "font-size": 11 });
-      t.textContent = pct(val, dec) + (yLabel.indexOf("Imbalance") === 0 ? "" : "%");
+      t.textContent = pct(val, dec) + (unit || "");
       svg.appendChild(t);
     }
 
@@ -648,7 +656,7 @@
       var c = svgEl("circle", { cx: sx(e.odometerKm), cy: sy(e[key]), r: 5.5, fill: "#4ade80", "fill-opacity": 0.75, stroke: "#0f1115", "stroke-width": 1 });
       var title = svgEl("title", {});
       title.textContent = (e.name || "Anonymous") + " \u00b7 " + (e.model || "Ather") + " \u00b7 " +
-        km(e.odometerKm) + " km \u00b7 " + yLabel + " " + pct(e[key], dec) +
+        km(e.odometerKm) + " km \u00b7 " + yLabel + " " + pct(e[key], dec) + (unit || "") +
         (e.ageMonths != null ? " \u00b7 " + Math.round(e.ageMonths / 12 * 10) / 10 + " yr" : "");
       c.appendChild(title);
       svg.appendChild(c);
@@ -701,16 +709,17 @@
     var stats = el("stats");
     stats.innerHTML = "";
     var sohValues = entries.map(function (e) { return e.soh; });
-    var imbValues = entries.map(function (e) { return num(e.imbalance); });
+    var imbValues = entries.map(function (e) { return num(e.imbalanceMv); });
     var below = entries.filter(function (e) { return e.soh < 70; }).length;
 
     stats.appendChild(card("Submissions", entries.length, "self-reported readings"));
     stats.appendChild(card("Median SOH", pct(median(sohValues)) + "%", "across all submissions"));
-    stats.appendChild(card("Median imbalance", pct(median(imbValues), 2), "lower is more even"));
+    stats.appendChild(card("Median cell delta", pct(median(imbValues), 1) + " mV", "between strongest and weakest cell"));
     stats.appendChild(card("Below 70% SOH", below, "warranty-threshold readings"));
 
     if (generated) {
-      el("updated").textContent = "Last updated " + generated + " \u00b7 " + entries.length + " submissions";
+      el("updated").textContent = "Last updated " + generated + " \u00b7 " + entries.length +
+        (entries.length === 1 ? " submission" : " submissions");
     }
 
     // table
@@ -721,11 +730,12 @@
       var age = num(e.ageMonths) != null ? (Math.round(e.ageMonths / 12 * 10) / 10) + " yr" : "\u2014";
       var cells = [
         e.name || "Anonymous",
-        e.model || "\u2014",
+        modelText(e),
         age,
         km(e.odometerKm) + (e.odometerKm != null ? " km" : ""),
         pct(e.soh) + "%",
-        pct(e.imbalance, 2)
+        pct(e.imbalanceMv, 1) + " mV",
+        pct(e.soc) + "%"
       ];
       cells.forEach(function (text, i) {
         var td = document.createElement("td");
@@ -736,8 +746,8 @@
       rows.appendChild(tr);
     });
 
-    scatter(el("scatter-soh"), entries, "soh", "SOH", 55, 100, 0);
-    scatter(el("scatter-imbalance"), entries, "imbalance", "Imbalance", 0, null, 2);
+    scatter(el("scatter-soh"), entries, "soh", "SOH", 55, 100, 0, "%");
+    scatter(el("scatter-imbalance"), entries, "imbalanceMv", "Cell delta", 0, null, 0, " mV");
     bands(entries);
 
     el("dash").hidden = false;

@@ -554,7 +554,7 @@
       {
         "@type": "Question",
         "name": "What is cell imbalance in an Ather battery?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Cell imbalance is the voltage difference between the weakest and strongest cell group in the pack. Healthy packs stay close together; as cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage — an imbalance above about 0.3 is a good reason to visit a service centre." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Cell imbalance is the voltage difference between the weakest and strongest cell group in the pack. Healthy packs stay close together; as cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage in millivolts, so you can watch the spread between them. A gap in the tens of millivolts is normal; a gap that keeps growing between checks, or one group falling clearly behind the rest, is the case to show a service centre." }
       },
       {
         "@type": "Question",
@@ -724,7 +724,7 @@
         <div class="stat-card">
           <span class="tag">Balance</span>
           <h4>Cell imbalance</h4>
-          <p>The gap between the strongest and weakest cell. Small gaps are normal; an imbalance above about 0.3 is worth showing to a service centre.</p>
+          <p>The gap between the strongest and weakest cell, shown in millivolts. A spread in the tens of millivolts is normal and shifts with temperature and charge level. What matters is the trend: a gap that keeps growing between checks, or one cell group sitting clearly lower than the rest, is worth showing to a service centre.</p>
         </div>
       </div>
       <p style="margin-top:18px;">Beyond the battery, the dashboard also shows charger input/output, motor temperature, odometer, drive modes and live charts — useful for spotting a charger that is under-delivering or a motor running hot before it becomes a bigger problem.</p>
@@ -770,7 +770,7 @@
       <p>A-OBD tells you what is happening — the service centre fixes it. Book a visit if you see any of these:</p>
       <ul>
         <li><strong>SOH near or below 70%</strong> while the battery is still under warranty — bring screenshots of your readings as evidence.</li>
-        <li><strong>Cell imbalance above about 0.3</strong>, especially if it grows between checks.</li>
+        <li><strong>Cell imbalance that keeps growing between checks</strong>, especially when one cell group sits clearly below the rest.</li>
         <li><strong>Sharp, sudden range drops</strong> that don't match your riding or the weather.</li>
         <li><strong>Charge percentage jumping</strong> erratically, or the scooter shutting down earlier than the displayed charge suggests.</li>
         <li><strong>The same BMS warnings reappearing</strong> after a reset.</li>
@@ -785,12 +785,14 @@
         <li><strong>After a hard summer</strong> or a long period parked at full charge, since heat and high state of charge are the two fastest ways to age a pack.</li>
       </ul>
 
+      <p>Whatever the cadence, record the date alongside the numbers &mdash; one reading tells you where the pack is, two tell you where it is heading. If you want to know what other owners&rsquo; scooters read at the same age, the <a href="data.html">community battery data page</a> collects exactly those submissions, including the cell delta in millivolts.</p>
+
       <h2 id="warranty">Ather battery warranty at 70% SOH &mdash; and how to claim it</h2>
       <p>Ather&rsquo;s battery cover is written around a State of Health floor: the pack is covered while it stays at or above <strong>70% SOH</strong> during the cover period. The length of that period depends on the plan and model you bought and has changed over the years, so check the paperwork that came with your scooter rather than a number from a forum.</p>
       <p>The claim itself is mostly a documentation exercise, and this is where owners lose time. Do it in this order:</p>
       <ol>
         <li><strong>Record a dated baseline</strong> &mdash; a screenshot of your dashboard with the odometer visible, and the same again a few weeks later, so you can show a trend rather than a single reading.</li>
-        <li><strong>Report it through the Ather app</strong> or by booking a service centre visit, describing the symptom in numbers: &ldquo;SOH reads 69%, cell imbalance 0.4&rdquo; lands better than &ldquo;range feels low&rdquo;.</li>
+        <li><strong>Report it through the Ather app</strong> or by booking a service centre visit, describing the symptom in numbers: &ldquo;SOH reads 69% and my cell delta has climbed from 40 to 90 mV over six months&rdquo; lands better than &ldquo;range feels low&rdquo;.</li>
         <li><strong>Ask for their reading in writing</strong> when you hand the scooter over, so you can compare it with yours.</li>
         <li><strong>Keep the screenshots</strong> even after the claim &mdash; they are also what you need to sell the scooter later.</li>
       </ol>
@@ -864,7 +866,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What is cell imbalance in an Ather battery?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>The voltage difference between the weakest and strongest cell group. As cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage — an imbalance above about 0.3 is a good reason to visit a service centre.</p></div>
+          <div class="faq-a"><p>The voltage difference between the weakest and strongest cell group. As cells age they drift apart, which shows up as uneven range drop. A-OBD displays every cell's voltage in millivolts, so you can watch the spread between them. A gap in the tens of millivolts is normal; a gap that keeps growing between checks, or one group falling clearly behind the rest, is the case to show a service centre.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Is the SOH reading accurate before 10,000 km?<span class="faq-icon">+</span></button>
