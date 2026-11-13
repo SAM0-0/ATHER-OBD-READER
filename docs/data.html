@@ -552,6 +552,7 @@
       <h2 id="method">How this data is collected, and what it cannot tell you</h2>
       <p><strong>Self-reported.</strong> Owners read their own dashboards. A typo or an optimistic reading is possible, and there is no way to audit a submission. The values are shown as sent, with light range checks that drop obvious nonsense (SOH outside 0&ndash;100, odometer beyond six figures).</p>
       <p><strong>One point in time.</strong> Each row is a snapshot, not a degradation curve. The same scooter can appear twice at different mileages, which is useful &mdash; but rows are submissions, not unique scooters.</p>
+      <p><strong>Download it if you want it.</strong> The whole dataset is a single public JSON file &mdash; <a href="data/community-scooters.json">community-scooters.json</a> &mdash; so anyone can check the charts, run their own analysis or cite the numbers without asking.</p>
       <p><strong>Not a warranty opinion.</strong> Nothing here decides whether Ather will honour a claim. If your pack reads below 70% SOH inside the cover period, the <a href="guide.html#warranty">warranty section of the guide</a> explains what evidence to gather.</p>
       <p><strong>Why cell delta is included.</strong> SOH tells you how much capacity is left; cell delta tells you whether the pack is still working evenly. Two scooters can share an SOH and be in very different health. If you only send one number, send cell delta.</p>
       <p><strong>Charge level matters.</strong> Both SOH and cell delta read slightly differently depending on state of charge, so the form asks for SoC at the time of reading. It is there to keep comparisons honest, not to score anyone.</p>
@@ -570,13 +571,15 @@
 
 <script>
 (function () {
-  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScHCqysfnQ3bhibFqfTHxBx-bJ7zGbs3vp1uxr-HyGAFYlvpQ/viewform";
+  var FORM_URL = "https://forms.gle/3ffPeiEcTmusofAT9";
   var DATA_URL = "data/community-scooters.json";
 
   var formLink = document.getElementById("form-link");
   if (FORM_URL && formLink) {
     formLink.href = FORM_URL;
     formLink.textContent = "Open the form";
+    formLink.target = "_blank";
+    formLink.rel = "noopener";
   }
 
   function el(id) { return document.getElementById(id); }
