@@ -1162,14 +1162,46 @@
         </div>
       </div>
 
-      <!-- Placeholder for future reviews to enable scrolling -->
-      <div class="review-card" style="justify-content: center; align-items: center; background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05) 0%, var(--card) 70%); border: 1px dashed rgba(255,255,255,0.1);">
-         <p style="color: var(--muted); font-size: 16px; font-style: italic; margin: 0; z-index: 1;">More reviews coming soon...</p>
+      <!-- Invite the first real review: no invented testimonials -->
+      <div class="review-card" style="justify-content: center; align-items: flex-start; background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05) 0%, var(--card) 70%); border: 1px dashed rgba(255,255,255,0.12);">
+         <p style="color: var(--text); font-size: 17px; font-weight: 600; margin: 0 0 10px; z-index: 1;">Own one? Add your review.</p>
+         <p style="color: var(--muted); font-size: 15px; line-height: 1.7; margin: 0 0 18px; z-index: 1;">Tell us your model, how many km you&rsquo;ve ridden and your SOH reading &mdash; we&rsquo;ll add it to this page.</p>
+         <a href="mailto:hello@a-obd.in?subject=My%20A-OBD%20review&amp;body=Model%3A%0AKm%20ridden%3A%0ASOH%20reading%3A%0A%0AYour%20experience%3A" style="color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; z-index: 1;">Email hello@a-obd.in &rarr;</a>
       </div>
       
     </div>
   </div>
 
+
+  <!-- Community proof: real, verifiable links only -->
+  <div class="section animate-on-scroll" id="community" style="padding-top: 0; padding-bottom: 80px;">
+    <style>
+      .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 860px; margin: 0 auto; }
+      .community-card { display: block; text-decoration: none; background-color: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 24px; padding: 30px 28px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform .2s ease, border-color .2s ease; }
+      .community-card:hover { transform: translateY(-3px); border-color: rgba(74, 222, 128, 0.45); }
+      .community-kicker { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+      .community-card h3 { color: var(--text); font-size: 19px; margin: 0 0 10px; font-weight: 600; }
+      .community-card p { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0 0 18px; }
+      .community-link { color: var(--primary); font-size: 14px; font-weight: 600; display: inline-block; }
+    </style>
+    <h2 class="section-title" style="font-size: 28px; margin-bottom: 10px;">From the Ather community</h2>
+    <p style="text-align: center; color: var(--muted); margin-bottom: 30px; font-size: 15px;">Built in public &mdash; every claim below can be checked by clicking through</p>
+    <div class="community-grid">
+      <a class="community-card" href="https://www.reddit.com/r/ATHERENERGY/comments/1w65u4d/" target="_blank" rel="noopener">
+        <span class="community-kicker">The Reddit thread</span>
+        <h3>Where this started</h3>
+        <p>Ather owners on r/ATHERENERGY asked for a way to read real battery health without booking a service centre visit. That thread is public &mdash; read what they asked and what they found.</p>
+        <span class="community-link">Read the thread &rarr;</span>
+      </a>
+      <a class="community-card" href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">
+        <span class="community-kicker">Open source</span>
+        <h3>The firmware is public</h3>
+        <p>Every line of the reader&rsquo;s code, the CAN decoding and the build details are on GitHub. Check exactly what the device reads and sends before you spend anything.</p>
+        <span class="community-link">View on GitHub &rarr;</span>
+      </a>
+    </div>
+    <p style="text-align: center; color: var(--muted); margin: 26px auto 0; font-size: 13px; max-width: 640px; line-height: 1.6;">No paid reviews, no affiliate links. Any review shown on this page comes from a real buyer who wrote in directly.</p>
+  </div>
 
   <div class="section animate-on-scroll" style="padding-top: 40px; padding-bottom: 40px;">
     <h2 class="section-title" style="font-size: 28px; margin-bottom: 25px;">Ather Battery Health Check at Home</h2>
