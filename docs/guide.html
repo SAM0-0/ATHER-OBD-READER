@@ -570,7 +570,7 @@
   }
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"How to Check Ather Battery Health (SOH) at Home","description":"Step-by-step guide to checking Ather battery health on a 450X, 450S or Rizta with the A-OBD reader: real SOH, per-cell voltage and cell imbalance.","image":"https://a-obd.in/images/hero.jpg","author":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"publisher":{"@type":"Organization","name":"A-OBD","logo":{"@type":"ImageObject","url":"https://a-obd.in/images/logo-mark.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://a-obd.in/guide.html"},"datePublished":"2026-10-26","dateModified":"2026-11-12"}
+  {"@context":"https://schema.org","@type":"Article","headline":"How to Check Ather Battery Health (SOH) at Home","description":"Step-by-step guide to checking Ather battery health on a 450X, 450S or Rizta with the A-OBD reader: real SOH, per-cell voltage and cell imbalance.","image":"https://a-obd.in/images/hero.jpg","author":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"publisher":{"@type":"Organization","name":"A-OBD","logo":{"@type":"ImageObject","url":"https://a-obd.in/images/logo-mark.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://a-obd.in/guide.html"},"datePublished":"2026-10-26","dateModified":"2026-11-13"}
   </script>
 </head>
 <body>
@@ -581,7 +581,7 @@
     </nav>
     <h1>How to Check Ather Battery Health (SOH) at Home</h1>
     <p class="sub">A complete walkthrough for Ather 450X, 450S, 450 Plus, 450 Apex and Rizta Z / S / X — plug in the A-OBD reader and read your real battery health in minutes, with no service centre visit.</p>
-    <p class="meta-line">Updated <b>October 2026</b> &nbsp;&middot;&nbsp; <b>6-minute</b> read &nbsp;&middot;&nbsp; Works on <b>2.9 kWh &amp; 3.7 kWh</b> packs</p>
+    <p class="meta-line">Updated <b>November 2026</b> &nbsp;&middot;&nbsp; <b>6-minute</b> read &nbsp;&middot;&nbsp; Works on <b>2.9 kWh &amp; 3.7 kWh</b> packs</p>
   </header>
 
   <main id="main-content">
@@ -602,6 +602,11 @@
           <li><a href="#rizta">Battery health on an Ather Rizta</a></li>
           <li><a href="#service-centre">When to visit an Ather service centre</a></li>
           <li><a href="#how-often">How often should you check?</a></li>
+          <li><a href="#warranty">Ather battery warranty at 70% SOH</a></li>
+          <li><a href="#range-drop">Why is my Ather range dropping?</a></li>
+          <li><a href="#20000km">Battery health at 20,000 km</a></li>
+          <li><a href="#used">Buying a used Ather</a></li>
+          <li><a href="#replacement">Battery replacement costs</a></li>
           <li><a href="#faq">Ather battery health FAQ</a></li>
         </ol>
       </div>
@@ -610,6 +615,9 @@
       <p>State of Health (SOH) is the percentage of original battery capacity your pack can still hold. A brand-new Ather battery is at 100% SOH; a pack that has lost a fifth of its usable capacity reads around 80%. It is the honest, measured number behind the range you see every day — and it is the number Ather's battery warranty is written around: the pack is covered while it stays at or above <strong>70% SOH</strong> during the cover period.</p>
       <p>SOH drops for normal reasons — age, charge cycles, hot summers, frequent fast charging and long periods parked at 100%. The drop is gradual and normal. What matters is the <em>rate</em> of change: a pack that loses a few percent over a year is healthy, while one that drops several percent in a few months usually has a weak cell group and is worth investigating early.</p>
       <p>The catch is that Ather does not show SOH in its app. Service centres read it over the scooter's CAN bus — and most owners are never shown the number. A-OBD plugs into that same diagnostic port and displays it on your phone, so you always know where your battery actually stands.</p>
+
+      <h3>Does the Ather app show battery health (SOH)?</h3>
+      <p>No. The Ather app shows charge, predicted range, ride statistics and service history &mdash; but not battery State of Health. SOH lives on the scooter&rsquo;s CAN bus, which is why only a diagnostic tool (or a service centre laptop) can read it. That is the gap this check fills: the same data the workshop sees, on your phone, without an appointment.</p>
 
       <h2 id="what-you-need">What you need for the check</h2>
       <ul>
@@ -698,6 +706,9 @@
         <b>Safety rules:</b> never keep the reader connected while riding, and do not leave it plugged in for more than 30–40 minutes on the ESP32-C3 — its small CPU gets hot. The WROOM version stays cool for longer sessions.
       </div>
 
+      <h3>Where is the OBD port on an Ather?</h3>
+      <p>It is in the boot, under the mat or a small flap, on both the 450 series and the Rizta &mdash; the connector is in the same place across current models, so the photographs above apply whichever one you ride. Remember that the port is only powered while the key is on or the scooter is charging; a dead reader almost always means the key is off, not a faulty unit.</p>
+
       <h2 id="readings">What your Ather battery readings mean</h2>
       <div class="stat-grid">
         <div class="stat-card">
@@ -718,6 +729,15 @@
       </div>
       <p style="margin-top:18px;">Beyond the battery, the dashboard also shows charger input/output, motor temperature, odometer, drive modes and live charts — useful for spotting a charger that is under-delivering or a motor running hot before it becomes a bigger problem.</p>
 
+      <h3>What is a good SOH for an Ather battery?</h3>
+      <p>A new pack reads 100%. Above 90% is excellent, 80&ndash;90% is normal for a couple of years of use, and 70% is the number Ather&rsquo;s battery warranty is written around. Two caveats worth knowing: readings are less reliable in the first 10,000 km while the pack settles, and a single reading matters far less than the trend across six months.</p>
+
+      <h3>What does cell imbalance mean?</h3>
+      <p>An Ather pack is a long series string of cell groups. They should all sit within a few hundredths of a volt of each other. <strong>Cell imbalance</strong> is the gap between the strongest and the weakest group &mdash; the number A-OBD shows next to the per-cell list. Small gaps are normal and move with temperature and charge level. A gap that keeps growing between checks means one group is ageing faster than the rest, and that group is what limits your range and, eventually, your SOH.</p>
+
+      <h3>Is 78% SOH bad?</h3>
+      <p>It depends on age and distance, not on the number alone. 78% on a two-year-old scooter with 15,000 km is a worse sign than 78% on a five-year-old one with 45,000 km. What matters practically: you are above the 70% warranty threshold, so keep recording it. Take a fresh reading every few thousand kilometres &mdash; if it drops fast or the imbalance climbs with it, that is the point to book a service centre check, not when it crosses 70%.</p>
+
       <h2 id="models">Which Ather models are supported</h2>
       <p>The OBD port and CAN data are the same across current Ather models, so the process above works on:</p>
       <ul>
@@ -726,6 +746,9 @@
         <li>Both the <strong>2.9 kWh</strong> and <strong>3.7 kWh</strong> battery variants</li>
       </ul>
       <p>Every Ather model is supported — except Gen 1, Gen 1.5 and Gen 2. Checking an Ather 450X battery health before a long trip, doing a Rizta battery health check before buying a used scooter, or hunting down cell imbalance on a 450S all use the same three steps: plug in, connect, read.</p>
+
+      <h3>Which battery pack do you have &mdash; 2.9 kWh or 3.7 kWh?</h3>
+      <p>The same model can be sold with either pack, so the badge on the side does not always tell you. Check your invoice, the RC details or the pack label. It matters for interpreting your numbers (a smaller pack works harder for the same trip, so heat and degradation patterns differ) but not for the check itself &mdash; both packs use the same connector and the same CAN frames.</p>
 
       <h2 id="450x">How to check battery health in an Ather 450X</h2>
       <p>The 450X, 450S, 450 Plus and 450 Apex all use the same 14-cell series pack and expose the same diagnostic connector, so the check is identical across the family — and it takes about five minutes.</p>
@@ -761,6 +784,61 @@
         <li><strong>Before buying or selling</strong> a used Ather — SOH is the single most valuable number in a second-hand sale.</li>
         <li><strong>After a hard summer</strong> or a long period parked at full charge, since heat and high state of charge are the two fastest ways to age a pack.</li>
       </ul>
+
+      <h2 id="warranty">Ather battery warranty at 70% SOH &mdash; and how to claim it</h2>
+      <p>Ather&rsquo;s battery cover is written around a State of Health floor: the pack is covered while it stays at or above <strong>70% SOH</strong> during the cover period. The length of that period depends on the plan and model you bought and has changed over the years, so check the paperwork that came with your scooter rather than a number from a forum.</p>
+      <p>The claim itself is mostly a documentation exercise, and this is where owners lose time. Do it in this order:</p>
+      <ol>
+        <li><strong>Record a dated baseline</strong> &mdash; a screenshot of your dashboard with the odometer visible, and the same again a few weeks later, so you can show a trend rather than a single reading.</li>
+        <li><strong>Report it through the Ather app</strong> or by booking a service centre visit, describing the symptom in numbers: &ldquo;SOH reads 69%, cell imbalance 0.4&rdquo; lands better than &ldquo;range feels low&rdquo;.</li>
+        <li><strong>Ask for their reading in writing</strong> when you hand the scooter over, so you can compare it with yours.</li>
+        <li><strong>Keep the screenshots</strong> even after the claim &mdash; they are also what you need to sell the scooter later.</li>
+      </ol>
+      <h3>Will an OBD reader void my Ather warranty?</h3>
+      <p>A-OBD is a passive reader. It listens to the CAN bus and never writes to it, and it plugs into the diagnostic connector without cutting or splicing anything &mdash; the same way a workshop laptop does. Nothing about that changes the scooter&rsquo;s firmware or wiring, so there is nothing for a warranty to object to. The honest caveat: no accessory can control how an individual service centre treats your scooter, so if you are mid-claim, mention the reader rather than hiding it.</p>
+
+      <h2 id="range-drop">Why is my Ather range dropping?</h2>
+      <p>Range complaints are the most common reason owners go looking for a diagnostic tool, and the cause is usually not the battery. Work through this in order, cheapest first:</p>
+      <ul>
+        <li><strong>Weather and load</strong> &mdash; cold packs, headwinds, pillion riders and stop-start traffic all move the estimate by several kilometres. A drop that appears in November and disappears in March is not degradation.</li>
+        <li><strong>Tyre pressure and brakes</strong> &mdash; soft tyres and a dragging brake cost range quietly and continuously.</li>
+        <li><strong>Riding mode and throttle habit</strong> &mdash; the same commute in Sport versus Eco is not the same number.</li>
+        <li><strong>Genuine pack wear</strong> &mdash; the only way to tell this apart from the three above is to measure SOH and cell balance directly instead of inferring from an estimate.</li>
+        <li><strong>A weak cell group</strong> &mdash; shows up as one cell reading low and a widening imbalance. This is the case where waiting costs you.</li>
+      </ul>
+      <p>The trap is treating the app&rsquo;s predicted range as a measurement. It is an estimate computed from recent riding; SOH is a measurement. Compare the two and you can usually tell within one check whether you have a riding-style story or a battery story.</p>
+      <h3>Ather battery health after 2 years</h3>
+      <p>Two years is when the curve flattens. Most packs lose their fastest capacity in the first year or so and then settle into a slower, roughly linear decline, so a steep drop between year two and year three is worth investigating even if the absolute number is still comfortable. Heat and charging habits dominate: daily 100% charging left standing in the sun ages a pack faster than the odometer suggests. That is why a baseline reading matters more than anyone else&rsquo;s average.</p>
+
+      <h2 id="20000km">Ather battery health at 20,000 km &mdash; what to expect</h2>
+      <p>There is no honest single answer to this, and any site that gives you one number is guessing. Two Ather scooters at 20,000 km can differ by more than ten percentage points of SOH depending on climate, charging pattern, how often they were left at 100%, and whether they spent those kilometres at 25 km/h or at full throttle.</p>
+      <p>What you can do is make your own number meaningful:</p>
+      <ul>
+        <li>Compare your 20,000 km reading against <strong>your own</strong> baseline from delivery, not against a stranger&rsquo;s.</li>
+        <li>Look at the imbalance trend alongside it &mdash; a pack holding 88% SOH with a growing imbalance is in worse shape than one at 85% with stable cells.</li>
+        <li>Check the reading with the pack at a similar charge level each time, so you are comparing like with like.</li>
+      </ul>
+      <p>This is exactly what the <a href="data.html">community battery data page</a> is being built for: owners submitting odometer, scooter age and imbalance so the numbers come from real scooters instead of marketing. Add yours when you check.</p>
+
+      <h2 id="used">Buying a used Ather? Check the battery before you pay</h2>
+      <p>A used electric scooter is a battery purchase with a scooter attached. Ten minutes with a reader during the test ride tells you more than any service history sheet, because SOH cannot be reset or disguised by a cosmetic clean-up.</p>
+      <p>What to record on the test ride:</p>
+      <ul>
+        <li><strong>SOH</strong> and the <strong>imbalance</strong> value, photographed with the odometer visible.</li>
+        <li><strong>Per-cell spread</strong> &mdash; one cell group clearly below the others is the expensive kind of problem.</li>
+        <li><strong>Odometer versus age</strong> &mdash; a two-year-old scooter with 40,000 km has led a harder life than one with 8,000.</li>
+      </ul>
+      <p>Ask whether the battery warranty transfers to you and what remains of it, and get the answer in writing before paying. A pack below 70% outside warranty is a negotiation point, not necessarily a walk-away &mdash; but you want to know that before the money moves.</p>
+
+      <h2 id="replacement">Ather battery replacement &mdash; what decides the cost</h2>
+      <p>Ather does not publish a single fixed replacement price that covers every model and situation, and quoting one from a blog post is how owners end up with the wrong expectation. What you can do is understand what drives the number:</p>
+      <ul>
+        <li><strong>Whether it is covered</strong> &mdash; below 70% SOH inside the cover period is a warranty conversation; above it, or outside the period, it is a paid one.</li>
+        <li><strong>Pack size</strong> &mdash; 2.9 kWh and 3.7 kWh packs are not interchangeable in cost.</li>
+        <li><strong>Repair versus replace</strong> &mdash; a single weak cell group is sometimes serviceable; a broadly degraded pack is not.</li>
+        <li><strong>Location and labour</strong> &mdash; service centre pricing is not uniform across cities.</li>
+      </ul>
+      <p>Two pieces of advice that save real money. First, get a written quote before agreeing to anything, with the diagnosis stated in SOH terms. Second, remember that a pack at 75% is not a failed pack &mdash; it is a shorter-range scooter. Replacement only makes financial sense when the range no longer covers your actual riding, or when the pack is inside warranty.</p>
 
       <h2 id="faq">Ather battery health check — FAQ</h2>
       <div class="faq-list">
@@ -829,6 +907,7 @@
           <a href="./">Features &amp; demos</a>
           <a href="guide.html">How to use guide</a>
           <a href="demo.html">Demo video</a>
+          <a href="data.html">Battery data</a>
           <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">Firmware &amp; source</a>
         </nav>
         <nav class="sf-col">
