@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A-OBD Demo Video — Ather Battery Health Dashboard in Action</title>
+  <link rel="canonical" href="https://a-obd.in/demo.html">
+  <meta name="description" content="Watch the A-OBD reader in action: real Ather battery health (SOH), per-cell voltages, cell imbalance and charger data on the live dashboard.">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:type" content="video.other">
+  <meta property="og:title" content="A-OBD Demo Video — Ather Battery Health Dashboard in Action">
+  <meta property="og:description" content="72 seconds of the real A-OBD dashboard: battery SOH, per-cell voltages, cell imbalance and charger data, read from your Ather over the OBD port.">
+  <meta property="og:url" content="https://a-obd.in/demo.html">
+  <meta property="og:image" content="https://a-obd.in/images/demo0.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A-OBD Demo Video — Ather Battery Health Dashboard in Action">
+  <meta name="twitter:description" content="Watch the A-OBD dashboard read real Ather battery health, cell voltages and charger data in 72 seconds.">
+  <meta name="twitter:image" content="https://a-obd.in/images/demo0.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #16181d;
+      --card-hover: #1f2229;
+      --text: #f1f5f9;
+      --muted: #9aa8ba;
+      --border: #292d36;
+      --primary: #cbd5e1;
+      --primary-hover: #ffffff;
+      --accent-badge: rgba(203, 213, 225, 0.1);
+      --accent-badge-border: rgba(203, 213, 225, 0.25);
+      --warn: #e8a040;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Header band */
+    header {
+      padding: 70px 20px 55px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.82), rgba(15, 17, 21, 1)), url('images/hero.webp');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      max-width: 860px;
+      margin: 0 auto 26px;
+      text-align: left;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; }
+    header h1 {
+      font-size: clamp(32px, 5.2vw, 50px);
+      margin: 0 0 18px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+    header .sub {
+      font-size: clamp(16px, 2.4vw, 19px);
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+    .meta-line {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    .meta-line b { color: var(--text); font-weight: 600; }
+
+    /* Article */
+    .article {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 50px 20px 30px;
+    }
+    .article h2 {
+      font-size: clamp(26px, 3.4vw, 34px);
+      margin: 56px 0 18px;
+      letter-spacing: -0.6px;
+      scroll-margin-top: 20px;
+    }
+    .article h2:first-of-type { margin-top: 0; }
+    .article h3 {
+      font-size: 21px;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+      margin: 0 0 18px;
+    }
+    .article strong { color: var(--text); }
+    .article a { color: var(--primary); }
+    .article a.btn { color: var(--text); }
+    .article a.btn:hover { color: var(--text); }
+    .article a.btn-primary,
+    .article a.btn-primary:hover { color: #0f1115; }
+    .article ul, .article ol { color: var(--muted); font-size: 16px; padding-left: 22px; line-height: 1.85; }
+    .article ul li, .article ol li { margin-bottom: 10px; }
+
+    /* Table of contents */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 0 0 10px;
+    }
+    .toc p { margin: 0 0 10px; color: var(--text); font-weight: 600; font-size: 15px; }
+    .toc ol { margin: 0; padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 15px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* Steps */
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    .step-body { width: 100%; }
+    .step-title {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .step-body p { margin: 0 0 10px; font-size: 15px; line-height: 1.75; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-imgs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 10px; }
+    .step-imgs figure { margin: 0; width: calc(50% - 4px); }
+    .step-imgs img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+    }
+    .step-imgs figcaption {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .callout.warn {
+      background: rgba(232, 160, 64, 0.1);
+      border: 1px solid rgba(232, 160, 64, 0.3);
+      color: var(--text);
+    }
+    .callout.info {
+      background: rgba(203, 213, 225, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .callout b { color: var(--text); }
+    .callout.warn b { color: var(--warn); }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0 8px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stat-card h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .stat-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .stat-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 9px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 860px; margin: 0 auto; text-align: left; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+    .faq-q:hover { color: var(--primary-hover); }
+    .faq-icon { font-size: 22px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a p { margin: 0; padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .faq-a a { color: var(--primary); }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 44px 30px;
+      margin: 60px 0 20px;
+    }
+    .cta h2 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 30px); }
+    .cta p { margin: 0 auto 26px; max-width: 560px; font-size: 16px; }
+    .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card);
+      color: var(--text);
+      padding: 15px 32px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .btn:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f1115;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    footer {
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header { padding: 40px 16px 40px; }
+      .article { padding: 36px 16px 20px; }
+      .step { padding: 18px; gap: 12px; }
+      .step-imgs figure { width: 100%; }
+      .cta { padding: 32px 20px; }
+    }
+  
+    /* Site footer */
+    .site-footer {
+      position: relative;
+      background: #0b0d10;
+      border: 0;
+      overflow: hidden;
+      text-align: left;
+      padding: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .sf-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, #0f1115 0%, rgba(15, 17, 21, 0.85) 14%, rgba(15, 17, 21, 0.35) 34%, rgba(10, 15, 12, 0.25) 55%, rgba(6, 9, 8, 0.92) 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(74, 222, 128, 0.10) 0%, rgba(6, 9, 8, 0) 60%),
+        url('images/footer-bg.webp');
+      background-size: cover, cover, cover;
+      background-position: center top, center bottom, center 62%;
+      background-repeat: no-repeat;
+    }
+    .sf-inner {
+      position: relative;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 165px 24px 30px;
+    }
+    .sf-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 0.9fr;
+      gap: 44px;
+    }
+    .sf-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: #f1f5f9;
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .sf-logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+    .sf-logo:hover { color: #ffffff; }
+    .sf-brand p {
+      margin: 0 0 12px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: rgba(226, 232, 240, 0.72);
+      max-width: 330px;
+    }
+    .sf-brand .sf-repo {
+      margin: 14px 0 6px;
+      font-size: 14px;
+      color: rgba(226, 232, 240, 0.6);
+    }
+    .sf-brand .sf-repo a {
+      color: #e2e8f0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sf-brand .sf-credits {
+      margin: 0;
+      font-size: 12.5px;
+      color: rgba(203, 213, 225, 0.5);
+    }
+    .sf-col h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: rgba(241, 245, 249, 0.5);
+      margin: 4px 0 14px;
+    }
+    .sf-col a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14.5px;
+      color: rgba(237, 242, 247, 0.82);
+      text-decoration: none;
+    }
+    .sf-col a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sf-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: 52px;
+      padding-top: 24px;
+      font-size: 13px;
+      color: rgba(203, 213, 225, 0.6);
+    }
+    @media (max-width: 900px) {
+      .sf-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
+      .sf-brand { grid-column: 1 / -1; }
+      .sf-inner { padding: 130px 20px 26px; }
+    }
+    @media (max-width: 560px) {
+      .sf-grid { grid-template-columns: 1fr; gap: 28px; }
+      .sf-inner { padding: 110px 18px 24px; }
+      .sf-bottom { justify-content: flex-start; }
+    }
+</style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://a-obd.in/"},{"@type":"ListItem","position":2,"name":"Demo video","item":"https://a-obd.in/demo.html"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoObject","@id":"https://a-obd.in/demo.html#video","name":"A-OBD demo — Ather battery health dashboard in action","description":"Screen recording of the A-OBD web dashboard for Ather scooters: live battery State of Health (SOH), per-cell voltages, cell imbalance, charger telemetry and live charts, read from the scooter's BMS over the OBD port.","thumbnailUrl":["https://a-obd.in/images/demo0.png"],"uploadDate":"2026-10-20","duration":"PT1M12S","contentUrl":"https://a-obd.in/images/demo-vid.mp4","inLanguage":"en","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/","logo":{"@type":"ImageObject","url":"https://a-obd.in/images/logo-mark.png"}},"potentialAction":{"@type":"WatchAction","target":"https://a-obd.in/demo.html"}}
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="./">Home</a><span aria-hidden="true">/</span>Demo video
+    </nav>
+    <h1>A-OBD in action</h1>
+    <p class="sub">72 seconds of the real dashboard &mdash; battery State of Health, every cell voltage, charger data and live charts, read straight from your Ather&rsquo;s BMS.</p>
+    <p class="meta-line">1 min 12 s &nbsp;&middot;&nbsp; Real screen recording &nbsp;&middot;&nbsp; 450X, 450S, 450 Plus, 450 Apex &amp; Rizta</p>
+  </header>
+
+  <main id="main-content">
+    <div class="article">
+
+      <video controls playsinline poster="images/demo0.webp" preload="metadata" width="443" height="653" aria-label="A-OBD demo: Ather battery health dashboard"
+             style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto 12px; border-radius: 14px; border: 1px solid var(--border); background: #0f1115;">
+        <source src="images/demo-vid.mp4" type="video/mp4">
+        <track kind="captions" src="images/demo-captions.vtt" srclang="en" label="English" default>
+        Your browser can&rsquo;t play this video. <a href="images/demo-vid.mp4">Download the MP4</a>.
+      </video>
+      <p style="text-align: center; font-size: 13px; margin: 0 0 6px; color: var(--muted);">Captions available. Prefer reading? There is a written summary below.</p>
+
+      <div class="toc">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#what-it-shows">What you are looking at</a></li>
+          <li><a href="#summary">The video, in words</a></li>
+          <li><a href="#diy">See this screen on your own scooter</a></li>
+        </ol>
+      </div>
+
+      <h2 id="what-it-shows">What you are looking at</h2>
+      <p>This is the A-OBD web dashboard running in a phone browser, a few seconds after the reader was plugged into the diagnostic port. Nothing is simulated &mdash; every value comes from the scooter&rsquo;s own battery management system.</p>
+      <ul>
+        <li><strong>Battery health (SOH)</strong> &mdash; the percentage of original capacity your pack still holds. The Ather app shows charge and range, but not this number.</li>
+        <li><strong>Per-cell voltages</strong> for each cell group in the pack, so you can see how evenly the battery is working instead of trusting a single average.</li>
+        <li><strong>Cell imbalance</strong> &mdash; the gap between the strongest and weakest cell. A gap that widens between checks is the early warning of an ageing pack.</li>
+        <li><strong>Charger data</strong> &mdash; input and output voltage and current while the scooter is charging.</li>
+        <li><strong>Live charts</strong> that keep updating while you ride or charge, instead of a single frozen snapshot.</li>
+        <li><strong>Extra values</strong> &mdash; controller temperature, throttle output, humidity, ambient temperature, PDU voltage and min/max cell SOH.</li>
+      </ul>
+
+      <h2 id="summary">The video, in words</h2>
+      <p>The recording is deliberately short and unglamorous: it shows what an owner actually sees. The reader is powered, the phone joins its Wi-Fi network, and the dashboard loads with live data in about ten seconds. From there the video scrolls through the main panels &mdash; battery health and pack summary first, then the individual cell readings, then charger telemetry while the scooter is plugged in.</p>
+      <p>What it deliberately does <em>not</em> show is a clean-room demo. This is the same interface you get at home: same Wi-Fi hotspot, same browser, same numbers coming off the CAN bus.</p>
+
+      <h2 id="diy">See this screen on your own scooter</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <span class="step-title">Turn the key on and plug the reader in</span>
+          <p>The OBD port is only powered with the key on (or while charging). Open the boot, lift the cover and plug A-OBD into the diagnostic port, keeping the marked line on the connector facing up.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <span class="step-title">Power the reader and join its Wi-Fi</span>
+          <p>Connect it to a power bank or USB-C charger, then join the <strong>Ather-OBD</strong> network from your phone. The password is <strong>12345678</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <span class="step-title">Open 192.168.4.1</span>
+          <p>Type <strong>http://192.168.4.1</strong> into your phone browser (http, not https). The dashboard in the video is what loads &mdash; usually within about ten seconds.</p>
+        </div>
+      </div>
+      <div class="callout info">
+        <b>Full walkthrough:</b> the <a href="guide.html">step-by-step Ather battery health guide</a> covers what each reading means, which models are supported and when a number is worth a service centre visit.
+      </div>
+
+      <div class="cta">
+        <h2>Want the numbers on your own scooter?</h2>
+        <p>Pre-assembled, plug &amp; play and open source. &#8377;949 for the ESP32-C3 version, &#8377;1150 for the ESP32/WROOM version, &#8377;175 flat shipping across India.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="./#versions">Order A-OBD</a>
+          <a class="btn" href="guide.html">Read the setup guide</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+<footer class="site-footer">
+    <div class="sf-bg" aria-hidden="true"></div>
+    <div class="sf-inner">
+      <div class="sf-grid">
+        <div class="sf-brand">
+          <a class="sf-logo" href="./">
+            <img src="images/logo-mark.webp" alt="A-OBD logo" width="42" height="42">
+            <span>A-OBD</span>
+          </a>
+          <p>Real Ather battery health (SOH), per-cell data and 40+ live values &mdash; plug &amp; play, open source, built by the community.</p>
+          <p class="sf-repo">Want to build it yourself? <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">github.com/SAM0-0/ATHER-OBD-READER</a></p>
+          <p class="sf-credits">Contributors: <a href="https://github.com/Kukun7610" target="_blank" rel="noopener">Kukun7610</a> (Extra tab) &amp; <a href="https://github.com/Dhruv2605" target="_blank" rel="noopener">Dhruv2605</a> (offline logging)</p>
+        </div>
+        <nav class="sf-col">
+          <h4>Product</h4>
+          <a href="./#versions">Order A-OBD</a>
+          <a href="./">Features &amp; demos</a>
+          <a href="guide.html">How to use guide</a>
+          <a href="demo.html">Demo video</a>
+          <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">Firmware &amp; source</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Support</h4>
+          <a href="contact.html">Contact us</a>
+          <a href="shipping.html">Shipping &amp; delivery</a>
+          <a href="refunds.html">Refunds &amp; returns</a>
+          <a href="mailto:hello@a-obd.in">hello@a-obd.in</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Legal</h4>
+          <a href="terms.html">Terms &amp; conditions</a>
+          <a href="privacy.html">Privacy policy</a>
+        </nav>
+      </div>
+      <div class="sf-bottom">
+        <span>&copy; 2026 A-OBD. All rights reserved.</span>
+        <span>Not officially affiliated with Ather Energy.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var open = item.classList.toggle('open');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+    }
+  </script>
+
+  <!-- Fairy Dust Cursor -->
+  <script>
+    (function() {
+      const colors = ['#D61C59', '#E7D84B', '#1B8798', '#4ade80', '#e8a040'];
+      const characterSet = ['✨', '⭐', '🌟', '⚡', '🚗',  '🔋', '🚀', '🏎️', '🏍️', '💨', '🔥'];
+      const particleSize = 24;
+      const particleCount = 1;
+      const gravity = 0.04;
+      const fadeSpeed = 0.98;
+      const initialVelocity = { min: 0.5, max: 1.5 };
+
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '9999';
+      document.body.appendChild(canvas);
+
+      const context = canvas.getContext('2d');
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+
+      let particles = [];
+      let lastPos = { x: 0, y: 0 };
+
+      function createParticle(x, y) {
+        const randomChar = characterSet[Math.floor(Math.random() * characterSet.length)];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const velocityX = (Math.random() < 0.5 ? -1 : 1) * (Math.random() * (initialVelocity.max - initialVelocity.min) + initialVelocity.min);
+        const velocityY = -(Math.random() * initialVelocity.max);
+
+        particles.push({
+          x, y,
+          character: randomChar,
+          color: randomColor,
+          velocity: { x: velocityX, y: velocityY },
+          lifeSpan: 100,
+          initialLifeSpan: 100,
+          scale: 1
+        });
+      }
+
+      function updateParticles() {
+        context.clearRect(0, 0, width, height);
+        particles.forEach(particle => {
+          particle.x += particle.velocity.x;
+          particle.y += particle.velocity.y;
+          particle.velocity.y += gravity;
+          particle.lifeSpan *= fadeSpeed;
+          particle.scale = Math.max(particle.lifeSpan / particle.initialLifeSpan, 0);
+
+          context.save();
+          context.font = `${particleSize * particle.scale}px serif`;
+          context.fillStyle = particle.color;
+          context.globalAlpha = particle.scale;
+          context.fillText(particle.character, particle.x, particle.y);
+          context.restore();
+        });
+        particles = particles.filter(p => p.lifeSpan > 0.1);
+      }
+
+      function animate() {
+        updateParticles();
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      function handleMove(x, y) {
+        const distance = Math.hypot(x - lastPos.x, y - lastPos.y);
+        if (distance > 2) {
+          for (let i = 0; i < particleCount; i++) {
+            createParticle(x, y);
+          }
+          lastPos = { x, y };
+        }
+      }
+
+      document.body.addEventListener('mousemove', (e) => {
+        const tag = e.target.tagName.toLowerCase();
+        if (tag === 'body' || tag === 'html' || tag === 'canvas' || e.target.classList.contains('article')) return;
+
+        handleMove(e.clientX, e.clientY);
+      });
+
+      document.body.addEventListener('touchmove', (e) => {
+        const tag = e.target.tagName.toLowerCase();
+        if (tag === 'body' || tag === 'html' || tag === 'canvas' || e.target.classList.contains('article')) return;
+
+        if (e.touches.length > 0) {
+          handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- Flowing Green Dots Background -->
+  <script>
+    (function() {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      canvas.style.pointerEvents = 'none';
+      document.body.insertBefore(canvas, document.body.firstChild);
+
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const backgroundColor = '#0f1115';
+      const particleColor = '74, 222, 128';
+
+      let width, height;
+      let time = 0;
+      let mouse = { x: -1000, y: -1000 };
+      let points = [];
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+
+        points = [];
+        const gridSize = width < 768 ? 60 : 45;
+        for (let x = gridSize / 2; x < width; x += gridSize) {
+          for (let y = gridSize / 2; y < height; y += gridSize) {
+            points.push({ x, y, ox: x, oy: y, vx: 0, vy: 0 });
+          }
+        }
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+      window.addEventListener('touchmove', e => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      resize();
+
+      function animate() {
+        time += 0.005;
+
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, width, height);
+
+        const t0 = time;
+        const t1 = time * 0.8;
+        const t2 = time * 1.2;
+
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+
+          const sin1 = Math.sin(p.x * 0.01 + t0);
+          const sin2 = Math.sin(p.y * 0.01 + t1);
+          const sin3 = Math.sin((p.x + p.y) * 0.005 + t2);
+          const angle = ((sin1 + sin2 + sin3) / 3) * 12.566;
+
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+
+          if (Math.abs(dx) < 150 && Math.abs(dy) < 150) {
+            const distSq = dx * dx + dy * dy;
+            if (distSq < 22500) {
+              const dist = Math.sqrt(distSq);
+              const push = (1 - dist / 150) * 0.5;
+              p.vx -= (dx / dist) * push;
+              p.vy -= (dy / dist) * push;
+            }
+          }
+
+          p.vx += Math.cos(angle) * 0.1;
+          p.vy += Math.sin(angle) * 0.1;
+
+          p.vx *= 0.95;
+          p.vy *= 0.95;
+          p.vx += (p.ox - p.x) * 0.01;
+          p.vy += (p.oy - p.y) * 0.01;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          const speedSq = p.vx * p.vx + p.vy * p.vy;
+          const alpha = Math.min(0.8, speedSq * 2 + 0.2);
+
+          if (alpha > 0.05) {
+            ctx.fillStyle = `rgba(${particleColor}, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, 6.283);
+            ctx.fill();
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+</html>
