@@ -1540,7 +1540,16 @@
         });
       }
       window.addEventListener('hashchange', () => setTimeout(revealOnScreen, 60));
-      window.addEventListener('load', () => setTimeout(revealOnScreen, 400));
+      window.addEventListener('load', () => setTimeout(() => {
+        // images and fonts can still shift the layout after the browser's own
+        // jump, which leaves deep links parked in empty space. Re-anchor once
+        // everything has settled.
+        if (location.hash) {
+          const target = document.querySelector(location.hash);
+          if (target) target.scrollIntoView({ block: 'start' });
+        }
+        revealOnScreen();
+      }, 400));
       revealOnScreen();
     });
 
