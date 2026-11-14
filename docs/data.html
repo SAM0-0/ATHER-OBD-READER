@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ather Battery Data from Real Owners — SOH &amp; Imbalance</title>
+  <title>Ather Battery Health Data from Real Owners (SOH by Age)</title>
   <link rel="canonical" href="https://a-obd.in/data.html">
   <meta name="description" content="Self-reported Ather battery health data: SOH, odometer and cell delta in mV from real owners, grouped by age. Submit your reading anonymously.">
   <meta property="og:locale" content="en_IN">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Ather Battery Data from Real Owners — SOH &amp; Imbalance">
-  <meta property="og:description" content="Real Ather scooters, real readings: SOH, odometer and cell imbalance submitted by owners, with medians by scooter age.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ather Battery Health Data from Real Owners (SOH by Age)">
+  <meta property="og:description" content="Real Ather scooters, real readings: SOH, odometer and cell delta in mV submitted by owners, with medians by scooter age.">
   <meta property="og:url" content="https://a-obd.in/data.html">
   <meta property="og:image" content="https://a-obd.in/images/hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ather Battery Data from Real Owners — SOH &amp; Imbalance">
-  <meta name="twitter:description" content="Owner-submitted Ather battery health data: SOH, odometer and cell imbalance, with medians by age.">
+  <meta name="twitter:title" content="Ather Battery Health Data from Real Owners (SOH by Age)">
+  <meta name="twitter:description" content="Owner-submitted Ather battery health data: SOH, odometer and cell delta in mV, with medians by age.">
   <meta name="twitter:image" content="https://a-obd.in/images/hero.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -478,7 +478,10 @@
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://a-obd.in/"},{"@type":"ListItem","position":2,"name":"Community battery data","item":"https://a-obd.in/data.html"}]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Dataset","name":"Ather battery health data (self-reported)","description":"State of Health, odometer, cell delta (mV) and state of charge readings submitted by Ather owners, grouped by scooter age. Self-reported and unverified.","creator":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/","keywords":["Ather","battery health","SOH","cell imbalance","cell delta","electric scooter"],"variableMeasured":[{"@type":"PropertyValue","name":"State of Health (SOH)","unitText":"%"},{"@type":"PropertyValue","name":"Odometer","unitText":"km"},{"@type":"PropertyValue","name":"Cell delta","unitText":"mV"},{"@type":"PropertyValue","name":"State of Charge (SoC)","unitText":"%"},{"@type":"PropertyValue","name":"Scooter age","unitText":"months"}],"distribution":[{"@type":"DataDownload","contentUrl":"https://a-obd.in/data/community-scooters.json","encodingFormat":"application/json"}]}
+  {"@context":"https://schema.org","@type":"Dataset","name":"Ather battery health data (self-reported)","description":"State of Health, odometer, cell delta (mV) and state of charge readings submitted by Ather owners, grouped by scooter age. Self-reported and unverified.","creator":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"isAccessibleForFree":true,"dateModified":"2026-11-13","temporalCoverage":"2026-11-13/..","inLanguage":"en-IN","license":"https://creativecommons.org/licenses/by/4.0/","keywords":["Ather","battery health","SOH","cell imbalance","cell delta","electric scooter"],"variableMeasured":[{"@type":"PropertyValue","name":"State of Health (SOH)","unitText":"%"},{"@type":"PropertyValue","name":"Odometer","unitText":"km"},{"@type":"PropertyValue","name":"Cell delta","unitText":"mV"},{"@type":"PropertyValue","name":"State of Charge (SoC)","unitText":"%"},{"@type":"PropertyValue","name":"Scooter age","unitText":"months"}],"distribution":[{"@type":"DataDownload","contentUrl":"https://a-obd.in/data/community-scooters.json","encodingFormat":"application/json"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a normal SOH for an Ather battery?","acceptedAnswer":{"@type":"Answer","text":"There is no published benchmark, which is exactly the gap this page fills. What can be said without guessing: a new pack reads 100%, Ather&rsquo;s battery warranty is written around 70%, and a pack still in the 80s after a few years of use is unremarkable. The useful comparison is your number against submissions at a similar age and mileage &mdash; not against one headline figure."}},{"@type":"Question","name":"How long does an Ather battery last?","acceptedAnswer":{"@type":"Answer","text":"Usually longer than the warranty period, but &ldquo;last&rdquo; needs unpacking. Capacity declines gradually rather than failing on a date, and a pack stops being practical when its range no longer covers your rides. Two scooters of the same age can differ by ten percentage points or more depending on climate, charging habit and how hard they were ridden, so the age-band medians above are more useful than any single lifespan claim."}},{"@type":"Question","name":"What is a normal cell delta (cell imbalance)?","acceptedAnswer":{"@type":"Answer","text":"Readings are in millivolts, and a healthy pack sits within tens of millivolts &mdash; the exact spread moves with charge level and temperature, so compare readings taken at a similar SoC. A gap that keeps growing between checks, or one cell group sitting clearly lower than the rest, points at a weak group rather than general wear. That is the case worth a service centre visit; a stable number in the tens is not."}},{"@type":"Question","name":"How accurate are these readings?","acceptedAnswer":{"@type":"Answer","text":"The measurement comes from the scooter&rsquo;s own battery management system, so the number itself is real; what is not verified is that the row was typed in honestly and without errors. That is why this page shows medians, age bands and a scatter with every outlier visible instead of a single flattering average, and why obvious nonsense is dropped on import."}}]}
   </script>
 </head>
 <body>
@@ -501,6 +504,8 @@
       <div class="callout info">
         <b>Note:</b> these are self-reported readings from owners using their own reader. That is the point &mdash; it reflects real scooters in real conditions &mdash; but treat individual rows as claims, not measurements. The pattern across many rows is what is useful.
       </div>
+
+      <p class="data-summary"><!--DATA:SUMMARY:START-->So far <strong>5 owners have submitted</strong> a reading: median SOH <strong>88.3%</strong> and median cell delta <strong>1.2 mV</strong>.<!--DATA:SUMMARY:END--></p>
 
       <div id="dash" hidden>
         <div class="stat-grid" id="stats"></div>
@@ -533,7 +538,11 @@
                 <th scope="col">SoC</th>
               </tr>
             </thead>
-            <tbody id="rows"></tbody>
+            <tbody id="rows"><!--DATA:ROWS:START-->              <tr><td style="color:#9aa8ba">Anonymous</td><td>450X · 3.7 kWh</td><td>1.3 yr</td><td>46,666 km</td><td>88.3%</td><td>1.1 mV</td><td>63.5%</td></tr>
+              <tr><td>anbuchelva</td><td>450X · 3.7 kWh</td><td>4 yr</td><td>23,000 km</td><td>92.0%</td><td>0.0 mV</td><td>63.0%</td></tr>
+              <tr><td>Sam</td><td>450X · 3.7 kWh</td><td>4.2 yr</td><td>20,660 km</td><td>89.0%</td><td>—</td><td>67.0%</td></tr>
+              <tr><td>Squeszer</td><td>450X</td><td>9 mo</td><td>6,987 km</td><td>87.2%</td><td>1.3 mV</td><td>94.0%</td></tr>
+              <tr><td>Chinnu</td><td>Rizta Z · 3.7 kWh</td><td>1 yr</td><td>4,200 km</td><td>88.0%</td><td>5.0 mV</td><td>78.0%</td></tr><!--DATA:ROWS:END--></tbody>
           </table>
         </div>
       </div>
@@ -556,6 +565,26 @@
       <p><strong>Not a warranty opinion.</strong> Nothing here decides whether Ather will honour a claim. If your pack reads below 70% SOH inside the cover period, the <a href="guide.html#warranty">warranty section of the guide</a> explains what evidence to gather.</p>
       <p><strong>Why cell delta is included.</strong> SOH tells you how much capacity is left; cell delta tells you whether the pack is still working evenly. Two scooters can share an SOH and be in very different health. If you only send one number, send cell delta.</p>
       <p><strong>Charge level matters.</strong> Both SOH and cell delta read slightly differently depending on state of charge, so the form asks for SoC at the time of reading. It is there to keep comparisons honest, not to score anyone.</p>
+
+            <h2 id="faq">Ather battery data &mdash; common questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is a normal SOH for an Ather battery?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>There is no published benchmark, which is exactly the gap this page fills. What can be said without guessing: a new pack reads 100%, Ather&rsquo;s battery warranty is written around 70%, and a pack still in the 80s after a few years of use is unremarkable. The useful comparison is your number against submissions at a similar age and mileage &mdash; not against one headline figure.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How long does an Ather battery last?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Usually longer than the warranty period, but &ldquo;last&rdquo; needs unpacking. Capacity declines gradually rather than failing on a date, and a pack stops being practical when its range no longer covers your rides. Two scooters of the same age can differ by ten percentage points or more depending on climate, charging habit and how hard they were ridden, so the age-band medians above are more useful than any single lifespan claim.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is a normal cell delta (cell imbalance)?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Readings are in millivolts, and a healthy pack sits within tens of millivolts &mdash; the exact spread moves with charge level and temperature, so compare readings taken at a similar SoC. A gap that keeps growing between checks, or one cell group sitting clearly lower than the rest, points at a weak group rather than general wear. That is the case worth a service centre visit; a stable number in the tens is not.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How accurate are these readings?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>The measurement comes from the scooter&rsquo;s own battery management system, so the number itself is real; what is not verified is that the row was typed in honestly and without errors. That is why this page shows medians, age bands and a scatter with every outlier visible instead of a single flattering average, and why obvious nonsense is dropped on import.</p></div>
+        </div>
+      </div>
 
       <div class="cta">
         <h2>Reading your own scooter takes ten minutes</h2>
@@ -730,14 +759,17 @@
     rows.innerHTML = "";
     entries.slice().sort(function (a, b) { return (b.odometerKm || 0) - (a.odometerKm || 0); }).forEach(function (e) {
       var tr = document.createElement("tr");
-      var age = num(e.ageMonths) != null ? (Math.round(e.ageMonths / 12 * 10) / 10) + " yr" : "\u2014";
+      var age = "\u2014";
+      if (num(e.ageMonths) != null) {
+        age = e.ageMonths < 12 ? Math.round(e.ageMonths) + " mo" : (Math.round(e.ageMonths / 12 * 10) / 10) + " yr";
+      }
       var cells = [
         e.name || "Anonymous",
         modelText(e),
         age,
         km(e.odometerKm) + (e.odometerKm != null ? " km" : ""),
         pct(e.soh) + "%",
-        pct(e.imbalanceMv, 1) + " mV",
+        num(e.imbalanceMv) == null ? "\u2014" : pct(e.imbalanceMv, 1) + " mV",
         pct(e.soc) + "%"
       ];
       cells.forEach(function (text, i) {
@@ -780,7 +812,7 @@
         <nav class="sf-col">
           <h4>Product</h4>
           <a href="./#versions">Order A-OBD</a>
-          <a href="./">Features &amp; demos</a>
+          <a href="./#features">Features &amp; demos</a>
           <a href="guide.html">How to use guide</a>
           <a href="demo.html">Demo video</a>
           <a href="data.html">Battery data</a>
@@ -807,7 +839,7 @@
   </footer>
 
   <script>
-    function toggleFaqUnused(btn) {
+    function toggleFaq(btn) {
       var item = btn.parentElement;
       var ans = item.querySelector('.faq-a');
       var open = item.classList.toggle('open');

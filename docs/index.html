@@ -1037,7 +1037,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="features" style="scroll-margin-top: 80px;">
     <h2 class="section-title animate-on-scroll">Unlock Hidden <span>Telemetry</span></h2>
     <p class="section-subtitle animate-on-scroll">Comprehensive real-time insights delivered directly to your device.</p>
     
@@ -1294,7 +1294,7 @@
         <nav class="sf-col">
           <h4>Product</h4>
           <a href="./#versions">Order A-OBD</a>
-          <a href="./">Features &amp; demos</a>
+          <a href="./#features">Features &amp; demos</a>
           <a href="guide.html">How to use guide</a>
           <a href="demo.html">Demo video</a>
           <a href="data.html">Battery data</a>
@@ -1529,6 +1529,31 @@
         });
       }, { threshold: 0.15 });
       document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+      // Anchor jumps (footer links, shared URLs) can land on a section before the
+      // observer has fired, leaving it at opacity 0. Force-reveal whatever is on
+      // screen after a hash change or a late layout shift.
+      function revealOnScreen() {
+        document.querySelectorAll('.animate-on-scroll:not(.in-view)').forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in-view');
+        });
+      }
+      window.addEventListener('hashchange', () => setTimeout(revealOnScreen, 60));
+      window.addEventListener('load', () => setTimeout(revealOnScreen, 400));
+      revealOnScreen();
+    });
+
+    /* Footer "Order A-OBD" -> open the picker when we are on the page that has it */
+    document.querySelectorAll('a[href$="#versions"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const modal = document.getElementById('orderModal');
+        if (!modal) return;              // other pages: navigate to /#versions instead
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (window.history.replaceState) window.history.replaceState(null, null, '#versions');
+      });
     });
 
     /* Modals */

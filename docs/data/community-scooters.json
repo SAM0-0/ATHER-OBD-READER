@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-13",
+  "generated": "2026-11-14",
   "source": "Google Form submissions, self-reported by Ather owners",
-  "count": 1,
+  "count": 5,
   "entries": [
     {
       "name": "Sam",
@@ -10,8 +10,56 @@
       "odometerKm": 20660,
       "ageMonths": 50,
       "soh": 89.0,
-      "imbalanceMv": 38.5,
+      "imbalanceMv": null,
       "soc": 67.0,
+      "notes": null,
+      "submitted": "2026-11-13"
+    },
+    {
+      "name": "Squeszer",
+      "model": "450X",
+      "pack": null,
+      "odometerKm": 6987,
+      "ageMonths": 9,
+      "soh": 87.2,
+      "imbalanceMv": 1.3,
+      "soc": 94.0,
+      "notes": null,
+      "submitted": "2026-11-13"
+    },
+    {
+      "name": "anbuchelva",
+      "model": "450X",
+      "pack": 3.7,
+      "odometerKm": 23000,
+      "ageMonths": 48,
+      "soh": 92.0,
+      "imbalanceMv": 0.0,
+      "soc": 63.0,
+      "notes": null,
+      "submitted": "2026-11-13"
+    },
+    {
+      "name": null,
+      "model": "450X",
+      "pack": 3.7,
+      "odometerKm": 46666,
+      "ageMonths": 16,
+      "soh": 88.3,
+      "imbalanceMv": 1.1,
+      "soc": 63.5,
+      "notes": null,
+      "submitted": "2026-11-13"
+    },
+    {
+      "name": "Chinnu",
+      "model": "Rizta Z",
+      "pack": 3.7,
+      "odometerKm": 4200,
+      "ageMonths": 12,
+      "soh": 88.0,
+      "imbalanceMv": 5.0,
+      "soc": 78.0,
       "notes": null,
       "submitted": "2026-11-13"
     }

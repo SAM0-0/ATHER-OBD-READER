@@ -22,6 +22,7 @@ Field handling worth knowing:
 
 import argparse
 import csv
+import html
 import io
 import json
 import re
@@ -86,6 +87,18 @@ def parse_age_months(value, header=""):
         return None
     # A number with no unit: honour the column header if it says years.
     return bare * 12 if "year" in norm(header) else bare
+
+
+def normalise_delta(value):
+    """Owners type either millivolts ('38.5') or volts ('0.0013').
+
+    A cell delta below 1 is always volts - nobody reports 0.4 mV on a 14S pack,
+    and 0.0013 V is 1.3 mV, which is a real reading. So anything in (0, 1) is
+    multiplied by 1000.
+    """
+    if value is None:
+        return None
+    return value * 1000 if 0 < value < 1 else value
 
 
 def parse_pack(*values):
@@ -161,6 +174,100 @@ def load_rows(args):
     return list(csv.reader(io.StringIO(text)))
 
 
+HTML = OUT.parent.parent / "data.html"
+
+
+def inr(n):
+    """Indian digit grouping, to match the JS table (20,660 / 3,00,000)."""
+    digits = str(abs(int(n)))
+    if len(digits) > 3:
+        head, tail = digits[:-3], digits[-3:]
+        parts = []
+        while len(head) > 2:
+            parts.insert(0, head[-2:])
+            head = head[:-2]
+        digits = ",".join([head] + parts + [tail])
+    return ("-" if n < 0 else "") + digits
+
+
+def median(values):
+    v = sorted(x for x in values if x is not None)
+    if not v:
+        return None
+    mid = len(v) // 2
+    return v[mid] if len(v) % 2 else (v[mid - 1] + v[mid]) / 2
+
+
+def model_text(e):
+    if not e.get("model"):
+        return "\u2014"
+    return e["model"] + (" \u00b7 " + str(e["pack"]) + " kWh" if e.get("pack") else "")
+
+
+def summary_html(entries):
+    if not entries:
+        return ("<strong>No submissions yet.</strong> The charts appear once the first reading lands &mdash; "
+                "add yours with the form below and it stops being theoretical.")
+    soh = median([e.get("soh") for e in entries])
+    delta = median([e.get("imbalanceMv") for e in entries])
+    below = sum(1 for e in entries if (e.get("soh") or 0) < 70)
+    n = len(entries)
+    parts = [f"So far <strong>{n} {'owner has' if n == 1 else 'owners have'} submitted</strong> a reading"]
+    tail = []
+    if soh is not None:
+        tail.append(f"median SOH <strong>{soh:.1f}%</strong>")
+    if delta is not None:
+        tail.append(f"median cell delta <strong>{delta:.1f} mV</strong>")
+    text = parts[0] + (": " + " and ".join(tail) if tail else "") + "."
+    if below:
+        text += f" {below} {'reading sits' if below == 1 else 'readings sit'} below the 70% warranty threshold."
+    return text
+
+
+def rows_html(entries):
+    rows = []
+    ordered = sorted(entries, key=lambda e: (e.get("odometerKm") or 0), reverse=True)
+    for e in ordered:
+        if e.get("ageMonths") is None:
+            age = "\u2014"
+        elif e["ageMonths"] < 12:
+            age = f"{round(e['ageMonths'])} mo"
+        else:
+            age = f"{round(e['ageMonths'] / 12, 1):g} yr"
+        odo = inr(e["odometerKm"]) + " km" if e.get("odometerKm") is not None else "\u2014"
+        soh = f"{e['soh']:.1f}%" if e.get("soh") is not None else "\u2014"
+        delta = f"{e['imbalanceMv']:.1f} mV" if e.get("imbalanceMv") is not None else "\u2014"
+        soc = f"{e['soc']:.1f}%" if e.get("soc") is not None else "\u2014"
+        name = e.get("name")
+        first = ("<td>" + html.escape(name) + "</td>") if name else ('<td style="color:#9aa8ba">Anonymous</td>')
+        cells = [model_text(e), age, odo, soh, delta, soc]
+        rows.append("              <tr>" + first + "".join("<td>" + html.escape(c) + "</td>" for c in cells) + "</tr>")
+    return "\n".join(rows)
+
+
+def write_html(entries):
+    """Put the numbers in the HTML itself, so crawlers and no-JS readers see them."""
+    if not HTML.exists():
+        print("  (data.html not built yet - run the page builder first)")
+        return
+    page = HTML.read_text(encoding="utf-8")
+    replaced = 0
+    for start, end, value in (
+        ("<!--DATA:SUMMARY:START-->", "<!--DATA:SUMMARY:END-->", summary_html(entries)),
+        ("<!--DATA:ROWS:START-->", "<!--DATA:ROWS:END-->", rows_html(entries)),
+    ):
+        i = page.find(start)
+        j = page.find(end)
+        if i == -1 or j == -1:
+            print(f"  (markers for {start} missing - skipped)")
+            continue
+        page = page[: i + len(start)] + value + page[j:]
+        replaced += 1
+    HTML.write_text(page, encoding="utf-8", newline="")
+    print(f"  embedded {replaced}/2 blocks into docs/data.html")
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     src = ap.add_mutually_exclusive_group(required=True)
@@ -180,7 +287,7 @@ def main():
 
     age_header = header[mapping["age"]] if "age" in mapping else ""
 
-    entries, skipped, seen = [], [], set()
+    entries, skipped, seen = [], [], {}
 
     for n, row in enumerate(rows[1:], start=2):
         def get(field):
@@ -190,7 +297,7 @@ def main():
         soh = to_float(get("soh"))
         soc = to_float(get("soc"))
         odo = to_int(get("odometerKm"))
-        imbalance_mv = to_float(get("imbalance"))
+        imbalance_mv = normalise_delta(to_float(get("imbalance")))
         age_months = parse_age_months(get("age"), age_header)
         model = clean_model(get("model"))
         pack = parse_pack(get("model"), get("pack"))
@@ -211,17 +318,38 @@ def main():
             skipped.append((n, "imbalance out of range (expected mV, 0-1000)"))
             continue
 
-        key = (model, odo, round(soh, 2), imbalance_mv)
+        # The same owner submitting twice often disagrees with themselves about
+        # "Gen 4" vs "Gen 5" or leaves one cell blank, so dedupe on the reading
+        # itself: same name, same odometer, same SOH is one scooter. Fill gaps
+        # from the later row; if the two rows contradict each other, drop the
+        # disputed field rather than pick a side.
+        key = (norm(get("name")) or None, odo, round(soh, 2))
         if key in seen:
-            skipped.append((n, "duplicate row"))
+            first = seen[key]
+            merged = []
+            for field, value in (
+                ("pack", pack),
+                ("imbalanceMv", None if imbalance_mv is None else round(imbalance_mv, 1)),
+                ("soc", None if soc is None else round(soc, 1)),
+                ("ageMonths", age_months),
+            ):
+                if value is None:
+                    continue
+                if first[field] is None:
+                    first[field] = value
+                    merged.append(field)
+                elif first[field] != value:
+                    first[field] = None
+                    merged.append(field + " conflict -> dropped")
+            skipped.append((n, "merged into line %d (%s)" % (first["_line"], ", ".join(merged) or "no new data")))
             continue
-        seen.add(key)
 
         name = (get("name") or "").strip()
-        if norm(name) in ("", "anonymous", "-", "n/a", "na"):
+        if norm(name) in ("", "anonymous", "unknown", "anon", "-", "n/a", "na"):
             name = None
 
-        entries.append({
+        entry = {
+            "_line": n,
             "name": name,
             "model": model,
             "pack": pack,
@@ -232,9 +360,13 @@ def main():
             "soc": None if soc is None else round(soc, 1),
             "notes": (get("notes") or "").strip()[:280] or None,
             "submitted": parse_date(get("submitted")) or date.today().isoformat(),
-        })
+        }
+        entries.append(entry)
+        seen[key] = entry
 
     entries.sort(key=lambda e: e["submitted"], reverse=True)
+    for e in entries:
+        e.pop("_line", None)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -246,6 +378,7 @@ def main():
     OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     print(f"wrote {len(entries)} entries to {OUT}")
+    write_html(entries)
     for e in entries:
         print(f"  {e['submitted']}  {e['name'] or 'Anonymous':<10} {str(e['model']):<9} "
               f"{str(e['odometerKm']):>7} km  {str(e['ageMonths']):>3} mo  SOH {e['soh']}  "
