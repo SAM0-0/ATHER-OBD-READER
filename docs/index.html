@@ -1546,7 +1546,15 @@
         // everything has settled.
         if (location.hash) {
           const target = document.querySelector(location.hash);
-          if (target) target.scrollIntoView({ block: 'start' });
+          if (target) {
+            // force an instant jump: css scroll-behavior:smooth would animate
+            // and can be interrupted, leaving the viewport between sections
+            const root = document.documentElement;
+            const prev = root.style.scrollBehavior;
+            root.style.scrollBehavior = 'auto';
+            target.scrollIntoView({ block: 'start' });
+            root.style.scrollBehavior = prev;
+          }
         }
         revealOnScreen();
       }, 400));
