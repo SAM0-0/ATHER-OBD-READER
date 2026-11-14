@@ -1,0 +1,11 @@
+{
+  "note": "Owner-confirmed readings that the Sheet no longer holds. Keyed on name + odometerKm.",
+  "entries": [
+    {
+      "name": "Sam",
+      "odometerKm": 20660,
+      "imbalanceMv": 38.5,
+      "reason": "owner confirmed the live cell delta; the Sheet cell was cleared after submitting"
+    }
+  ]
+}

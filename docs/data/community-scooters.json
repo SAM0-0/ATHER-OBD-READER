@@ -10,7 +10,7 @@
       "odometerKm": 20660,
       "ageMonths": 50,
       "soh": 89.0,
-      "imbalanceMv": null,
+      "imbalanceMv": 38.5,
       "soc": 67.0,
       "notes": null,
       "submitted": "2026-11-13"

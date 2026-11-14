@@ -268,6 +268,46 @@ def write_html(entries):
 
 
 
+OVERRIDES = Path(__file__).resolve().parent / "overrides.json"
+
+
+def load_overrides():
+    """Per-owner corrections that must survive a re-import.
+
+    The Sheet is the source of truth, but owners sometimes clear a cell after
+    submitting (or the form mangles a value). Rather than hand-editing the
+    generated JSON - which the next import would wipe - real readings that the
+    owner has confirmed go here, keyed on name + odometer.
+    """
+    if not OVERRIDES.exists():
+        return []
+    try:
+        data = json.loads(OVERRIDES.read_text(encoding="utf-8"))
+    except Exception as exc:  # a broken file must not silently drop data
+        sys.exit(f"could not read {OVERRIDES.name}: {exc}")
+    return data.get("entries", [])
+
+
+def apply_overrides(entries, overrides):
+    applied = []
+    for rule in overrides:
+        match = [
+            e for e in entries
+            if (norm(e["name"]) or None) == (norm(rule.get("name")) or None)
+            and e["odometerKm"] == rule.get("odometerKm")
+        ]
+        if not match:
+            applied.append(f"{rule.get('name')} @ {rule.get('odometerKm')} km: no matching row")
+            continue
+        for field, value in rule.items():
+            if field in ("name", "odometerKm", "reason"):
+                continue
+            match[0][field] = value
+        applied.append(f"{rule.get('name')}: {', '.join(k for k in rule if k not in ('name', 'odometerKm', 'reason'))}"
+                       + (f" ({rule['reason']})" if rule.get("reason") else ""))
+    return applied
+
+
 def main():
     ap = argparse.ArgumentParser()
     src = ap.add_mutually_exclusive_group(required=True)
@@ -364,6 +404,8 @@ def main():
         entries.append(entry)
         seen[key] = entry
 
+    overrides = apply_overrides(entries, load_overrides())
+
     entries.sort(key=lambda e: e["submitted"], reverse=True)
     for e in entries:
         e.pop("_line", None)
@@ -383,6 +425,10 @@ def main():
         print(f"  {e['submitted']}  {e['name'] or 'Anonymous':<10} {str(e['model']):<9} "
               f"{str(e['odometerKm']):>7} km  {str(e['ageMonths']):>3} mo  SOH {e['soh']}  "
               f"delta {e['imbalanceMv']} mV  SOC {e['soc']}")
+    if overrides:
+        print(f"applied {len(overrides)} override(s):")
+        for line in overrides:
+            print(f"  {line}")
     if skipped:
         print(f"skipped {len(skipped)} row(s):")
         for n, why in skipped[:20]:

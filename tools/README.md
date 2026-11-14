@@ -71,7 +71,12 @@ The script:
 - pulls the pack size out of the model answer: `(Gen 3 / 3.7 kWh)` → `pack: 3.7`
 - normalises model names (`450 X`, `450x`, `Ather 450X (Gen 3 / 3.7 kWh)` → `450X`)
 - treats blank / "anonymous" names as anonymous
-- drops out-of-range rows and exact duplicates, and says which line and why
+- merges the same owner submitting twice (same name + odometer + SOH); a
+  field the two rows disagree on is dropped instead of guessed
+- reads `0.0013` as volts when the value is below 1, storing `1.3` mV
+- drops out-of-range rows, and says which line and why
+- applies `tools/overrides.json` last, so an owner-confirmed reading survives
+  a re-import even if the sheet cell was cleared later
 - sorts newest first and writes `docs/data/community-scooters.json`
 
 Then review the diff, commit and push. GitHub Pages redeploys in about a minute.
@@ -99,13 +104,32 @@ Output shape:
 Weekly is plenty. The page shows "last updated" from the JSON's `generated`
 field, so it never claims to be fresher than it is.
 
-## 5. Before importing, check for personal data
+## 5. Owner-confirmed values (`overrides.json`)
+
+The sheet is the source of truth, but a respondent sometimes clears a cell after
+submitting, or the form mangles a value. Editing the generated JSON by hand does
+not survive the next import, so confirmed readings live in
+`tools/overrides.json`, keyed on name + odometer:
+
+```json
+{
+  "entries": [
+    { "name": "Sam", "odometerKm": 20660, "imbalanceMv": 38.5,
+      "reason": "owner confirmed the live cell delta; the sheet cell was cleared" }
+  ]
+}
+```
+
+The importer applies these after merging and prints each one it used, or says
+`no matching row` if an owner's odometer changed.
+
+## 6. Before importing, check for personal data
 
 The free-text box is the only place a respondent can leak something identifying
 (phone number, VIN, address). The JSON is public — delete that cell in the sheet
 before running the importer.
 
-## 6. Why not fetch the sheet live in the browser
+## 7. Why not fetch the sheet live in the browser
 
 Google's CSV endpoint sends no CORS headers, so a browser on `a-obd.in` cannot
 read it. The alternatives were:
