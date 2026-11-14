@@ -757,7 +757,12 @@
     // table
     var rows = el("rows");
     rows.innerHTML = "";
-    entries.slice().sort(function (a, b) { return (b.odometerKm || 0) - (a.odometerKm || 0); }).forEach(function (e) {
+    entries.slice().sort(function (a, b) {
+      // newest first, then the longest-serving scooter - the caption and the
+      // pre-rendered rows say the same thing
+      var d = String(b.submitted || "").localeCompare(String(a.submitted || ""));
+      return d !== 0 ? d : (b.odometerKm || 0) - (a.odometerKm || 0);
+    }).forEach(function (e) {
       var tr = document.createElement("tr");
       var age = "\u2014";
       if (num(e.ageMonths) != null) {

@@ -406,7 +406,7 @@ def main():
 
     overrides = apply_overrides(entries, load_overrides())
 
-    entries.sort(key=lambda e: e["submitted"], reverse=True)
+    entries.sort(key=lambda e: (e["submitted"], e["odometerKm"] or 0), reverse=True)
     for e in entries:
         e.pop("_line", None)
 
