@@ -539,7 +539,7 @@
       {
         "@type": "Question",
         "name": "Does the Ather app show battery health (SOH)?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No — the Ather app shows charge, range and ride stats, but not battery State of Health. SOH is read over the scooter's CAN bus, which is what service centres use. A-OBD reads the same CAN data directly and shows you the percentage yourself." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Not the SOH percentage. The Ather app shows charge, range and ride stats, and since August 2026 it also shows Ather True Health - a score out of five with component status, for scooters that have been on the road three years or more. True Health is a modelled estimate refreshed monthly, not a State of Health percentage. SOH is read over the scooter's CAN bus, which is what service centres use. A-OBD reads the same CAN data directly and shows you the percentage yourself." }
       },
       {
         "@type": "Question",
@@ -614,10 +614,10 @@
       <h2 id="what-is-soh">What is Ather battery health (SOH)?</h2>
       <p>State of Health (SOH) is the percentage of original battery capacity your pack can still hold. A brand-new Ather battery is at 100% SOH; a pack that has lost a fifth of its usable capacity reads around 80%. It is the honest, measured number behind the range you see every day — and it is the number Ather's battery warranty is written around: the pack is covered while it stays at or above <strong>70% SOH</strong> during the cover period.</p>
       <p>SOH drops for normal reasons — age, charge cycles, hot summers, frequent fast charging and long periods parked at 100%. The drop is gradual and normal. What matters is the <em>rate</em> of change: a pack that loses a few percent over a year is healthy, while one that drops several percent in a few months usually has a weak cell group and is worth investigating early.</p>
-      <p>The catch is that Ather does not show SOH in its app. Service centres read it over the scooter's CAN bus — and most owners are never shown the number. A-OBD plugs into that same diagnostic port and displays it on your phone, so you always know where your battery actually stands.</p>
+      <p>The catch is that Ather still does not show SOH in its app. True Health, added in August 2026, gives older scooters a score out of five — a modelled, monthly summary rather than the percentage. Service centres read it over the scooter's CAN bus — and most owners are never shown the number. A-OBD plugs into that same diagnostic port and displays it on your phone, so you always know where your battery actually stands. Our <a href="true-health.html">Ather True Health explainer</a> covers what that score measures and where it stops.</p>
 
       <h3>Does the Ather app show battery health (SOH)?</h3>
-      <p>No. The Ather app shows charge, predicted range, ride statistics and service history &mdash; but not battery State of Health. SOH lives on the scooter&rsquo;s CAN bus, which is why only a diagnostic tool (or a service centre laptop) can read it. That is the gap this check fills: the same data the workshop sees, on your phone, without an appointment.</p>
+      <p>Not the number you want, no. The Ather app shows charge, predicted range, ride statistics and service history, and since August 2026 it also shows <a href="true-health.html">Ather True Health</a> &mdash; a score out of five with component status, for scooters that have been on the road three years or more. True Health is a modelled, monthly summary; it is not a State of Health percentage. SOH lives on the scooter&rsquo;s CAN bus, which is why only a diagnostic tool (or a service centre laptop) can read it. That is the gap this check fills: the same data the workshop sees, on your phone, without an appointment.</p>
 
       <h2 id="what-you-need">What you need for the check</h2>
       <ul>
@@ -910,6 +910,7 @@
           <a href="guide.html">How to use guide</a>
           <a href="demo.html">Demo video</a>
           <a href="data.html">Battery data</a>
+          <a href="true-health.html">Ather True Health</a>
           <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">Firmware &amp; source</a>
         </nav>
         <nav class="sf-col">

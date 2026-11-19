@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ather True Health: What the Score Means (vs Real SOH) | A-OBD</title>
+  <link rel="canonical" href="https://a-obd.in/true-health.html">
+  <meta name="description" content="Ather True Health gives a score out of five, refreshed monthly, for scooters over three years old. What it measures, what it misses, and the real SOH.">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Ather True Health: what the score means &mdash; A-OBD">
+  <meta property="og:description" content="A monthly health score out of five is not a live SOH percentage. Here is what Ather True Health measures, and the number it cannot show you.">
+  <meta property="og:url" content="https://a-obd.in/true-health.html">
+  <meta property="og:image" content="https://a-obd.in/images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ather True Health explained &mdash; A-OBD">
+  <meta name="twitter:description" content="Ather True Health score out of five: how it is calculated, who can see it, and why it is not the same as a live battery SOH reading.">
+  <meta name="twitter:image" content="https://a-obd.in/images/hero.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #16181d;
+      --card-hover: #1f2229;
+      --text: #f1f5f9;
+      --muted: #9aa8ba;
+      --border: #292d36;
+      --primary: #cbd5e1;
+      --primary-hover: #ffffff;
+      --accent-badge: rgba(203, 213, 225, 0.1);
+      --accent-badge-border: rgba(203, 213, 225, 0.25);
+      --warn: #e8a040;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Header band */
+    header {
+      padding: 70px 20px 55px;
+      text-align: center;
+      background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.82), rgba(15, 17, 21, 1)), url('images/hero.webp');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      max-width: 860px;
+      margin: 0 auto 26px;
+      text-align: left;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; }
+    header h1 {
+      font-size: clamp(32px, 5.2vw, 50px);
+      margin: 0 0 18px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+    header .sub {
+      font-size: clamp(16px, 2.4vw, 19px);
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+    .meta-line {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    .meta-line b { color: var(--text); font-weight: 600; }
+
+    /* Article */
+    .article {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 50px 20px 30px;
+    }
+    .article h2 {
+      font-size: clamp(26px, 3.4vw, 34px);
+      margin: 56px 0 18px;
+      letter-spacing: -0.6px;
+      scroll-margin-top: 20px;
+    }
+    .article h2:first-of-type { margin-top: 0; }
+    .article h3 {
+      font-size: 21px;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+      margin: 0 0 18px;
+    }
+    .article strong { color: var(--text); }
+    .article a { color: var(--primary); }
+    .article a.btn { color: var(--text); }
+    .article a.btn:hover { color: var(--text); }
+    .article a.btn-primary,
+    .article a.btn-primary:hover { color: #0f1115; }
+    .article ul, .article ol { color: var(--muted); font-size: 16px; padding-left: 22px; line-height: 1.85; }
+    .article ul li, .article ol li { margin-bottom: 10px; }
+
+    /* Table of contents */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin: 0 0 10px;
+    }
+    .toc p { margin: 0 0 10px; color: var(--text); font-weight: 600; font-size: 15px; }
+    .toc ol { margin: 0; padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 15px; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* Steps */
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    .step-body { width: 100%; }
+    .step-title {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .step-body p { margin: 0 0 10px; font-size: 15px; line-height: 1.75; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-imgs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 10px; }
+    .step-imgs figure { margin: 0; width: calc(50% - 4px); }
+    .step-imgs img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+    }
+    .step-imgs figcaption {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .callout.warn {
+      background: rgba(232, 160, 64, 0.1);
+      border: 1px solid rgba(232, 160, 64, 0.3);
+      color: var(--text);
+    }
+    .callout.info {
+      background: rgba(203, 213, 225, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .callout b { color: var(--text); }
+    .callout.warn b { color: var(--warn); }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0 8px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .stat-card h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .stat-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .stat-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 9px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      background: var(--accent-badge);
+      border: 1px solid var(--accent-badge-border);
+      color: var(--text);
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 860px; margin: 0 auto; text-align: left; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+    .faq-q:hover { color: var(--primary-hover); }
+    .faq-icon { font-size: 22px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-a p { margin: 0; padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .faq-a a { color: var(--primary); }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 44px 30px;
+      margin: 60px 0 20px;
+    }
+    .cta h2 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 30px); }
+    .cta p { margin: 0 auto 26px; max-width: 560px; font-size: 16px; }
+    .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card);
+      color: var(--text);
+      padding: 15px 32px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+    .btn:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f1115;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    footer {
+      background: #050505;
+      color: var(--muted);
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      header { padding: 40px 16px 40px; }
+      .article { padding: 36px 16px 20px; }
+      .step { padding: 18px; gap: 12px; }
+      .step-imgs figure { width: 100%; }
+      .cta { padding: 32px 20px; }
+    }
+  
+    /* Site footer */
+    .site-footer {
+      position: relative;
+      background: #0b0d10;
+      border: 0;
+      overflow: hidden;
+      text-align: left;
+      padding: 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .sf-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, #0f1115 0%, rgba(15, 17, 21, 0.85) 14%, rgba(15, 17, 21, 0.35) 34%, rgba(10, 15, 12, 0.25) 55%, rgba(6, 9, 8, 0.92) 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(74, 222, 128, 0.10) 0%, rgba(6, 9, 8, 0) 60%),
+        url('images/footer-bg.webp');
+      background-size: cover, cover, cover;
+      background-position: center top, center bottom, center 62%;
+      background-repeat: no-repeat;
+    }
+    .sf-inner {
+      position: relative;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 165px 24px 30px;
+    }
+    .sf-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 0.9fr;
+      gap: 44px;
+    }
+    .sf-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: #f1f5f9;
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .sf-logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+    .sf-logo:hover { color: #ffffff; }
+    .sf-brand p {
+      margin: 0 0 12px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: rgba(226, 232, 240, 0.72);
+      max-width: 330px;
+    }
+    .sf-brand .sf-repo {
+      margin: 14px 0 6px;
+      font-size: 14px;
+      color: rgba(226, 232, 240, 0.6);
+    }
+    .sf-brand .sf-repo a {
+      color: #e2e8f0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sf-brand .sf-credits {
+      margin: 0;
+      font-size: 12.5px;
+      color: rgba(203, 213, 225, 0.5);
+    }
+    .sf-col h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: rgba(241, 245, 249, 0.5);
+      margin: 4px 0 14px;
+    }
+    .sf-col a {
+      display: block;
+      padding: 5px 0;
+      font-size: 14.5px;
+      color: rgba(237, 242, 247, 0.82);
+      text-decoration: none;
+    }
+    .sf-col a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sf-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: 52px;
+      padding-top: 24px;
+      font-size: 13px;
+      color: rgba(203, 213, 225, 0.6);
+    }
+    @media (max-width: 900px) {
+      .sf-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
+      .sf-brand { grid-column: 1 / -1; }
+      .sf-inner { padding: 130px 20px 26px; }
+    }
+    @media (max-width: 560px) {
+      .sf-grid { grid-template-columns: 1fr; gap: 28px; }
+      .sf-inner { padding: 110px 18px 24px; }
+      .sf-bottom { justify-content: flex-start; }
+    }
+
+    /* comparison tables */
+    .table-wrap { overflow-x: auto; margin: 22px 0 10px; }
+    .article table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      min-width: 520px;
+    }
+    .article th, .article td {
+      text-align: left;
+      vertical-align: top;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.6;
+    }
+    .article th {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .article td { color: var(--muted); }
+    .article td:first-child { color: var(--text); font-weight: 500; }
+    .article tbody tr:last-child td { border-bottom: 0; }
+    .src { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+  </style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://a-obd.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Ather True Health", "item": "https://a-obd.in/true-health.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Ather True Health?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather True Health is a health report in the Ather mobile app. It gives a score out of five for the scooter, the status of key components such as the battery, motor, dashboard, charging system, belt and brakes, and an estimated resale value. It is available for scooters that have been on the road for three years or more with AtherStack Pro." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Ather True Health show battery SOH percentage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "True Health leads with a score out of five, not a State of Health percentage. The battery appears as one component of the report. If you want the percentage the battery is actually holding, that has to be read from the battery management system over the CAN bus — which is what a service centre does, and what an OBD reader like A-OBD does." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can't I see Ather True Health in my app?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather makes True Health available to scooters that have completed three years on the road and are on AtherStack Pro. A newer scooter, or one without Pro, will not show the report yet." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often does the Ather True Health score update?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ather says you can open the report at any time, but the data behind it only refreshes on the 1st of every month. A fault that appears in the middle of the month will not change the score until the next refresh." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the Ather True Health score accurate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is a modelled estimate, not a live measurement. Ather states that component scores are calculated from standard reliability curves and may not capture hidden physical issues, such as humidity inside the battery. Ather's own FAQ says an inspection at a service centre is the most accurate diagnosis because it relies on real-time data read directly from the scooter." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I read the real battery SOH without a service centre visit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The battery management system exposes State of Health, per-cell voltages and cell imbalance over the scooter's diagnostic port. An OBD reader plugged into that port shows those values on your phone in about ten minutes, and works on every current Ather model except Gen 1, Gen 1.5 and Gen 2." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the True Health score affect my battery warranty?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Ather's battery warranty is written around State of Health staying at or above 70% during the cover period, and warranty claims are assessed on the pack's real condition. True Health is an owner-facing summary, not the warranty measurement." }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Ather True Health: what the score means and what it cannot tell you","description":"Ather True Health gives a score out of five, refreshed monthly, for scooters over three years old. How it is calculated, what it misses, and how a live BMS read compares.","image":"https://a-obd.in/images/hero.jpg","author":{"@type":"Organization","name":"A-OBD","url":"https://a-obd.in/"},"publisher":{"@type":"Organization","name":"A-OBD","logo":{"@type":"ImageObject","url":"https://a-obd.in/images/logo-mark.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://a-obd.in/true-health.html"},"about":[{"@type":"Thing","name":"Ather True Health"},{"@type":"Thing","name":"State of Health (SOH)"}],"datePublished":"2026-11-19","dateModified":"2026-11-19"}
+  </script>
+</head>
+<body>
+
+  <header>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="./">Home</a><span aria-hidden="true">/</span>Ather True Health
+    </nav>
+    <h1>Ather True Health: what the score means &mdash; and what it can&rsquo;t tell you</h1>
+    <p class="sub">Ather&rsquo;s app now gives your scooter a health score out of five and an estimated resale value. Here is what goes into that score, who can see it, and where a live battery read still beats it.</p>
+    <p class="meta-line">Updated <b>November 2026</b> &nbsp;&middot;&nbsp; <b>7-minute</b> read &nbsp;&middot;&nbsp; For <b>450X, 450S, 450 Plus, 450 Apex &amp; Rizta</b></p>
+  </header>
+
+  <main id="main-content">
+    <div class="article">
+
+      <p>Ather introduced <strong>Ather True Health</strong> in August 2026, and it is the closest the Ather app has ever come to showing you how healthy your scooter is. It turns years of connected-vehicle data into a score out of five, breaks that down by component, and adds an estimated resale value. For anyone wondering whether their three-year-old 450X is ageing well, that is a genuinely useful report.</p>
+
+      <p>It is also where a lot of the confusion starts. A score out of five is not a State of Health percentage, and a monthly snapshot is not a live reading. This page covers what True Health measures, what it deliberately leaves out, and how to get the number it cannot give you.</p>
+
+      <div class="callout info">
+        <b>The short version:</b> True Health is a <b>monthly, modelled estimate</b> for scooters that have been on the road for three years or more. It leads with a score out of five, not a percentage, and it refreshes on the 1st of each month. Ather&rsquo;s own FAQ says a service-centre inspection is the most accurate diagnosis because it reads real-time data straight from the scooter &mdash; which is the same data a diagnostic reader shows you at home.
+      </div>
+
+      <h2 id="what-is">What Ather True Health actually is</h2>
+      <p>True Health is a health report inside the Ather mobile app. It is not a dashboard feature and it is not a diagnostic screen &mdash; it is a summary, written for owners, built from data Ather already collects from your scooter over its 4G connection.</p>
+      <ul>
+        <li><strong>A health score out of five</strong> for the scooter as a whole.</li>
+        <li><strong>Component status</strong> for the battery, motor, dashboard, charging system, belt and brakes.</li>
+        <li><strong>An estimated resale value</strong>, described by Ather as indicative only &mdash; it is not a buyback guarantee.</li>
+        <li><strong>A shareable report</strong> you can show a buyer when you sell.</li>
+      </ul>
+
+      <h2 id="who">Who can see it</h2>
+      <p>The feature is not available on every scooter. Ather limits it to older vehicles, which makes sense: a pack or a belt that is six months old has nothing interesting to report yet.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>What Ather says</th></tr></thead>
+          <tbody>
+            <tr><td>Scooter age</td><td>Three years or more on the road</td></tr>
+            <tr><td>Software</td><td>AtherStack Pro</td></tr>
+            <tr><td>Where to find it</td><td>The Ather mobile app</td></tr>
+            <tr><td>Refresh rate</td><td>Data updates on the 1st of every month</td></tr>
+            <tr><td>What is excluded</td><td>Cosmetic damage, scratches, insurance validity and traffic challans</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src">Source: Ather Energy&rsquo;s True Health FAQ and the 29 August 2026 Community Day announcement.</p>
+
+      <h2 id="how-calculated">How the score is calculated</h2>
+      <p>According to Ather, the report combines vehicle age, kilometres ridden, riding behaviour, component condition, battery status and service history. Individual component scores come from <strong>standard reliability curves</strong> rather than a measurement taken from your scooter at that moment.</p>
+      <p>Belt and brake life are the clearest example of how this works. Ather estimates them from fleet-wide averages &mdash; roughly 30,000 km for belts and 10,000 km for brakes &mdash; and says outright that your own riding pattern may shift those numbers.</p>
+      <p>That is a sensible way to build a report you can open on any phone with no extra hardware. It is also why the output is a score and not a measurement.</p>
+
+      <h2 id="limits">What the score cannot see</h2>
+      <p>Ather is unusually direct about the limits, and it is worth quoting the substance of their FAQ rather than paraphrasing it loosely:</p>
+      <ul>
+        <li><strong>It can miss physical problems.</strong> Ather notes that component scores may not capture unexpected or hidden issues, such as humidity inside the battery, that affect performance even when the score looks fine.</li>
+        <li><strong>It is up to a month old.</strong> The data refreshes on the 1st of the month, so a fault that develops mid-month will not appear until the next refresh.</li>
+        <li><strong>It is modelled, not measured.</strong> Scores come from reliability curves and fleet patterns, not from the cell voltages in your pack right now.</li>
+        <li><strong>It has no cell-level detail.</strong> There is no per-cell voltage, no millivolt spread between the strongest and weakest cell group &mdash; the early signal that a pack is drifting out of balance.</li>
+      </ul>
+      <p>Ather&rsquo;s own recommendation, when the app and a technician disagree, is to trust the technician &mdash; because the technician is reading live data from the scooter.</p>
+
+      <h2 id="compare">True Health vs a live SOH read</h2>
+      <p>Both answer the question &ldquo;how is my battery doing?&rdquo;, but they answer it at different resolutions. Neither replaces the other.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>&nbsp;</th><th>Ather True Health</th><th>Live BMS read</th></tr></thead>
+          <tbody>
+            <tr><td>What you get</td><td>Score out of five, component status, resale estimate</td><td>State of Health %, per-cell voltage, cell delta in mV</td></tr>
+            <tr><td>How fresh</td><td>Refreshes on the 1st of each month</td><td>On demand, reflecting the pack right now</td></tr>
+            <tr><td>Who can use it</td><td>Scooters 3+ years old on AtherStack Pro</td><td>Any current Ather model except Gen 1, Gen 1.5 and Gen 2</td></tr>
+            <tr><td>Method</td><td>Modelled from connected-vehicle data</td><td>Values read from the battery management system</td></tr>
+            <tr><td>Good for</td><td>Overall ownership health, resale conversations</td><td>Tracking SOH between services, spotting a weak cell group</td></tr>
+            <tr><td>Where</td><td>Ather app</td><td>Your phone, over the scooter&rsquo;s diagnostic port</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="real-soh">How to get the real number</h2>
+      <p>There are three honest routes to your battery&rsquo;s actual condition, and they differ mainly in how much of the work you do yourself.</p>
+      <ul>
+        <li><strong>Ather app / True Health</strong> &mdash; a score out of five, monthly, for older scooters. No effort, low resolution.</li>
+        <li><strong>Service centre</strong> &mdash; a real SOH reading from the pack, and the most authoritative answer. Costs a visit, and not every owner has one nearby.</li>
+        <li><strong>An OBD reader</strong> &mdash; reads the same CAN data the service centre reads, at home, in about ten minutes, as often as you like.</li>
+      </ul>
+      <p>The <a href="guide.html">step-by-step Ather battery health check guide</a> covers the third option end to end: where the port is, what to plug in, and how to read SOH and cell imbalance on screen.</p>
+
+      <div class="callout warn">
+        <b>One caveat that applies to every method:</b> Ather states that battery health data becomes reliable only after about 10,000 km. Treat earlier readings as a baseline, not a verdict.
+      </div>
+
+      <h2 id="numbers">What the numbers look like on real scooters</h2>
+      <p>Abstract percentages are hard to judge. Real submissions from Ather owners are easier: as of November 2026, the <a href="data.html">community battery data page</a> holds five self-reported readings from 450X and Rizta owners, with a <strong>median SOH of 88.3%</strong> and a <strong>median cell delta of 1.3 mV</strong>.</p>
+      <p>That is a small sample, and it is self-reported &mdash; but it is still more useful than a single headline number, because you can compare a scooter of a similar age and odometer against it. The page also plots SOH and cell imbalance against kilometres ridden, with every outlier visible.</p>
+
+      <h2 id="faq">Ather True Health: common questions</h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is Ather True Health?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>A health report in the Ather mobile app. It gives a score out of five for the scooter, the status of key components &mdash; battery, motor, dashboard, charging system, belt and brakes &mdash; and an estimated resale value. It is available for scooters that have been on the road for three years or more with AtherStack Pro.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Does True Health show the battery SOH percentage?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>True Health leads with a score out of five, not a State of Health percentage. The battery appears as one component of the report. If you want the percentage the pack is actually holding, that has to be read from the battery management system over the CAN bus &mdash; which is what a service centre does, and what <a href="guide.html">an OBD reader</a> does.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Why can&rsquo;t I see True Health in my app?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Ather makes it available to scooters that have completed three years on the road and are on AtherStack Pro. A newer scooter, or one without Pro, will not show the report yet. Under three years, the practical options are a service-centre read or an OBD reader.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How often does the score update?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>You can open the report any time, but the data behind it only refreshes on the 1st of every month. A fault that appears mid-month will not move the score until the next refresh.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is the True Health score accurate?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>It is a modelled estimate rather than a live measurement. Ather states that component scores are calculated from standard reliability curves and may not capture hidden physical issues such as humidity inside the battery, and that a service-centre inspection &mdash; which relies on real-time data read directly from the scooter &mdash; is the most accurate diagnosis.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I read the real SOH without a service centre visit?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. State of Health, per-cell voltages and cell imbalance are exposed over the scooter&rsquo;s diagnostic port. A reader plugged into that port shows them on your phone in about ten minutes, and works on every current Ather model except Gen 1, Gen 1.5 and Gen 2.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Does the True Health score affect my battery warranty?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>No. Ather&rsquo;s battery warranty is written around State of Health staying at or above 70% during the cover period, and a claim is assessed on the pack&rsquo;s real condition. True Health is an owner-facing summary, not the warranty measurement.</p></div>
+        </div>
+
+      </div>
+
+      <div class="cta">
+        <h2>See the number behind the score</h2>
+        <p>A-OBD is a plug &amp; play reader that shows your real SOH, per-cell voltages and cell imbalance in about ten minutes &mdash; on any current Ather except Gen 1, Gen 1.5 and Gen 2. Open source, passive, nothing to splice.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="guide.html">How to check your battery</a>
+          <a class="btn" href="data.html">See real owner readings</a>
+        </div>
+      </div>
+
+      <p class="src">Ather True Health is a trademark of Ather Energy. A-OBD is an independent, community-built project and is not affiliated with, endorsed by or sponsored by Ather Energy. Ather&rsquo;s own documentation is the authoritative source for how True Health works; details above reflect it as of November 2026.</p>
+
+    </div>
+  </main>
+
+<footer class="site-footer">
+    <div class="sf-bg" aria-hidden="true"></div>
+    <div class="sf-inner">
+      <div class="sf-grid">
+        <div class="sf-brand">
+          <a class="sf-logo" href="./">
+            <img src="images/logo-mark.webp" alt="A-OBD logo" width="42" height="42">
+            <span>A-OBD</span>
+          </a>
+          <p>Real Ather battery health (SOH), per-cell data and 40+ live values &mdash; plug &amp; play, open source, built by the community.</p>
+          <p class="sf-repo">Want to build it yourself? <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">github.com/SAM0-0/ATHER-OBD-READER</a></p>
+          <p class="sf-credits">Contributors: <a href="https://github.com/Kukun7610" target="_blank" rel="noopener">Kukun7610</a> (Extra tab) &amp; <a href="https://github.com/Dhruv2605" target="_blank" rel="noopener">Dhruv2605</a> (offline logging)</p>
+        </div>
+        <nav class="sf-col">
+          <h4>Product</h4>
+          <a href="./#versions">Order A-OBD</a>
+          <a href="./#features">Features &amp; demos</a>
+          <a href="guide.html">How to use guide</a>
+          <a href="demo.html">Demo video</a>
+          <a href="data.html">Battery data</a>
+          <a href="true-health.html">Ather True Health</a>
+          <a href="https://github.com/SAM0-0/ATHER-OBD-READER" target="_blank" rel="noopener">Firmware &amp; source</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Support</h4>
+          <a href="contact.html">Contact us</a>
+          <a href="shipping.html">Shipping &amp; delivery</a>
+          <a href="refunds.html">Refunds &amp; returns</a>
+          <a href="mailto:hello@a-obd.in">hello@a-obd.in</a>
+        </nav>
+        <nav class="sf-col">
+          <h4>Legal</h4>
+          <a href="terms.html">Terms &amp; conditions</a>
+          <a href="privacy.html">Privacy policy</a>
+        </nav>
+      </div>
+      <div class="sf-bottom">
+        <span>&copy; 2026 A-OBD. All rights reserved.</span>
+        <span>Not officially affiliated with Ather Energy.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var open = item.classList.toggle('open');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+    }
+  </script>
+
+  <!-- Fairy Dust Cursor -->
+  <script>
+    (function() {
+      const colors = ['#D61C59', '#E7D84B', '#1B8798', '#4ade80', '#e8a040'];
+      const characterSet = ['✨', '⭐', '🌟', '⚡', '🚗',  '🔋', '🚀', '🏎️', '🏍️', '💨', '🔥'];
+      const particleSize = 24;
+      const particleCount = 1;
+      const gravity = 0.04;
+      const fadeSpeed = 0.98;
+      const initialVelocity = { min: 0.5, max: 1.5 };
+
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '9999';
+      document.body.appendChild(canvas);
+
+      const context = canvas.getContext('2d');
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      window.addEventListener('resize', () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      });
+
+      let particles = [];
+      let lastPos = { x: 0, y: 0 };
+
+      function createParticle(x, y) {
+        const randomChar = characterSet[Math.floor(Math.random() * characterSet.length)];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const velocityX = (Math.random() < 0.5 ? -1 : 1) * (Math.random() * (initialVelocity.max - initialVelocity.min) + initialVelocity.min);
+        const velocityY = -(Math.random() * initialVelocity.max);
+
+        particles.push({
+          x, y,
+          character: randomChar,
+          color: randomColor,
+          velocity: { x: velocityX, y: velocityY },
+          lifeSpan: 100,
+          initialLifeSpan: 100,
+          scale: 1
+        });
+      }
+
+      function updateParticles() {
+        context.clearRect(0, 0, width, height);
+        particles.forEach(particle => {
+          particle.x += particle.velocity.x;
+          particle.y += particle.velocity.y;
+          particle.velocity.y += gravity;
+          particle.lifeSpan *= fadeSpeed;
+          particle.scale = Math.max(particle.lifeSpan / particle.initialLifeSpan, 0);
+
+          context.save();
+          context.font = `${particleSize * particle.scale}px serif`;
+          context.fillStyle = particle.color;
+          context.globalAlpha = particle.scale;
+          context.fillText(particle.character, particle.x, particle.y);
+          context.restore();
+        });
+        particles = particles.filter(p => p.lifeSpan > 0.1);
+      }
+
+      function animate() {
+        updateParticles();
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      function handleMove(x, y) {
+        const distance = Math.hypot(x - lastPos.x, y - lastPos.y);
+        if (distance > 2) {
+          for (let i = 0; i < particleCount; i++) {
+            createParticle(x, y);
+          }
+          lastPos = { x, y };
+        }
+      }
+
+      document.body.addEventListener('mousemove', (e) => {
+        const tag = e.target.tagName.toLowerCase();
+        if (tag === 'body' || tag === 'html' || tag === 'canvas' || e.target.classList.contains('article')) return;
+
+        handleMove(e.clientX, e.clientY);
+      });
+
+      document.body.addEventListener('touchmove', (e) => {
+        const tag = e.target.tagName.toLowerCase();
+        if (tag === 'body' || tag === 'html' || tag === 'canvas' || e.target.classList.contains('article')) return;
+
+        if (e.touches.length > 0) {
+          handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- Flowing Green Dots Background -->
+  <script>
+    (function() {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      canvas.style.pointerEvents = 'none';
+      document.body.insertBefore(canvas, document.body.firstChild);
+
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const backgroundColor = '#0f1115';
+      const particleColor = '74, 222, 128';
+
+      let width, height;
+      let time = 0;
+      let mouse = { x: -1000, y: -1000 };
+      let points = [];
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+
+        points = [];
+        const gridSize = width < 768 ? 60 : 45;
+        for (let x = gridSize / 2; x < width; x += gridSize) {
+          for (let y = gridSize / 2; y < height; y += gridSize) {
+            points.push({ x, y, ox: x, oy: y, vx: 0, vy: 0 });
+          }
+        }
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+      window.addEventListener('touchmove', e => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      resize();
+
+      function animate() {
+        time += 0.005;
+
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, width, height);
+
+        const t0 = time;
+        const t1 = time * 0.8;
+        const t2 = time * 1.2;
+
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+
+          const sin1 = Math.sin(p.x * 0.01 + t0);
+          const sin2 = Math.sin(p.y * 0.01 + t1);
+          const sin3 = Math.sin((p.x + p.y) * 0.005 + t2);
+          const angle = ((sin1 + sin2 + sin3) / 3) * 12.566;
+
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+
+          if (Math.abs(dx) < 150 && Math.abs(dy) < 150) {
+            const distSq = dx * dx + dy * dy;
+            if (distSq < 22500) {
+              const dist = Math.sqrt(distSq);
+              const push = (1 - dist / 150) * 0.5;
+              p.vx -= (dx / dist) * push;
+              p.vy -= (dy / dist) * push;
+            }
+          }
+
+          p.vx += Math.cos(angle) * 0.1;
+          p.vy += Math.sin(angle) * 0.1;
+
+          p.vx *= 0.95;
+          p.vy *= 0.95;
+          p.vx += (p.ox - p.x) * 0.01;
+          p.vy += (p.oy - p.y) * 0.01;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          const speedSq = p.vx * p.vx + p.vy * p.vy;
+          const alpha = Math.min(0.8, speedSq * 2 + 0.2);
+
+          if (alpha > 0.05) {
+            ctx.fillStyle = `rgba(${particleColor}, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, 6.283);
+            ctx.fill();
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+</html>
