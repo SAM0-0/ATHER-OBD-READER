@@ -1,8 +1,20 @@
 {
-  "generated": "2026-11-14",
+  "generated": "2026-11-19",
   "source": "Google Form submissions, self-reported by Ather owners",
-  "count": 5,
+  "count": 6,
   "entries": [
+    {
+      "name": null,
+      "model": "450 (Gen 1)",
+      "pack": null,
+      "odometerKm": 90023,
+      "ageMonths": 24,
+      "soh": 93.0,
+      "imbalanceMv": 3.9,
+      "soc": 96.0,
+      "notes": null,
+      "submitted": "2026-11-18"
+    },
     {
       "name": null,
       "model": "450X",

@@ -160,7 +160,9 @@ def clean_model(value):
         return "450S"
     if "not sure" in s or "don" in s:
         return None
-    return value.strip()[:40]
+    # Older scooters answer with a generation instead of a variant:
+    # "Ather 450 (Gen 1)" -> "450 (Gen 1)".
+    return re.sub(r"^ather\s+", "", value.strip(), flags=re.I)[:40]
 
 
 def load_rows(args):
